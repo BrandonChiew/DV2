@@ -1,0 +1,382 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Map of Western Australia. Most of the state is desert, shaded plain red earth. Only the south-west corner, around Perth, gets 300 mm or more of rain a year; that is where the wheat grows. A small locator map shows WA's place in Australia.",
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "legend": {
+   "labelColor": "#F3EEDF",
+   "titleColor": "#F3EEDF",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 12.5,
+   "titleFontWeight": 600
+  },
+  "axis": {
+   "labelColor": "#F1D9C7",
+   "titleColor": "#F1D9C7",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#C98B66",
+   "tickColor": "#C98B66",
+   "gridColor": "#B0603A"
+  }
+ },
+ "padding": 4,
+ "spacing": 16,
+ "hconcat": [
+  {
+   "width": 380,
+   "height": 430,
+   "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+     -18,
+     -36
+    ],
+    "rotate": [
+     -132,
+     0
+    ],
+    "center": [
+     0,
+     -27
+    ]
+   },
+   "layer": [
+    {
+     "name": "land",
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.properties.name == 'Western Australia'"
+      }
+     ],
+     "mark": {
+      "type": "geoshape",
+      "fill": "#B85F35",
+      "stroke": null
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/isohyets_sw_wa.geojson",
+      "format": {
+       "type": "json",
+       "property": "features"
+      }
+     },
+     "mark": {
+      "type": "geoshape",
+      "strokeWidth": 0.4
+     },
+     "encoding": {
+      "fill": {
+       "field": "properties.band",
+       "type": "ordinal",
+       "scale": {
+        "domain": [
+         "0–200 mm",
+         "200–300 mm",
+         "300–400 mm",
+         "400–600 mm",
+         "600–800 mm",
+         "800–1200 mm",
+         "1200–1600 mm",
+         "1600–2400 mm",
+         "2400+ mm"
+        ],
+        "range": [
+         "#F6EBD0",
+         "#E3E4C0",
+         "#C9DDB8",
+         "#A6D2B4",
+         "#7CC1AE",
+         "#52A9A2",
+         "#2E8C8F",
+         "#146E78",
+         "#0B4F5E"
+        ]
+       },
+       "legend": {
+        "title": "Average rain in a year",
+        "values": [
+         "300–400 mm",
+         "400–600 mm",
+         "600–800 mm",
+         "800–1200 mm",
+         "1200–1600 mm"
+        ],
+        "orient": "top-left",
+        "symbolType": "square",
+        "symbolSize": 170,
+        "offset": 0
+       }
+      },
+      "stroke": {
+       "field": "properties.band",
+       "type": "ordinal",
+       "scale": {
+        "domain": [
+         "0–200 mm",
+         "200–300 mm",
+         "300–400 mm",
+         "400–600 mm",
+         "600–800 mm",
+         "800–1200 mm",
+         "1200–1600 mm",
+         "1600–2400 mm",
+         "2400+ mm"
+        ],
+        "range": [
+         "#F6EBD0",
+         "#E3E4C0",
+         "#C9DDB8",
+         "#A6D2B4",
+         "#7CC1AE",
+         "#52A9A2",
+         "#2E8C8F",
+         "#146E78",
+         "#0B4F5E"
+        ]
+       },
+       "legend": null
+      },
+      "tooltip": [
+       {
+        "field": "properties.band",
+        "title": "Average rain in a year"
+       }
+      ]
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.properties.name == 'Western Australia'"
+      }
+     ],
+     "mark": {
+      "type": "geoshape",
+      "filled": false,
+      "stroke": "#F3EEDF",
+      "strokeWidth": 1.2
+     }
+    },
+    {
+     "data": {
+      "values": [
+       {
+        "lon": 121.2,
+        "lat": -24.6,
+        "t": [
+         "Desert: most of",
+         "the ‘state average’"
+        ]
+       }
+      ]
+     },
+     "mark": {
+      "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 17,
+      "lineHeight": 16,
+      "align": "center",
+      "baseline": "middle",
+      "fontWeight": 600,
+      "fontStyle": "italic",
+      "font": "IBM Plex Sans"
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "t"
+      }
+     }
+    },
+    {
+     "data": {
+      "values": [
+       {
+        "lon": 119.2,
+        "lat": -29.4,
+        "t": [
+         "The wheat belt:",
+         "the thin south-west corner"
+        ]
+       }
+      ]
+     },
+     "mark": {
+      "type": "text",
+      "color": "#16222C",
+      "fontSize": 13,
+      "lineHeight": 16,
+      "align": "left",
+      "baseline": "middle",
+      "fontWeight": 600
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "t"
+      }
+     }
+    },
+    {
+     "data": {
+      "values": [
+       {
+        "lon": 115.86,
+        "lat": -31.95
+       }
+      ]
+     },
+     "mark": {
+      "type": "circle",
+      "size": 26,
+      "fill": "#16222C",
+      "stroke": "#F3EEDF",
+      "strokeWidth": 1
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      }
+     }
+    },
+    {
+     "data": {
+      "values": [
+       {
+        "lon": 115.86,
+        "lat": -31.95,
+        "t": "Perth"
+       }
+      ]
+     },
+     "mark": {
+      "type": "text",
+      "color": "#16222C",
+      "fontSize": 12,
+      "lineHeight": 16,
+      "align": "right",
+      "baseline": "middle",
+      "fontWeight": 600,
+      "dx": -6
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "t"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "vconcat": [
+    {
+     "width": 120,
+     "height": 105,
+     "title": {
+      "text": "Where WA is",
+      "anchor": "start",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "color": "#F1D9C7",
+      "font": "IBM Plex Sans",
+      "offset": 4
+     },
+     "projection": {
+      "type": "conicEqualArea",
+      "parallels": [
+       -18,
+       -36
+      ],
+      "rotate": [
+       -132,
+       0
+      ],
+      "center": [
+       0,
+       -27
+      ]
+     },
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "mark": {
+      "type": "geoshape",
+      "stroke": "#9A4A24",
+      "strokeWidth": 0.6
+     },
+     "encoding": {
+      "fill": {
+       "condition": {
+        "test": "datum.properties.name == 'Western Australia'",
+        "value": "#F0C766"
+       },
+       "value": "#6E3318"
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "resolve": {
+  "legend": {
+   "fill": "independent"
+  }
+ }
+}

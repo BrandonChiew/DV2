@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Guess the 2019 wheat harvest. The 2016 bar (31.8 Mt) is fixed; the reader drags a dashed bar for 2019, then reveals the real 14.5 Mt.",
+  "width": 250,
+  "height": 330,
+  "padding": {"left": 4, "right": 50, "top": 44, "bottom": 4},
+  "config": {
+    "font": "IBM Plex Sans",
+    "background": null,
+    "view": {"stroke": null},
+    "axis": {
+      "labelColor": "#B9C6CC", "titleColor": "#B9C6CC",
+      "labelFont": "IBM Plex Sans", "titleFont": "IBM Plex Sans",
+      "domainColor": "#4A5B66", "tickColor": "#4A5B66",
+      "labelFontSize": 12, "titleFontSize": 13, "titleFontWeight": 400,
+      "gridColor": "#2A3A46"
+    }
+  },
+  "data": {"url": "data/processed/crops_by_state.csv"},
+  "transform": [
+    {"filter": "datum.state_code == 'AUS' && datum.crop == 'wheat' && (datum.year == 2016 || datum.year == 2019)"},
+    {"calculate": "datum.production_kt / 1000", "as": "mt"},
+    {"calculate": "toString(datum.year)", "as": "label"},
+    {"calculate": "datum.year == 2016 ? 'known' : 'actual'", "as": "kind"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "label", "type": "nominal",
+      "scale": {"domain": ["2016", "2019"], "paddingInner": 0.45, "paddingOuter": 0.25},
+      "axis": {"title": null, "labelFontSize": 16, "labelColor": "#F3EEDF", "labelAngle": 0, "labelPadding": 8, "domain": true, "ticks": false}
+    },
+    "y": {
+      "type": "quantitative",
+      "scale": {"domain": [0, 40], "nice": false},
+      "axis": {"title": "Million tonnes of wheat", "grid": true, "values": [0, 10, 20, 30, 40], "domain": false, "ticks": false}
+    }
+  },
+  "params": [{"name": "reveal", "value": false}],
+  "layer": [
+    {
+      "transform": [{"filter": "datum.kind == 'known'"}],
+      "mark": {"type": "bar", "color": "#C8901E", "width": 72, "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "encoding": {
+        "y": {"field": "mt"},
+        "tooltip": [
+          {"field": "season", "title": "Season"},
+          {"field": "mt", "title": "Wheat harvest (Mt)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.kind == 'known'"}],
+      "mark": {"type": "text", "dy": -14, "font": "Big Shoulders Display", "fontSize": 28, "fontWeight": 800, "color": "#F3EEDF"},
+      "encoding": {"y": {"field": "mt"}, "text": {"field": "mt", "format": ".1f"}}
+    },
+    {
+      "transform": [{"filter": "datum.kind == 'actual' && reveal"}],
+      "mark": {"type": "bar", "width": 72, "color": "#8C510A", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "encoding": {
+        "y": {"field": "mt"},
+        "tooltip": [
+          {"field": "season", "title": "Season"},
+          {"field": "mt", "title": "Wheat harvest (Mt)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.kind == 'actual' && reveal"}],
+      "mark": {"type": "text", "dy": 20, "font": "Big Shoulders Display", "fontSize": 26, "fontWeight": 800, "color": "#F3EEDF"},
+      "encoding": {"y": {"field": "mt"}, "text": {"field": "mt", "format": ".1f"}}
+    },
+    {
+      "transform": [
+        {"filter": "datum.kind == 'known' && reveal"},
+        {"calculate": "datum.mt / 2", "as": "half"}
+      ],
+      "mark": {"type": "rule", "color": "#F3EEDF", "strokeDash": [2, 3], "strokeWidth": 1.2, "opacity": 0.8},
+      "encoding": {"x": {"value": 0}, "x2": {"value": 250}, "y": {"field": "half"}}
+    },
+    {
+      "transform": [
+        {"filter": "datum.kind == 'known' && reveal"},
+        {"calculate": "datum.mt / 2", "as": "half"}
+      ],
+      "mark": {"type": "text", "align": "left", "baseline": "middle", "fontSize": 13, "fontStyle": "italic", "color": "#F3EEDF", "lineHeight": 15},
+      "encoding": {"x": {"value": 255}, "y": {"field": "half"}, "text": {"value": ["half", "of 2016"]}}
+    },
+    {
+      "data": {"sequence": {"start": 0, "stop": 40.5, "step": 0.5, "as": "mt_pick"}},
+      "transform": [{"filter": {"param": "pick"}}, {"calculate": "'2019'", "as": "label"}],
+      "mark": {"type": "bar", "width": 72, "color": "#E7A04B", "opacity": {"expr": "reveal ? 0.12 : 0.3"}, "stroke": "#E7A04B", "strokeWidth": 2, "strokeDash": [6, 4], "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "encoding": {"y": {"field": "mt_pick"}}
+    },
+    {
+      "data": {"sequence": {"start": 0, "stop": 40.5, "step": 0.5, "as": "mt_pick"}},
+      "transform": [{"filter": {"param": "pick"}}, {"calculate": "'2019'", "as": "label"}],
+      "mark": {"type": "text", "dy": -14, "font": "Big Shoulders Display", "fontSize": 26, "fontWeight": 800, "color": "#E7A04B"},
+      "encoding": {"y": {"field": "mt_pick"}, "text": {"field": "mt_pick", "format": ".1f"}}
+    },
+    {
+      "data": {"sequence": {"start": 0, "stop": 40.5, "step": 0.5, "as": "mt_pick"}},
+      "transform": [{"filter": {"param": "pick"}}, {"calculate": "'2019'", "as": "label"}],
+      "mark": {"type": "text", "dy": -40, "fontSize": 12, "color": "#E7A04B"},
+      "encoding": {"y": {"field": "mt_pick"}, "text": {"value": "your guess"}}
+    },
+    {
+      "data": {"sequence": {"start": 0, "stop": 40.5, "step": 0.5, "as": "mt_pick"}},
+      "params": [{
+        "name": "pick",
+        "select": {"type": "point", "fields": ["mt_pick"], "on": "pointerdown, pointermove[event.buttons === 1]", "clear": false, "toggle": false},
+        "value": [{"mt_pick": 25}]
+      }],
+      "mark": {"type": "rule", "strokeWidth": 4.2, "opacity": 0.001, "color": "#fff", "cursor": "ns-resize"},
+      "encoding": {"y": {"field": "mt_pick"}, "x": {"value": 125}, "x2": {"value": 250}}
+    }
+  ]
+}

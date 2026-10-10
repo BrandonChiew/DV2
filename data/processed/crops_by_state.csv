@@ -1,0 +1,799 @@
+state,state_code,crop,season,year,status,area_kha,production_kt,yield_t_ha
+Australia,AUS,wheat,1989–90,1989,actual,9003.8,14214.6,1.579
+Australia,AUS,wheat,1990–91,1990,actual,9218.2,15066.1,1.634
+Australia,AUS,wheat,1991–92,1991,actual,7183.0,10557.3,1.47
+Australia,AUS,wheat,1992–93,1992,actual,8274.7,14738.7,1.781
+Australia,AUS,wheat,1993–94,1993,actual,8383.1,16479.2,1.966
+Australia,AUS,wheat,1994–95,1994,actual,7890.6,8961.4,1.136
+Australia,AUS,wheat,1995–96,1995,actual,9220.8,16503.9,1.79
+Australia,AUS,wheat,1996–97,1996,actual,10935.5,22924.2,2.096
+Australia,AUS,wheat,1997–98,1997,actual,10440.6,19226.7,1.842
+Australia,AUS,wheat,1998–99,1998,actual,11542.6,21464.8,1.86
+Australia,AUS,wheat,1999–00,1999,actual,12167.6,24757.4,2.035
+Australia,AUS,wheat,2000–01,2000,actual,12141.3,22108.2,1.821
+Australia,AUS,wheat,2001–02,2001,actual,11529.3,24299.4,2.108
+Australia,AUS,wheat,2002–03,2002,actual,11170.3,10131.8,0.907
+Australia,AUS,wheat,2003–04,2003,actual,13067.1,26131.8,2.0
+Australia,AUS,wheat,2004–05,2004,actual,13399.4,21905.1,1.635
+Australia,AUS,wheat,2005–06,2005,actual,12442.6,25150.4,2.021
+Australia,AUS,wheat,2006–07,2006,actual,11797.9,10821.7,0.917
+Australia,AUS,wheat,2007–08,2007,actual,12578.2,13569.4,1.079
+Australia,AUS,wheat,2008–09,2008,actual,13530.2,21420.1,1.583
+Australia,AUS,wheat,2009–10,2009,actual,13881.1,21834.0,1.573
+Australia,AUS,wheat,2010–11,2010,actual,13501.8,27410.0,2.03
+Australia,AUS,wheat,2011–12,2011,actual,13902.141,29905.009,2.151
+Australia,AUS,wheat,2012–13,2012,actual,12979.232,22855.166,1.761
+Australia,AUS,wheat,2013–14,2013,actual,12613.076,25302.707,2.006
+Australia,AUS,wheat,2014–15,2014,actual,12383.673,23742.56,1.917
+Australia,AUS,wheat,2015–16,2015,actual,11282.202,22274.514,1.974
+Australia,AUS,wheat,2016–17,2016,actual,12191.153,31818.744,2.61
+Australia,AUS,wheat,2017–18,2017,actual,10919.18,20941.133,1.918
+Australia,AUS,wheat,2018–19,2018,actual,10402.271,17597.561,1.692
+Australia,AUS,wheat,2019–20,2019,actual,9863.184,14480.217,1.468
+Australia,AUS,wheat,2020–21,2020,actual,12643.216,31922.555,2.525
+Australia,AUS,wheat,2021–22,2021,actual,12728.252,36237.477,2.847
+Australia,AUS,wheat,2022–23,2022,estimate,13045.0,40545.42,3.108
+Australia,AUS,wheat,2023–24,2023,estimate,12372.396,25960.0,2.098
+Australia,AUS,wheat,2024–25,2024,estimate,13060.0,34110.0,2.612
+Australia,AUS,wheat,2025–26,2025,estimate,12412.0,35985.0,2.899
+Australia,AUS,wheat,2026–27,2026,forecast,11051.0,29881.0,2.704
+Australia,AUS,barley,1989–90,1989,actual,2309.897,4044.146,1.751
+Australia,AUS,barley,1990–91,1990,actual,2555.651,4107.832,1.607
+Australia,AUS,barley,1991–92,1991,actual,2744.241,4529.678,1.651
+Australia,AUS,barley,1992–93,1992,actual,2947.179,5396.758,1.831
+Australia,AUS,barley,1993–94,1993,actual,3424.468,6668.234,1.947
+Australia,AUS,barley,1994–95,1994,actual,2470.49,2913.189,1.179
+Australia,AUS,barley,1995–96,1995,actual,3110.588,5822.684,1.872
+Australia,AUS,barley,1996–97,1996,actual,3365.806,6694.804,1.989
+Australia,AUS,barley,1997–98,1997,actual,3520.909,6481.669,1.841
+Australia,AUS,barley,1998–99,1998,actual,3167.301,5987.241,1.89
+Australia,AUS,barley,1999–00,1999,actual,2595.63,5032.016,1.939
+Australia,AUS,barley,2000–01,2000,actual,3454.047,6743.463,1.952
+Australia,AUS,barley,2001–02,2001,actual,3707.378,8279.769,2.233
+Australia,AUS,barley,2002–03,2002,actual,3863.778,3864.833,1.0
+Australia,AUS,barley,2003–04,2003,actual,4477.024,10381.828,2.319
+Australia,AUS,barley,2004–05,2004,actual,4645.658,7739.767,1.666
+Australia,AUS,barley,2005–06,2005,actual,4405.727,9481.741,2.152
+Australia,AUS,barley,2006–07,2006,actual,4178.797,4257.032,1.019
+Australia,AUS,barley,2007–08,2007,actual,4901.838,7160.168,1.461
+Australia,AUS,barley,2008–09,2008,actual,5015.01,7996.506,1.595
+Australia,AUS,barley,2009–10,2009,actual,4421.597,7864.551,1.779
+Australia,AUS,barley,2010–11,2010,actual,3680.995,7994.719,2.172
+Australia,AUS,barley,2011–12,2011,actual,3718.089,8220.861,2.211
+Australia,AUS,barley,2012–13,2012,actual,3644.266,7471.382,2.05
+Australia,AUS,barley,2013–14,2013,actual,3814.013,9174.207,2.405
+Australia,AUS,barley,2014–15,2014,actual,4078.041,8646.321,2.12
+Australia,AUS,barley,2015–16,2015,actual,4107.648,8992.274,2.189
+Australia,AUS,barley,2016–17,2016,actual,4834.102,13505.99,2.794
+Australia,AUS,barley,2017–18,2017,actual,4124.149,9253.829,2.244
+Australia,AUS,barley,2018–19,2018,actual,4436.588,8818.946,1.988
+Australia,AUS,barley,2019–20,2019,actual,5040.903,10127.175,2.009
+Australia,AUS,barley,2020–21,2020,actual,5491.009,14648.581,2.668
+Australia,AUS,barley,2021–22,2021,actual,5094.527,14377.284,2.822
+Australia,AUS,barley,2022–23,2022,estimate,4127.0,14136.803,3.425
+Australia,AUS,barley,2023–24,2023,estimate,4207.0,10800.0,2.567
+Australia,AUS,barley,2024–25,2024,estimate,4621.0,13265.0,2.871
+Australia,AUS,barley,2025–26,2025,estimate,4872.0,16950.95,3.479
+Australia,AUS,barley,2026–27,2026,forecast,5146.0,16416.0,3.19
+Australia,AUS,canola,1989–90,1989,actual,49.736,78.157,1.571
+Australia,AUS,canola,1990–91,1990,actual,72.885,98.4,1.35
+Australia,AUS,canola,1991–92,1991,actual,150.665,170.448,1.131
+Australia,AUS,canola,1992–93,1992,actual,107.109,177.902,1.661
+Australia,AUS,canola,1993–94,1993,actual,176.532,305.02,1.728
+Australia,AUS,canola,1994–95,1994,actual,356.234,263.892,0.741
+Australia,AUS,canola,1995–96,1995,actual,376.558,557.054,1.479
+Australia,AUS,canola,1996–97,1996,actual,407.456,623.239,1.53
+Australia,AUS,canola,1997–98,1997,actual,697.491,855.36,1.226
+Australia,AUS,canola,1998–99,1998,actual,1247.208,1690.458,1.355
+Australia,AUS,canola,1999–00,1999,actual,1909.543,2458.674,1.288
+Australia,AUS,canola,2000–01,2000,actual,1458.613,1774.119,1.216
+Australia,AUS,canola,2001–02,2001,actual,1331.505,1755.863,1.319
+Australia,AUS,canola,2002–03,2002,actual,1297.074,870.059,0.671
+Australia,AUS,canola,2003–04,2003,actual,1210.598,1702.349,1.406
+Australia,AUS,canola,2004–05,2004,actual,1377.061,1542.318,1.12
+Australia,AUS,canola,2005–06,2005,actual,971.694,1418.941,1.46
+Australia,AUS,canola,2006–07,2006,actual,1051.823,573.325,0.545
+Australia,AUS,canola,2007–08,2007,actual,1277.082,1214.374,0.951
+Australia,AUS,canola,2008–09,2008,actual,1692.608,1844.157,1.09
+Australia,AUS,canola,2009–10,2009,actual,1694.936,1907.272,1.125
+Australia,AUS,canola,2010–11,2010,actual,2077.523,2358.716,1.135
+Australia,AUS,canola,2011–12,2011,actual,2460.785,3427.293,1.393
+Australia,AUS,canola,2012–13,2012,actual,3271.499,4141.586,1.266
+Australia,AUS,canola,2013–14,2013,actual,2720.685,3831.909,1.408
+Australia,AUS,canola,2014–15,2014,actual,2896.951,3540.021,1.222
+Australia,AUS,canola,2015–16,2015,actual,2090.892,2775.479,1.327
+Australia,AUS,canola,2016–17,2016,actual,2681.162,4313.23,1.609
+Australia,AUS,canola,2017–18,2017,actual,3171.119,3893.069,1.228
+Australia,AUS,canola,2018–19,2018,actual,2119.836,2365.839,1.116
+Australia,AUS,canola,2019–20,2019,actual,2034.057,2298.529,1.13
+Australia,AUS,canola,2020–21,2020,actual,2613.846,4756.388,1.82
+Australia,AUS,canola,2021–22,2021,actual,3250.261,6820.287,2.098
+Australia,AUS,canola,2022–23,2022,estimate,4000.0,8640.0,2.16
+Australia,AUS,canola,2023–24,2023,estimate,3507.0,6050.0,1.725
+Australia,AUS,canola,2024–25,2024,estimate,3438.5,6396.0,1.86
+Australia,AUS,canola,2025–26,2025,estimate,3701.8,7679.5,2.075
+Australia,AUS,canola,2026–27,2026,forecast,3779.5,7271.5,1.924
+New South Wales,NSW,wheat,1989–90,1989,actual,2123.4,3423.3,1.612
+New South Wales,NSW,wheat,1990–91,1990,actual,2165.8,4127.6,1.906
+New South Wales,NSW,wheat,1991–92,1991,actual,1499.3,2183.0,1.456
+New South Wales,NSW,wheat,1992–93,1992,actual,1694.0,3582.7,2.115
+New South Wales,NSW,wheat,1993–94,1993,actual,1977.7,5086.1,2.572
+New South Wales,NSW,wheat,1994–95,1994,actual,1423.8,874.6,0.614
+New South Wales,NSW,wheat,1995–96,1995,actual,2328.3,4508.4,1.936
+New South Wales,NSW,wheat,1996–97,1996,actual,3192.0,8363.4,2.62
+New South Wales,NSW,wheat,1997–98,1997,actual,2936.2,5906.4,2.012
+New South Wales,NSW,wheat,1998–99,1998,actual,3173.8,6563.3,2.068
+New South Wales,NSW,wheat,1999–00,1999,actual,3424.5,8601.9,2.512
+New South Wales,NSW,wheat,2000–01,2000,actual,3670.8,7867.3,2.143
+New South Wales,NSW,wheat,2001–02,2001,actual,3446.0,8042.8,2.334
+New South Wales,NSW,wheat,2002–03,2002,actual,2994.8,2494.9,0.833
+New South Wales,NSW,wheat,2003–04,2003,actual,3983.4,7288.2,1.83
+New South Wales,NSW,wheat,2004–05,2004,actual,4256.3,7537.4,1.771
+New South Wales,NSW,wheat,2005–06,2005,actual,3554.1,8049.0,2.265
+New South Wales,NSW,wheat,2006–07,2006,actual,3595.8,2567.7,0.714
+New South Wales,NSW,wheat,2007–08,2007,actual,4008.9,2477.1,0.618
+New South Wales,NSW,wheat,2008–09,2008,actual,4322.2,6963.3,1.611
+New South Wales,NSW,wheat,2009–10,2009,actual,3982.6,5349.8,1.343
+New South Wales,NSW,wheat,2010–11,2010,actual,3814.7,10488.4,2.749
+New South Wales,NSW,wheat,2011–12,2011,actual,3868.354,8472.914,2.19
+New South Wales,NSW,wheat,2012–13,2012,actual,3487.448,7364.882,2.112
+New South Wales,NSW,wheat,2013–14,2013,actual,3269.386,6595.626,2.017
+New South Wales,NSW,wheat,2014–15,2014,actual,3166.039,6653.67,2.102
+New South Wales,NSW,wheat,2015–16,2015,actual,2932.741,6897.527,2.352
+New South Wales,NSW,wheat,2016–17,2016,actual,3248.417,9819.12,3.023
+New South Wales,NSW,wheat,2017–18,2017,actual,2793.456,4702.842,1.684
+New South Wales,NSW,wheat,2018–19,2018,actual,2381.953,1850.335,0.777
+New South Wales,NSW,wheat,2019–20,2019,actual,2132.016,1772.365,0.831
+New South Wales,NSW,wheat,2020–21,2020,actual,4037.001,12972.151,3.213
+New South Wales,NSW,wheat,2021–22,2021,actual,3607.705,12029.415,3.334
+New South Wales,NSW,wheat,2022–23,2022,estimate,3600.0,10620.0,2.95
+New South Wales,NSW,wheat,2023–24,2023,estimate,3300.0,7095.0,2.15
+New South Wales,NSW,wheat,2024–25,2024,estimate,3900.0,12900.0,3.308
+New South Wales,NSW,wheat,2025–26,2025,estimate,3600.0,11200.0,3.111
+New South Wales,NSW,wheat,2026–27,2026,forecast,3000.0,7700.0,2.567
+New South Wales,NSW,barley,1989–90,1989,actual,412.9,655.6,1.588
+New South Wales,NSW,barley,1990–91,1990,actual,463.3,822.5,1.775
+New South Wales,NSW,barley,1991–92,1991,actual,517.5,748.7,1.447
+New South Wales,NSW,barley,1992–93,1992,actual,559.7,1043.8,1.865
+New South Wales,NSW,barley,1993–94,1993,actual,622.979,1356.962,2.178
+New South Wales,NSW,barley,1994–95,1994,actual,409.785,291.499,0.711
+New South Wales,NSW,barley,1995–96,1995,actual,593.172,1073.647,1.81
+New South Wales,NSW,barley,1996–97,1996,actual,668.179,1483.044,2.22
+New South Wales,NSW,barley,1997–98,1997,actual,701.078,1364.66,1.947
+New South Wales,NSW,barley,1998–99,1998,actual,637.989,1247.372,1.955
+New South Wales,NSW,barley,1999–00,1999,actual,475.924,1040.305,2.186
+New South Wales,NSW,barley,2000–01,2000,actual,615.448,1253.309,2.036
+New South Wales,NSW,barley,2001–02,2001,actual,664.707,1382.297,2.08
+New South Wales,NSW,barley,2002–03,2002,actual,636.362,427.993,0.673
+New South Wales,NSW,barley,2003–04,2003,actual,951.032,1955.188,2.056
+New South Wales,NSW,barley,2004–05,2004,actual,1023.121,1760.708,1.721
+New South Wales,NSW,barley,2005–06,2005,actual,1103.066,2336.404,2.118
+New South Wales,NSW,barley,2006–07,2006,actual,901.737,753.014,0.835
+New South Wales,NSW,barley,2007–08,2007,actual,1048.959,814.344,0.776
+New South Wales,NSW,barley,2008–09,2008,actual,977.475,1449.399,1.483
+New South Wales,NSW,barley,2009–10,2009,actual,950.728,1236.248,1.3
+New South Wales,NSW,barley,2010–11,2010,actual,878.015,2193.564,2.498
+New South Wales,NSW,barley,2011–12,2011,actual,672.872,1425.036,2.118
+New South Wales,NSW,barley,2012–13,2012,actual,618.937,1286.325,2.078
+New South Wales,NSW,barley,2013–14,2013,actual,715.248,1485.537,2.077
+New South Wales,NSW,barley,2014–15,2014,actual,882.347,1868.86,2.118
+New South Wales,NSW,barley,2015–16,2015,actual,966.18,2527.655,2.616
+New South Wales,NSW,barley,2016–17,2016,actual,1056.379,2832.124,2.681
+New South Wales,NSW,barley,2017–18,2017,actual,763.47,1304.643,1.709
+New South Wales,NSW,barley,2018–19,2018,actual,667.931,909.089,1.361
+New South Wales,NSW,barley,2019–20,2019,actual,885.403,916.3,1.035
+New South Wales,NSW,barley,2020–21,2020,actual,1370.935,4257.988,3.106
+New South Wales,NSW,barley,2021–22,2021,actual,1158.588,3561.719,3.074
+New South Wales,NSW,barley,2022–23,2022,estimate,780.0,2277.6,2.92
+New South Wales,NSW,barley,2023–24,2023,estimate,800.0,1920.0,2.4
+New South Wales,NSW,barley,2024–25,2024,estimate,1100.0,3400.0,3.091
+New South Wales,NSW,barley,2025–26,2025,estimate,1100.0,3600.0,3.273
+New South Wales,NSW,barley,2026–27,2026,forecast,1050.0,2900.0,2.762
+New South Wales,NSW,canola,1989–90,1989,actual,32.67,55.062,1.685
+New South Wales,NSW,canola,1990–91,1990,actual,56.581,81.456,1.44
+New South Wales,NSW,canola,1991–92,1991,actual,101.014,117.654,1.165
+New South Wales,NSW,canola,1992–93,1992,actual,70.452,133.024,1.888
+New South Wales,NSW,canola,1993–94,1993,actual,100.575,192.551,1.915
+New South Wales,NSW,canola,1994–95,1994,actual,152.877,73.188,0.479
+New South Wales,NSW,canola,1995–96,1995,actual,170.224,272.253,1.599
+New South Wales,NSW,canola,1996–97,1996,actual,172.739,330.8,1.915
+New South Wales,NSW,canola,1997–98,1997,actual,269.686,361.718,1.341
+New South Wales,NSW,canola,1998–99,1998,actual,371.767,623.137,1.676
+New South Wales,NSW,canola,1999–00,1999,actual,515.486,826.816,1.604
+New South Wales,NSW,canola,2000–01,2000,actual,523.354,835.709,1.597
+New South Wales,NSW,canola,2001–02,2001,actual,533.664,715.311,1.34
+New South Wales,NSW,canola,2002–03,2002,actual,489.844,183.953,0.376
+New South Wales,NSW,canola,2003–04,2003,actual,365.825,437.635,1.196
+New South Wales,NSW,canola,2004–05,2004,actual,434.093,468.332,1.079
+New South Wales,NSW,canola,2005–06,2005,actual,194.378,314.259,1.617
+New South Wales,NSW,canola,2006–07,2006,actual,282.81,54.429,0.192
+New South Wales,NSW,canola,2007–08,2007,actual,310.274,78.497,0.253
+New South Wales,NSW,canola,2008–09,2008,actual,299.831,227.542,0.759
+New South Wales,NSW,canola,2009–10,2009,actual,297.82,281.311,0.945
+New South Wales,NSW,canola,2010–11,2010,actual,478.61,805.219,1.682
+New South Wales,NSW,canola,2011–12,2011,actual,729.197,1091.898,1.497
+New South Wales,NSW,canola,2012–13,2012,actual,1025.31,1494.713,1.458
+New South Wales,NSW,canola,2013–14,2013,actual,672.915,922.414,1.371
+New South Wales,NSW,canola,2014–15,2014,actual,699.054,1013.708,1.45
+New South Wales,NSW,canola,2015–16,2015,actual,568.142,936.52,1.648
+New South Wales,NSW,canola,2016–17,2016,actual,785.551,1248.228,1.589
+New South Wales,NSW,canola,2017–18,2017,actual,860.012,892.699,1.038
+New South Wales,NSW,canola,2018–19,2018,actual,404.985,263.035,0.649
+New South Wales,NSW,canola,2019–20,2019,actual,327.076,206.199,0.63
+New South Wales,NSW,canola,2020–21,2020,actual,731.0,1532.184,2.096
+New South Wales,NSW,canola,2021–22,2021,actual,940.71,2114.144,2.247
+New South Wales,NSW,canola,2022–23,2022,estimate,900.0,1800.0,2.0
+New South Wales,NSW,canola,2023–24,2023,estimate,840.0,1600.0,1.905
+New South Wales,NSW,canola,2024–25,2024,estimate,990.0,1900.0,1.919
+New South Wales,NSW,canola,2025–26,2025,estimate,950.0,1600.0,1.684
+New South Wales,NSW,canola,2026–27,2026,forecast,710.0,1200.0,1.69
+Queensland,QLD,wheat,1989–90,1989,actual,894.3,1420.0,1.588
+Queensland,QLD,wheat,1990–91,1990,actual,1060.3,1973.2,1.861
+Queensland,QLD,wheat,1991–92,1991,actual,491.7,343.7,0.699
+Queensland,QLD,wheat,1992–93,1992,actual,669.2,735.2,1.099
+Queensland,QLD,wheat,1993–94,1993,actual,555.5,555.4,1.0
+Queensland,QLD,wheat,1994–95,1994,actual,400.7,225.1,0.562
+Queensland,QLD,wheat,1995–96,1995,actual,626.5,519.5,0.829
+Queensland,QLD,wheat,1996–97,1996,actual,979.7,1979.5,2.021
+Queensland,QLD,wheat,1997–98,1997,actual,1001.4,1392.1,1.39
+Queensland,QLD,wheat,1998–99,1998,actual,1138.8,1941.2,1.705
+Queensland,QLD,wheat,1999–00,1999,actual,1096.0,1904.0,1.737
+Queensland,QLD,wheat,2000–01,2000,actual,884.9,1157.0,1.307
+Queensland,QLD,wheat,2001–02,2001,actual,604.4,901.4,1.491
+Queensland,QLD,wheat,2002–03,2002,actual,514.4,600.9,1.168
+Queensland,QLD,wheat,2003–04,2003,actual,789.7,1109.7,1.405
+Queensland,QLD,wheat,2004–05,2004,actual,711.0,1170.4,1.646
+Queensland,QLD,wheat,2005–06,2005,actual,778.3,1217.6,1.564
+Queensland,QLD,wheat,2006–07,2006,actual,638.0,776.7,1.217
+Queensland,QLD,wheat,2007–08,2007,actual,668.9,953.9,1.426
+Queensland,QLD,wheat,2008–09,2008,actual,1019.9,2016.0,1.977
+Queensland,QLD,wheat,2009–10,2009,actual,961.7,1346.3,1.4
+Queensland,QLD,wheat,2010–11,2010,actual,905.5,1523.6,1.683
+Queensland,QLD,wheat,2011–12,2011,actual,953.201,1886.303,1.979
+Queensland,QLD,wheat,2012–13,2012,actual,865.923,1613.964,1.864
+Queensland,QLD,wheat,2013–14,2013,actual,757.955,1036.45,1.367
+Queensland,QLD,wheat,2014–15,2014,actual,633.508,986.855,1.558
+Queensland,QLD,wheat,2015–16,2015,actual,611.093,1315.912,2.153
+Queensland,QLD,wheat,2016–17,2016,actual,622.197,1501.6,2.413
+Queensland,QLD,wheat,2017–18,2017,actual,639.189,765.413,1.197
+Queensland,QLD,wheat,2018–19,2018,actual,419.697,419.675,1.0
+Queensland,QLD,wheat,2019–20,2019,actual,441.477,418.475,0.948
+Queensland,QLD,wheat,2020–21,2020,actual,966.132,1594.192,1.65
+Queensland,QLD,wheat,2021–22,2021,actual,940.597,2222.389,2.363
+Queensland,QLD,wheat,2022–23,2022,estimate,980.0,2600.0,2.653
+Queensland,QLD,wheat,2023–24,2023,estimate,720.0,1080.0,1.5
+Queensland,QLD,wheat,2024–25,2024,estimate,900.0,2230.0,2.478
+Queensland,QLD,wheat,2025–26,2025,estimate,880.0,2310.0,2.625
+Queensland,QLD,wheat,2026–27,2026,forecast,650.0,1210.0,1.862
+Queensland,QLD,barley,1989–90,1989,actual,179.4,320.7,1.788
+Queensland,QLD,barley,1990–91,1990,actual,176.9,360.8,2.04
+Queensland,QLD,barley,1991–92,1991,actual,127.8,70.1,0.549
+Queensland,QLD,barley,1992–93,1992,actual,189.3,285.2,1.507
+Queensland,QLD,barley,1993–94,1993,actual,232.217,260.539,1.122
+Queensland,QLD,barley,1994–95,1994,actual,93.477,72.845,0.779
+Queensland,QLD,barley,1995–96,1995,actual,167.847,195.028,1.162
+Queensland,QLD,barley,1996–97,1996,actual,180.214,428.597,2.378
+Queensland,QLD,barley,1997–98,1997,actual,135.258,204.48,1.512
+Queensland,QLD,barley,1998–99,1998,actual,163.294,320.392,1.962
+Queensland,QLD,barley,1999–00,1999,actual,129.884,253.786,1.954
+Queensland,QLD,barley,2000–01,2000,actual,111.949,114.985,1.027
+Queensland,QLD,barley,2001–02,2001,actual,96.414,170.725,1.771
+Queensland,QLD,barley,2002–03,2002,actual,107.865,148.306,1.375
+Queensland,QLD,barley,2003–04,2003,actual,151.189,263.122,1.74
+Queensland,QLD,barley,2004–05,2004,actual,97.222,177.776,1.829
+Queensland,QLD,barley,2005–06,2005,actual,129.329,165.984,1.283
+Queensland,QLD,barley,2006–07,2006,actual,80.515,78.96,0.981
+Queensland,QLD,barley,2007–08,2007,actual,112.923,142.846,1.265
+Queensland,QLD,barley,2008–09,2008,actual,91.866,173.036,1.884
+Queensland,QLD,barley,2009–10,2009,actual,68.543,113.077,1.65
+Queensland,QLD,barley,2010–11,2010,actual,93.969,146.178,1.556
+Queensland,QLD,barley,2011–12,2011,actual,79.979,191.021,2.388
+Queensland,QLD,barley,2012–13,2012,actual,89.655,170.208,1.898
+Queensland,QLD,barley,2013–14,2013,actual,105.76,179.535,1.698
+Queensland,QLD,barley,2014–15,2014,actual,125.477,253.191,2.018
+Queensland,QLD,barley,2015–16,2015,actual,137.699,372.361,2.704
+Queensland,QLD,barley,2016–17,2016,actual,148.991,435.727,2.925
+Queensland,QLD,barley,2017–18,2017,actual,104.89,187.84,1.791
+Queensland,QLD,barley,2018–19,2018,actual,99.476,132.008,1.327
+Queensland,QLD,barley,2019–20,2019,actual,80.482,80.075,0.995
+Queensland,QLD,barley,2020–21,2020,actual,227.397,434.362,1.91
+Queensland,QLD,barley,2021–22,2021,actual,207.315,617.25,2.977
+Queensland,QLD,barley,2022–23,2022,estimate,136.0,403.0,2.963
+Queensland,QLD,barley,2023–24,2023,estimate,150.0,300.0,2.0
+Queensland,QLD,barley,2024–25,2024,estimate,185.0,535.0,2.892
+Queensland,QLD,barley,2025–26,2025,estimate,175.0,515.0,2.943
+Queensland,QLD,barley,2026–27,2026,forecast,155.0,355.0,2.29
+Queensland,QLD,canola,1989–90,1989,actual,0.5,0.49,0.98
+Queensland,QLD,canola,1990–91,1990,actual,0.0,0.0,
+Queensland,QLD,canola,1991–92,1991,actual,3.347,0.793,0.237
+Queensland,QLD,canola,1992–93,1992,actual,0.307,0.184,0.599
+Queensland,QLD,canola,1993–94,1993,actual,0.054,0.024,0.444
+Queensland,QLD,canola,1994–95,1994,actual,0.095,0.009,0.095
+Queensland,QLD,canola,1995–96,1995,actual,0.241,0.105,0.436
+Queensland,QLD,canola,1996–97,1996,actual,0.018,0.013,0.722
+Queensland,QLD,canola,1997–98,1997,actual,0.23,0.123,0.535
+Queensland,QLD,canola,1998–99,1998,actual,0.75,0.827,1.103
+Queensland,QLD,canola,1999–00,1999,actual,0.0,0.0,
+Queensland,QLD,canola,2000–01,2000,actual,2.662,1.303,0.489
+Queensland,QLD,canola,2001–02,2001,actual,1.256,1.465,1.166
+Queensland,QLD,canola,2002–03,2002,actual,0.02,0.017,0.85
+Queensland,QLD,canola,2003–04,2003,actual,0.0,0.0,
+Queensland,QLD,canola,2004–05,2004,actual,0.292,0.266,0.911
+Queensland,QLD,canola,2005–06,2005,actual,0.903,0.74,0.819
+Queensland,QLD,canola,2006–07,2006,actual,1.99,0.656,0.33
+Queensland,QLD,canola,2007–08,2007,actual,2.254,0.282,0.125
+Queensland,QLD,canola,2008–09,2008,actual,2.687,2.149,0.8
+Queensland,QLD,canola,2009–10,2009,actual,2.751,1.159,0.421
+Queensland,QLD,canola,2010–11,2010,actual,1.801,2.378,1.32
+Queensland,QLD,canola,2011–12,2011,actual,1.326,1.437,1.084
+Queensland,QLD,canola,2012–13,2012,actual,0.716,0.652,0.911
+Queensland,QLD,canola,2013–14,2013,actual,2.294,0.896,0.391
+Queensland,QLD,canola,2014–15,2014,actual,0.855,0.416,0.487
+Queensland,QLD,canola,2015–16,2015,actual,2.021,2.798,1.384
+Queensland,QLD,canola,2016–17,2016,actual,0.014,0.028,2.0
+Queensland,QLD,canola,2017–18,2017,actual,0.67,0.25,0.373
+Queensland,QLD,canola,2018–19,2018,actual,1.161,0.348,0.3
+Queensland,QLD,canola,2019–20,2019,actual,0.86,0.938,1.091
+Queensland,QLD,canola,2020–21,2020,actual,1.336,1.189,0.89
+Queensland,QLD,canola,2021–22,2021,actual,2.349,4.728,2.013
+Queensland,QLD,canola,2022–23,2022,estimate,5.0,10.0,2.0
+Queensland,QLD,canola,2023–24,2023,estimate,4.0,4.0,1.0
+Queensland,QLD,canola,2024–25,2024,estimate,6.0,11.0,1.833
+Queensland,QLD,canola,2025–26,2025,estimate,6.8,12.5,1.838
+Queensland,QLD,canola,2026–27,2026,forecast,5.5,7.5,1.364
+South Australia,SA,wheat,1989–90,1989,actual,1556.6,2607.2,1.675
+South Australia,SA,wheat,1990–91,1990,actual,1447.8,2020.8,1.396
+South Australia,SA,wheat,1991–92,1991,actual,1296.8,2141.0,1.651
+South Australia,SA,wheat,1992–93,1992,actual,1419.5,2421.2,1.706
+South Australia,SA,wheat,1993–94,1993,actual,1216.0,2121.1,1.744
+South Australia,SA,wheat,1994–95,1994,actual,1394.7,1487.4,1.066
+South Australia,SA,wheat,1995–96,1995,actual,1519.1,2724.0,1.793
+South Australia,SA,wheat,1996–97,1996,actual,1534.9,2794.9,1.821
+South Australia,SA,wheat,1997–98,1997,actual,1438.5,2689.2,1.869
+South Australia,SA,wheat,1998–99,1998,actual,1762.1,3310.4,1.879
+South Australia,SA,wheat,1999–00,1999,actual,1850.0,2585.5,1.398
+South Australia,SA,wheat,2000–01,2000,actual,1975.6,4162.4,2.107
+South Australia,SA,wheat,2001–02,2001,actual,1986.6,4778.5,2.405
+South Australia,SA,wheat,2002–03,2002,actual,1956.5,2071.8,1.059
+South Australia,SA,wheat,2003–04,2003,actual,1959.5,3490.4,1.781
+South Australia,SA,wheat,2004–05,2004,actual,1979.2,2620.8,1.324
+South Australia,SA,wheat,2005–06,2005,actual,2034.9,3852.8,1.893
+South Australia,SA,wheat,2006–07,2006,actual,2172.5,1446.0,0.666
+South Australia,SA,wheat,2007–08,2007,actual,2120.8,2296.0,1.083
+South Australia,SA,wheat,2008–09,2008,actual,2103.9,2376.1,1.129
+South Australia,SA,wheat,2009–10,2009,actual,2122.4,4001.3,1.885
+South Australia,SA,wheat,2010–11,2010,actual,2340.6,5948.7,2.542
+South Australia,SA,wheat,2011–12,2011,actual,2249.066,4524.803,2.012
+South Australia,SA,wheat,2012–13,2012,actual,2118.739,3678.962,1.736
+South Australia,SA,wheat,2013–14,2013,actual,1926.85,4254.313,2.208
+South Australia,SA,wheat,2014–15,2014,actual,2045.009,4602.087,2.25
+South Australia,SA,wheat,2015–16,2015,actual,1769.7,3679.342,2.079
+South Australia,SA,wheat,2016–17,2016,actual,2178.255,6132.504,2.815
+South Australia,SA,wheat,2017–18,2017,actual,1975.81,4051.954,2.051
+South Australia,SA,wheat,2018–19,2018,actual,1820.819,3024.524,1.661
+South Australia,SA,wheat,2019–20,2019,actual,1720.943,2689.074,1.563
+South Australia,SA,wheat,2020–21,2020,actual,1830.975,3982.208,2.175
+South Australia,SA,wheat,2021–22,2021,actual,2008.064,4750.113,2.366
+South Australia,SA,wheat,2022–23,2022,estimate,2200.0,7350.0,3.341
+South Australia,SA,wheat,2023–24,2023,estimate,2150.0,4800.0,2.233
+South Australia,SA,wheat,2024–25,2024,estimate,2050.0,2770.0,1.351
+South Australia,SA,wheat,2025–26,2025,estimate,2000.0,4740.0,2.37
+South Australia,SA,wheat,2026–27,2026,forecast,2050.0,6000.0,2.927
+South Australia,SA,barley,1989–90,1989,actual,899.5,1724.474,1.917
+South Australia,SA,barley,1990–91,1990,actual,945.0,1505.711,1.593
+South Australia,SA,barley,1991–92,1991,actual,999.2,1881.548,1.883
+South Australia,SA,barley,1992–93,1992,actual,1023.3,1855.32,1.813
+South Australia,SA,barley,1993–94,1993,actual,1115.315,2242.356,2.011
+South Australia,SA,barley,1994–95,1994,actual,881.881,1158.715,1.314
+South Australia,SA,barley,1995–96,1995,actual,963.504,1851.076,1.921
+South Australia,SA,barley,1996–97,1996,actual,1008.925,1923.213,1.906
+South Australia,SA,barley,1997–98,1997,actual,1017.308,2027.087,1.993
+South Australia,SA,barley,1998–99,1998,actual,975.318,2050.972,2.103
+South Australia,SA,barley,1999–00,1999,actual,845.335,1409.179,1.667
+South Australia,SA,barley,2000–01,2000,actual,1040.854,2320.321,2.229
+South Australia,SA,barley,2001–02,2001,actual,1151.172,2781.758,2.416
+South Australia,SA,barley,2002–03,2002,actual,1193.712,1439.861,1.206
+South Australia,SA,barley,2003–04,2003,actual,1215.877,2691.091,2.213
+South Australia,SA,barley,2004–05,2004,actual,1280.071,1979.211,1.546
+South Australia,SA,barley,2005–06,2005,actual,1169.406,2547.798,2.179
+South Australia,SA,barley,2006–07,2006,actual,1193.154,995.963,0.835
+South Australia,SA,barley,2007–08,2007,actual,1244.34,1672.37,1.344
+South Australia,SA,barley,2008–09,2008,actual,1240.132,1876.752,1.513
+South Australia,SA,barley,2009–10,2009,actual,997.412,2068.229,2.074
+South Australia,SA,barley,2010–11,2010,actual,795.434,2122.415,2.668
+South Australia,SA,barley,2011–12,2011,actual,881.21,1815.51,2.06
+South Australia,SA,barley,2012–13,2012,actual,861.391,1794.436,2.083
+South Australia,SA,barley,2013–14,2013,actual,810.465,1892.284,2.335
+South Australia,SA,barley,2014–15,2014,actual,840.446,1941.042,2.31
+South Australia,SA,barley,2015–16,2015,actual,769.482,1719.367,2.234
+South Australia,SA,barley,2016–17,2016,actual,980.776,3002.007,3.061
+South Australia,SA,barley,2017–18,2017,actual,876.488,1860.785,2.123
+South Australia,SA,barley,2018–19,2018,actual,872.908,1614.987,1.85
+South Australia,SA,barley,2019–20,2019,actual,1061.346,1995.135,1.88
+South Australia,SA,barley,2020–21,2020,actual,1030.847,2395.385,2.324
+South Australia,SA,barley,2021–22,2021,actual,969.847,2145.56,2.212
+South Australia,SA,barley,2022–23,2022,estimate,830.0,2900.0,3.494
+South Australia,SA,barley,2023–24,2023,estimate,820.0,2050.0,2.5
+South Australia,SA,barley,2024–25,2024,estimate,810.0,1300.0,1.605
+South Australia,SA,barley,2025–26,2025,estimate,835.0,2145.95,2.57
+South Australia,SA,barley,2026–27,2026,forecast,880.0,2900.0,3.295
+South Australia,SA,canola,1989–90,1989,actual,3.526,5.373,1.524
+South Australia,SA,canola,1990–91,1990,actual,4.045,5.515,1.363
+South Australia,SA,canola,1991–92,1991,actual,6.587,10.042,1.525
+South Australia,SA,canola,1992–93,1992,actual,6.183,9.522,1.54
+South Australia,SA,canola,1993–94,1993,actual,10.758,18.104,1.683
+South Australia,SA,canola,1994–95,1994,actual,24.518,25.941,1.058
+South Australia,SA,canola,1995–96,1995,actual,30.357,48.073,1.584
+South Australia,SA,canola,1996–97,1996,actual,35.972,52.851,1.469
+South Australia,SA,canola,1997–98,1997,actual,63.13,87.978,1.394
+South Australia,SA,canola,1998–99,1998,actual,132.414,193.07,1.458
+South Australia,SA,canola,1999–00,1999,actual,210.304,243.854,1.16
+South Australia,SA,canola,2000–01,2000,actual,154.314,204.373,1.324
+South Australia,SA,canola,2001–02,2001,actual,163.662,272.055,1.662
+South Australia,SA,canola,2002–03,2002,actual,210.442,209.8,0.997
+South Australia,SA,canola,2003–04,2003,actual,247.199,353.75,1.431
+South Australia,SA,canola,2004–05,2004,actual,229.601,241.772,1.053
+South Australia,SA,canola,2005–06,2005,actual,147.459,213.368,1.447
+South Australia,SA,canola,2006–07,2006,actual,176.98,84.159,0.476
+South Australia,SA,canola,2007–08,2007,actual,172.961,161.913,0.936
+South Australia,SA,canola,2008–09,2008,actual,184.221,204.125,1.108
+South Australia,SA,canola,2009–10,2009,actual,180.505,259.884,1.44
+South Australia,SA,canola,2010–11,2010,actual,216.363,358.971,1.659
+South Australia,SA,canola,2011–12,2011,actual,283.158,412.767,1.458
+South Australia,SA,canola,2012–13,2012,actual,335.927,414.98,1.235
+South Australia,SA,canola,2013–14,2013,actual,297.336,419.371,1.41
+South Australia,SA,canola,2014–15,2014,actual,315.696,324.495,1.028
+South Australia,SA,canola,2015–16,2015,actual,149.169,218.852,1.467
+South Australia,SA,canola,2016–17,2016,actual,218.304,381.524,1.748
+South Australia,SA,canola,2017–18,2017,actual,236.511,335.052,1.417
+South Australia,SA,canola,2018–19,2018,actual,168.918,242.89,1.438
+South Australia,SA,canola,2019–20,2019,actual,152.627,241.479,1.582
+South Australia,SA,canola,2020–21,2020,actual,202.688,402.273,1.985
+South Australia,SA,canola,2021–22,2021,actual,221.901,434.934,1.96
+South Australia,SA,canola,2022–23,2022,estimate,290.0,770.0,2.655
+South Australia,SA,canola,2023–24,2023,estimate,280.0,570.0,2.036
+South Australia,SA,canola,2024–25,2024,estimate,270.0,378.0,1.4
+South Australia,SA,canola,2025–26,2025,estimate,250.0,550.0,2.2
+South Australia,SA,canola,2026–27,2026,forecast,280.0,630.0,2.25
+Tasmania,TAS,wheat,1989–90,1989,actual,0.8,2.7,3.375
+Tasmania,TAS,wheat,1990–91,1990,actual,0.6,2.4,4.0
+Tasmania,TAS,wheat,1991–92,1991,actual,1.2,3.2,2.667
+Tasmania,TAS,wheat,1992–93,1992,actual,1.5,5.5,3.667
+Tasmania,TAS,wheat,1993–94,1993,actual,1.6,5.3,3.312
+Tasmania,TAS,wheat,1994–95,1994,actual,1.3,2.8,2.154
+Tasmania,TAS,wheat,1995–96,1995,actual,1.1,4.1,3.727
+Tasmania,TAS,wheat,1996–97,1996,actual,1.9,7.5,3.947
+Tasmania,TAS,wheat,1997–98,1997,actual,2.8,11.7,4.179
+Tasmania,TAS,wheat,1998–99,1998,actual,4.0,17.5,4.375
+Tasmania,TAS,wheat,1999–00,1999,actual,6.3,19.8,3.143
+Tasmania,TAS,wheat,2000–01,2000,actual,6.6,25.6,3.879
+Tasmania,TAS,wheat,2001–02,2001,actual,5.9,25.3,4.288
+Tasmania,TAS,wheat,2002–03,2002,actual,7.4,25.3,3.419
+Tasmania,TAS,wheat,2003–04,2003,actual,7.7,26.1,3.39
+Tasmania,TAS,wheat,2004–05,2004,actual,7.4,30.5,4.122
+Tasmania,TAS,wheat,2005–06,2005,actual,7.9,34.0,4.304
+Tasmania,TAS,wheat,2006–07,2006,actual,7.2,17.7,2.458
+Tasmania,TAS,wheat,2007–08,2007,actual,7.1,26.8,3.775
+Tasmania,TAS,wheat,2008–09,2008,actual,8.6,34.9,4.058
+Tasmania,TAS,wheat,2009–10,2009,actual,7.2,27.3,3.792
+Tasmania,TAS,wheat,2010–11,2010,actual,8.1,31.9,3.938
+Tasmania,TAS,wheat,2011–12,2011,actual,6.617,32.252,4.874
+Tasmania,TAS,wheat,2012–13,2012,actual,5.99,30.44,5.082
+Tasmania,TAS,wheat,2013–14,2013,actual,8.176,43.484,5.318
+Tasmania,TAS,wheat,2014–15,2014,actual,8.326,44.237,5.313
+Tasmania,TAS,wheat,2015–16,2015,actual,10.545,53.361,5.06
+Tasmania,TAS,wheat,2016–17,2016,actual,10.303,55.78,5.414
+Tasmania,TAS,wheat,2017–18,2017,actual,7.358,40.289,5.476
+Tasmania,TAS,wheat,2018–19,2018,actual,7.6,40.1,5.276
+Tasmania,TAS,wheat,2019–20,2019,actual,7.182,43.805,6.099
+Tasmania,TAS,wheat,2020–21,2020,actual,8.173,56.295,6.888
+Tasmania,TAS,wheat,2021–22,2021,actual,9.303,69.983,7.523
+Tasmania,TAS,wheat,2022–23,2022,estimate,15.0,82.5,5.5
+Tasmania,TAS,wheat,2023–24,2023,estimate,12.0,85.0,7.083
+Tasmania,TAS,wheat,2024–25,2024,estimate,10.0,60.0,6.0
+Tasmania,TAS,wheat,2025–26,2025,estimate,12.0,85.0,7.083
+Tasmania,TAS,wheat,2026–27,2026,forecast,11.0,75.0,6.818
+Tasmania,TAS,barley,1989–90,1989,actual,7.985,19.321,2.42
+Tasmania,TAS,barley,1990–91,1990,actual,9.766,25.979,2.66
+Tasmania,TAS,barley,1991–92,1991,actual,11.344,31.793,2.803
+Tasmania,TAS,barley,1992–93,1992,actual,12.3,35.285,2.869
+Tasmania,TAS,barley,1993–94,1993,actual,15.204,40.755,2.681
+Tasmania,TAS,barley,1994–95,1994,actual,13.969,27.073,1.938
+Tasmania,TAS,barley,1995–96,1995,actual,14.02,38.463,2.743
+Tasmania,TAS,barley,1996–97,1996,actual,14.502,35.237,2.43
+Tasmania,TAS,barley,1997–98,1997,actual,13.154,30.916,2.35
+Tasmania,TAS,barley,1998–99,1998,actual,11.166,30.044,2.691
+Tasmania,TAS,barley,1999–00,1999,actual,9.098,22.181,2.438
+Tasmania,TAS,barley,2000–01,2000,actual,9.668,25.992,2.688
+Tasmania,TAS,barley,2001–02,2001,actual,7.429,26.438,3.559
+Tasmania,TAS,barley,2002–03,2002,actual,8.263,21.233,2.57
+Tasmania,TAS,barley,2003–04,2003,actual,9.291,28.038,3.018
+Tasmania,TAS,barley,2004–05,2004,actual,7.577,27.801,3.669
+Tasmania,TAS,barley,2005–06,2005,actual,8.476,28.232,3.331
+Tasmania,TAS,barley,2006–07,2006,actual,7.464,16.168,2.166
+Tasmania,TAS,barley,2007–08,2007,actual,7.757,22.006,2.837
+Tasmania,TAS,barley,2008–09,2008,actual,10.583,28.512,2.694
+Tasmania,TAS,barley,2009–10,2009,actual,8.843,28.764,3.253
+Tasmania,TAS,barley,2010–11,2010,actual,10.889,39.06,3.587
+Tasmania,TAS,barley,2011–12,2011,actual,6.466,23.115,3.575
+Tasmania,TAS,barley,2012–13,2012,actual,5.093,16.513,3.242
+Tasmania,TAS,barley,2013–14,2013,actual,5.966,25.375,4.253
+Tasmania,TAS,barley,2014–15,2014,actual,5.237,16.942,3.235
+Tasmania,TAS,barley,2015–16,2015,actual,5.573,16.453,2.952
+Tasmania,TAS,barley,2016–17,2016,actual,8.118,33.43,4.118
+Tasmania,TAS,barley,2017–18,2017,actual,4.552,16.319,3.585
+Tasmania,TAS,barley,2018–19,2018,actual,6.102,27.54,4.513
+Tasmania,TAS,barley,2019–20,2019,actual,5.123,22.906,4.471
+Tasmania,TAS,barley,2020–21,2020,actual,5.423,30.84,5.687
+Tasmania,TAS,barley,2021–22,2021,actual,4.297,23.951,5.574
+Tasmania,TAS,barley,2022–23,2022,estimate,11.0,60.5,5.5
+Tasmania,TAS,barley,2023–24,2023,estimate,7.0,50.0,7.143
+Tasmania,TAS,barley,2024–25,2024,estimate,6.0,30.0,5.0
+Tasmania,TAS,barley,2025–26,2025,estimate,12.0,65.0,5.417
+Tasmania,TAS,barley,2026–27,2026,forecast,11.0,60.0,5.455
+Tasmania,TAS,canola,1989–90,1989,actual,0.071,0.012,0.169
+Tasmania,TAS,canola,1990–91,1990,actual,0.023,0.017,0.739
+Tasmania,TAS,canola,1991–92,1991,actual,0.059,0.055,0.932
+Tasmania,TAS,canola,1992–93,1992,actual,0.093,0.129,1.387
+Tasmania,TAS,canola,1993–94,1993,actual,0.15,0.194,1.293
+Tasmania,TAS,canola,1994–95,1994,actual,0.209,0.152,0.727
+Tasmania,TAS,canola,1995–96,1995,actual,0.147,0.205,1.395
+Tasmania,TAS,canola,1996–97,1996,actual,0.027,0.031,1.148
+Tasmania,TAS,canola,1997–98,1997,actual,0.115,0.126,1.096
+Tasmania,TAS,canola,1998–99,1998,actual,0.83,1.198,1.443
+Tasmania,TAS,canola,1999–00,1999,actual,0.881,1.521,1.726
+Tasmania,TAS,canola,2000–01,2000,actual,0.303,0.438,1.446
+Tasmania,TAS,canola,2001–02,2001,actual,0.545,0.997,1.829
+Tasmania,TAS,canola,2002–03,2002,actual,0.255,0.477,1.871
+Tasmania,TAS,canola,2003–04,2003,actual,0.135,0.201,1.489
+Tasmania,TAS,canola,2004–05,2004,actual,0.605,1.174,1.94
+Tasmania,TAS,canola,2005–06,2005,actual,0.892,1.359,1.524
+Tasmania,TAS,canola,2006–07,2006,actual,0.892,0.443,0.497
+Tasmania,TAS,canola,2007–08,2007,actual,0.808,1.149,1.422
+Tasmania,TAS,canola,2008–09,2008,actual,1.662,2.063,1.241
+Tasmania,TAS,canola,2009–10,2009,actual,1.252,2.197,1.755
+Tasmania,TAS,canola,2010–11,2010,actual,0.71,1.065,1.5
+Tasmania,TAS,canola,2011–12,2011,actual,0.714,0.784,1.098
+Tasmania,TAS,canola,2012–13,2012,actual,0.556,0.851,1.531
+Tasmania,TAS,canola,2013–14,2013,actual,1.244,2.543,2.044
+Tasmania,TAS,canola,2014–15,2014,actual,1.13,1.821,1.612
+Tasmania,TAS,canola,2015–16,2015,actual,0.983,1.983,2.017
+Tasmania,TAS,canola,2016–17,2016,actual,1.316,2.852,2.167
+Tasmania,TAS,canola,2017–18,2017,actual,1.374,3.519,2.561
+Tasmania,TAS,canola,2018–19,2018,actual,0.928,2.686,2.894
+Tasmania,TAS,canola,2019–20,2019,actual,0.648,1.748,2.698
+Tasmania,TAS,canola,2020–21,2020,actual,1.324,4.303,3.25
+Tasmania,TAS,canola,2021–22,2021,actual,3.601,9.799,2.721
+Tasmania,TAS,canola,2022–23,2022,estimate,5.0,10.0,2.0
+Tasmania,TAS,canola,2023–24,2023,estimate,3.0,6.0,2.0
+Tasmania,TAS,canola,2024–25,2024,estimate,2.5,7.0,2.8
+Tasmania,TAS,canola,2025–26,2025,estimate,5.0,17.0,3.4
+Tasmania,TAS,canola,2026–27,2026,forecast,4.0,13.0,3.25
+Victoria,VIC,wheat,1989–90,1989,actual,952.3,1961.4,2.06
+Victoria,VIC,wheat,1990–91,1990,actual,911.5,1493.0,1.638
+Victoria,VIC,wheat,1991–92,1991,actual,664.1,1150.4,1.732
+Victoria,VIC,wheat,1992–93,1992,actual,821.2,2015.1,2.454
+Victoria,VIC,wheat,1993–94,1993,actual,779.9,2021.9,2.593
+Victoria,VIC,wheat,1994–95,1994,actual,821.8,933.6,1.136
+Victoria,VIC,wheat,1995–96,1995,actual,853.4,1921.2,2.251
+Victoria,VIC,wheat,1996–97,1996,actual,962.6,2262.3,2.35
+Victoria,VIC,wheat,1997–98,1997,actual,856.8,1502.8,1.754
+Victoria,VIC,wheat,1998–99,1998,actual,948.6,1462.3,1.542
+Victoria,VIC,wheat,1999–00,1999,actual,1234.6,2642.1,2.14
+Victoria,VIC,wheat,2000–01,2000,actual,1142.6,3079.7,2.695
+Victoria,VIC,wheat,2001–02,2001,actual,1136.4,2791.4,2.456
+Victoria,VIC,wheat,2002–03,2002,actual,1238.9,890.2,0.719
+Victoria,VIC,wheat,2003–04,2003,actual,1409.2,3145.5,2.232
+Victoria,VIC,wheat,2004–05,2004,actual,1327.0,1927.1,1.452
+Victoria,VIC,wheat,2005–06,2005,actual,1314.6,2908.9,2.213
+Victoria,VIC,wheat,2006–07,2006,actual,1347.3,879.3,0.653
+Victoria,VIC,wheat,2007–08,2007,actual,1514.0,1995.3,1.318
+Victoria,VIC,wheat,2008–09,2008,actual,1533.6,1755.7,1.145
+Victoria,VIC,wheat,2009–10,2009,actual,1801.1,2994.9,1.663
+Victoria,VIC,wheat,2010–11,2010,actual,1793.1,4412.4,2.461
+Victoria,VIC,wheat,2011–12,2011,actual,1668.929,3943.311,2.363
+Victoria,VIC,wheat,2012–13,2012,actual,1591.922,3422.865,2.15
+Victoria,VIC,wheat,2013–14,2013,actual,1535.818,3395.892,2.211
+Victoria,VIC,wheat,2014–15,2014,actual,1492.657,2631.301,1.763
+Victoria,VIC,wheat,2015–16,2015,actual,1341.512,1814.868,1.353
+Victoria,VIC,wheat,2016–17,2016,actual,1454.196,4664.824,3.208
+Victoria,VIC,wheat,2017–18,2017,actual,1446.793,3682.083,2.545
+Victoria,VIC,wheat,2018–19,2018,actual,1402.863,2276.598,1.623
+Victoria,VIC,wheat,2019–20,2019,actual,1428.857,3714.313,2.599
+Victoria,VIC,wheat,2020–21,2020,actual,1413.422,4525.002,3.201
+Victoria,VIC,wheat,2021–22,2021,actual,1444.578,4246.433,2.94
+Victoria,VIC,wheat,2022–23,2022,estimate,1500.0,5392.92,3.595
+Victoria,VIC,wheat,2023–24,2023,estimate,1540.396,5200.0,3.376
+Victoria,VIC,wheat,2024–25,2024,estimate,1500.0,3500.0,2.333
+Victoria,VIC,wheat,2025–26,2025,estimate,1470.0,4250.0,2.891
+Victoria,VIC,wheat,2026–27,2026,forecast,1440.0,4896.0,3.4
+Victoria,VIC,barley,1989–90,1989,actual,388.7,696.0,1.791
+Victoria,VIC,barley,1990–91,1990,actual,463.0,650.6,1.405
+Victoria,VIC,barley,1991–92,1991,actual,533.9,897.9,1.682
+Victoria,VIC,barley,1992–93,1992,actual,551.5,1116.3,2.024
+Victoria,VIC,barley,1993–94,1993,actual,639.493,1386.229,2.168
+Victoria,VIC,barley,1994–95,1994,actual,492.251,448.147,0.91
+Victoria,VIC,barley,1995–96,1995,actual,627.519,1341.658,2.138
+Victoria,VIC,barley,1996–97,1996,actual,584.68,1189.37,2.034
+Victoria,VIC,barley,1997–98,1997,actual,618.109,928.254,1.502
+Victoria,VIC,barley,1998–99,1998,actual,568.142,869.835,1.531
+Victoria,VIC,barley,1999–00,1999,actual,585.256,1189.294,2.032
+Victoria,VIC,barley,2000–01,2000,actual,693.206,1670.464,2.41
+Victoria,VIC,barley,2001–02,2001,actual,700.117,1655.72,2.365
+Victoria,VIC,barley,2002–03,2002,actual,777.519,478.418,0.615
+Victoria,VIC,barley,2003–04,2003,actual,871.619,2274.511,2.61
+Victoria,VIC,barley,2004–05,2004,actual,924.283,1305.077,1.412
+Victoria,VIC,barley,2005–06,2005,actual,866.471,2003.56,2.312
+Victoria,VIC,barley,2006–07,2006,actual,912.97,604.518,0.662
+Victoria,VIC,barley,2007–08,2007,actual,1106.924,1789.223,1.616
+Victoria,VIC,barley,2008–09,2008,actual,1136.146,1461.36,1.286
+Victoria,VIC,barley,2009–10,2009,actual,976.312,1864.504,1.91
+Victoria,VIC,barley,2010–11,2010,actual,801.613,1944.915,2.426
+Victoria,VIC,barley,2011–12,2011,actual,831.249,2005.065,2.412
+Victoria,VIC,barley,2012–13,2012,actual,854.143,1952.219,2.286
+Victoria,VIC,barley,2013–14,2013,actual,918.67,2035.814,2.216
+Victoria,VIC,barley,2014–15,2014,actual,916.076,1373.833,1.5
+Victoria,VIC,barley,2015–16,2015,actual,844.47,1107.38,1.311
+Victoria,VIC,barley,2016–17,2016,actual,946.126,3082.85,3.258
+Victoria,VIC,barley,2017–18,2017,actual,843.675,2109.687,2.501
+Victoria,VIC,barley,2018–19,2018,actual,892.809,1337.317,1.498
+Victoria,VIC,barley,2019–20,2019,actual,1101.69,3116.609,2.829
+Victoria,VIC,barley,2020–21,2020,actual,1011.883,2918.48,2.884
+Victoria,VIC,barley,2021–22,2021,actual,870.238,2270.503,2.609
+Victoria,VIC,barley,2022–23,2022,estimate,820.0,2895.703,3.531
+Victoria,VIC,barley,2023–24,2023,estimate,830.0,2780.0,3.349
+Victoria,VIC,barley,2024–25,2024,estimate,820.0,2000.0,2.439
+Victoria,VIC,barley,2025–26,2025,estimate,850.0,3100.0,3.647
+Victoria,VIC,barley,2026–27,2026,forecast,950.0,3401.0,3.58
+Victoria,VIC,canola,1989–90,1989,actual,12.393,16.612,1.34
+Victoria,VIC,canola,1990–91,1990,actual,10.234,9.544,0.933
+Victoria,VIC,canola,1991–92,1991,actual,22.957,26.481,1.154
+Victoria,VIC,canola,1992–93,1992,actual,18.459,23.543,1.275
+Victoria,VIC,canola,1993–94,1993,actual,29.151,46.835,1.607
+Victoria,VIC,canola,1994–95,1994,actual,74.467,56.728,0.762
+Victoria,VIC,canola,1995–96,1995,actual,76.227,119.556,1.568
+Victoria,VIC,canola,1996–97,1996,actual,92.156,131.604,1.428
+Victoria,VIC,canola,1997–98,1997,actual,116.501,135.849,1.166
+Victoria,VIC,canola,1998–99,1998,actual,204.955,257.418,1.256
+Victoria,VIC,canola,1999–00,1999,actual,304.075,423.273,1.392
+Victoria,VIC,canola,2000–01,2000,actual,260.652,379.746,1.457
+Victoria,VIC,canola,2001–02,2001,actual,238.467,347.379,1.457
+Victoria,VIC,canola,2002–03,2002,actual,247.819,176.704,0.713
+Victoria,VIC,canola,2003–04,2003,actual,239.287,384.126,1.605
+Victoria,VIC,canola,2004–05,2004,actual,284.194,342.488,1.205
+Victoria,VIC,canola,2005–06,2005,actual,190.968,272.562,1.427
+Victoria,VIC,canola,2006–07,2006,actual,178.536,42.029,0.235
+Victoria,VIC,canola,2007–08,2007,actual,195.663,220.487,1.127
+Victoria,VIC,canola,2008–09,2008,actual,284.692,233.183,0.819
+Victoria,VIC,canola,2009–10,2009,actual,231.168,331.432,1.434
+Victoria,VIC,canola,2010–11,2010,actual,323.478,476.202,1.472
+Victoria,VIC,canola,2011–12,2011,actual,477.356,688.553,1.442
+Victoria,VIC,canola,2012–13,2012,actual,589.199,866.187,1.47
+Victoria,VIC,canola,2013–14,2013,actual,439.403,710.049,1.616
+Victoria,VIC,canola,2014–15,2014,actual,483.265,558.683,1.156
+Victoria,VIC,canola,2015–16,2015,actual,276.634,287.379,1.039
+Victoria,VIC,canola,2016–17,2016,actual,326.6,632.703,1.937
+Victoria,VIC,canola,2017–18,2017,actual,541.926,937.959,1.731
+Victoria,VIC,canola,2018–19,2018,actual,414.43,510.735,1.232
+Victoria,VIC,canola,2019–20,2019,actual,404.643,731.091,1.807
+Victoria,VIC,canola,2020–21,2020,actual,493.863,1127.092,2.282
+Victoria,VIC,canola,2021–22,2021,actual,569.135,1302.84,2.289
+Victoria,VIC,canola,2022–23,2022,estimate,600.0,1550.0,2.583
+Victoria,VIC,canola,2023–24,2023,estimate,580.0,1370.0,2.362
+Victoria,VIC,canola,2024–25,2024,estimate,570.0,1200.0,2.105
+Victoria,VIC,canola,2025–26,2025,estimate,540.0,1250.0,2.315
+Victoria,VIC,canola,2026–27,2026,forecast,580.0,1421.0,2.45
+Western Australia,WA,wheat,1989–90,1989,actual,3476.4,4800.0,1.381
+Western Australia,WA,wheat,1990–91,1990,actual,3632.2,5449.1,1.5
+Western Australia,WA,wheat,1991–92,1991,actual,3229.9,4736.0,1.466
+Western Australia,WA,wheat,1992–93,1992,actual,3669.3,5978.9,1.629
+Western Australia,WA,wheat,1993–94,1993,actual,3852.4,6689.3,1.736
+Western Australia,WA,wheat,1994–95,1994,actual,3848.3,5437.9,1.413
+Western Australia,WA,wheat,1995–96,1995,actual,3892.4,6826.7,1.754
+Western Australia,WA,wheat,1996–97,1996,actual,4263.7,7516.0,1.763
+Western Australia,WA,wheat,1997–98,1997,actual,4204.9,7724.5,1.837
+Western Australia,WA,wheat,1998–99,1998,actual,4515.3,8170.1,1.809
+Western Australia,WA,wheat,1999–00,1999,actual,4556.2,9004.1,1.976
+Western Australia,WA,wheat,2000–01,2000,actual,4460.3,5814.4,1.304
+Western Australia,WA,wheat,2001–02,2001,actual,4349.9,7759.9,1.784
+Western Australia,WA,wheat,2002–03,2002,actual,4457.7,4046.9,0.908
+Western Australia,WA,wheat,2003–04,2003,actual,4917.0,11070.0,2.251
+Western Australia,WA,wheat,2004–05,2004,actual,5118.3,8618.9,1.684
+Western Australia,WA,wheat,2005–06,2005,actual,4752.7,9088.1,1.912
+Western Australia,WA,wheat,2006–07,2006,actual,4037.0,5134.3,1.272
+Western Australia,WA,wheat,2007–08,2007,actual,4258.2,5820.2,1.367
+Western Australia,WA,wheat,2008–09,2008,actual,4541.9,8274.0,1.822
+Western Australia,WA,wheat,2009–10,2009,actual,5005.9,8114.1,1.621
+Western Australia,WA,wheat,2010–11,2010,actual,4639.5,5004.6,1.079
+Western Australia,WA,wheat,2011–12,2011,actual,5155.761,11045.107,2.142
+Western Australia,WA,wheat,2012–13,2012,actual,4909.209,6744.055,1.374
+Western Australia,WA,wheat,2013–14,2013,actual,5114.891,9976.941,1.951
+Western Australia,WA,wheat,2014–15,2014,actual,5038.134,8824.41,1.752
+Western Australia,WA,wheat,2015–16,2015,actual,4615.761,8510.577,1.844
+Western Australia,WA,wheat,2016–17,2016,actual,4677.774,9644.881,2.062
+Western Australia,WA,wheat,2017–18,2017,actual,4056.574,7698.552,1.898
+Western Australia,WA,wheat,2018–19,2018,actual,4369.2,9979.22,2.284
+Western Australia,WA,wheat,2019–20,2019,actual,4132.709,5842.187,1.414
+Western Australia,WA,wheat,2020–21,2020,actual,4387.514,8792.706,2.004
+Western Australia,WA,wheat,2021–22,2021,actual,4718.004,12919.145,2.738
+Western Australia,WA,wheat,2022–23,2022,estimate,4750.0,14500.0,3.053
+Western Australia,WA,wheat,2023–24,2023,estimate,4650.0,7700.0,1.656
+Western Australia,WA,wheat,2024–25,2024,estimate,4700.0,12650.0,2.691
+Western Australia,WA,wheat,2025–26,2025,estimate,4450.0,13400.0,3.011
+Western Australia,WA,wheat,2026–27,2026,forecast,3900.0,10000.0,2.564
+Western Australia,WA,barley,1989–90,1989,actual,421.412,628.051,1.49
+Western Australia,WA,barley,1990–91,1990,actual,497.685,742.242,1.491
+Western Australia,WA,barley,1991–92,1991,actual,554.497,899.637,1.622
+Western Australia,WA,barley,1992–93,1992,actual,611.079,1060.853,1.736
+Western Australia,WA,barley,1993–94,1993,actual,799.261,1381.393,1.728
+Western Australia,WA,barley,1994–95,1994,actual,579.127,914.911,1.58
+Western Australia,WA,barley,1995–96,1995,actual,744.527,1322.812,1.777
+Western Australia,WA,barley,1996–97,1996,actual,909.306,1635.344,1.798
+Western Australia,WA,barley,1997–98,1997,actual,1036.001,1926.272,1.859
+Western Australia,WA,barley,1998–99,1998,actual,811.391,1468.625,1.81
+Western Australia,WA,barley,1999–00,1999,actual,550.133,1117.271,2.031
+Western Australia,WA,barley,2000–01,2000,actual,982.921,1358.391,1.382
+Western Australia,WA,barley,2001–02,2001,actual,1087.539,2262.831,2.081
+Western Australia,WA,barley,2002–03,2002,actual,1140.058,1349.023,1.183
+Western Australia,WA,barley,2003–04,2003,actual,1278.016,3169.877,2.48
+Western Australia,WA,barley,2004–05,2004,actual,1313.384,2489.194,1.895
+Western Australia,WA,barley,2005–06,2005,actual,1128.979,2399.764,2.126
+Western Australia,WA,barley,2006–07,2006,actual,1082.957,1808.41,1.67
+Western Australia,WA,barley,2007–08,2007,actual,1380.935,2719.379,1.969
+Western Australia,WA,barley,2008–09,2008,actual,1558.808,3007.447,1.929
+Western Australia,WA,barley,2009–10,2009,actual,1419.759,2553.729,1.799
+Western Australia,WA,barley,2010–11,2010,actual,1101.075,1548.587,1.406
+Western Australia,WA,barley,2011–12,2011,actual,1246.313,2761.114,2.215
+Western Australia,WA,barley,2012–13,2012,actual,1215.047,2251.68,1.853
+Western Australia,WA,barley,2013–14,2013,actual,1257.903,3555.662,2.827
+Western Australia,WA,barley,2014–15,2014,actual,1308.458,3192.452,2.44
+Western Australia,WA,barley,2015–16,2015,actual,1383.931,3247.933,2.347
+Western Australia,WA,barley,2016–17,2016,actual,1693.705,4119.831,2.432
+Western Australia,WA,barley,2017–18,2017,actual,1531.074,3774.555,2.465
+Western Australia,WA,barley,2018–19,2018,actual,1897.361,4798.004,2.529
+Western Australia,WA,barley,2019–20,2019,actual,1906.858,3996.15,2.096
+Western Australia,WA,barley,2020–21,2020,actual,1844.27,4611.219,2.5
+Western Australia,WA,barley,2021–22,2021,actual,1884.241,5758.301,3.056
+Western Australia,WA,barley,2022–23,2022,estimate,1550.0,5600.0,3.613
+Western Australia,WA,barley,2023–24,2023,estimate,1600.0,3700.0,2.312
+Western Australia,WA,barley,2024–25,2024,estimate,1800.0,6000.0,3.333
+Western Australia,WA,barley,2025–26,2025,estimate,1900.0,7500.0,3.947
+Western Australia,WA,barley,2026–27,2026,forecast,2100.0,6800.0,3.238
+Western Australia,WA,canola,1989–90,1989,actual,0.576,0.608,1.056
+Western Australia,WA,canola,1990–91,1990,actual,2.002,1.866,0.932
+Western Australia,WA,canola,1991–92,1991,actual,16.702,15.424,0.923
+Western Australia,WA,canola,1992–93,1992,actual,11.616,11.5,0.99
+Western Australia,WA,canola,1993–94,1993,actual,35.844,47.312,1.32
+Western Australia,WA,canola,1994–95,1994,actual,104.067,107.875,1.037
+Western Australia,WA,canola,1995–96,1995,actual,99.362,116.862,1.176
+Western Australia,WA,canola,1996–97,1996,actual,106.544,107.939,1.013
+Western Australia,WA,canola,1997–98,1997,actual,247.829,269.567,1.088
+Western Australia,WA,canola,1998–99,1998,actual,536.492,614.807,1.146
+Western Australia,WA,canola,1999–00,1999,actual,878.797,963.21,1.096
+Western Australia,WA,canola,2000–01,2000,actual,517.326,352.55,0.681
+Western Australia,WA,canola,2001–02,2001,actual,393.911,418.657,1.063
+Western Australia,WA,canola,2002–03,2002,actual,348.694,299.108,0.858
+Western Australia,WA,canola,2003–04,2003,actual,358.152,526.637,1.47
+Western Australia,WA,canola,2004–05,2004,actual,428.276,488.286,1.14
+Western Australia,WA,canola,2005–06,2005,actual,437.094,616.654,1.411
+Western Australia,WA,canola,2006–07,2006,actual,410.617,391.608,0.954
+Western Australia,WA,canola,2007–08,2007,actual,595.122,752.046,1.264
+Western Australia,WA,canola,2008–09,2008,actual,919.515,1175.095,1.278
+Western Australia,WA,canola,2009–10,2009,actual,981.44,1031.289,1.051
+Western Australia,WA,canola,2010–11,2010,actual,1056.561,714.881,0.677
+Western Australia,WA,canola,2011–12,2011,actual,969.034,1231.854,1.271
+Western Australia,WA,canola,2012–13,2012,actual,1319.791,1364.204,1.034
+Western Australia,WA,canola,2013–14,2013,actual,1307.491,1776.636,1.359
+Western Australia,WA,canola,2014–15,2014,actual,1396.952,1640.898,1.175
+Western Australia,WA,canola,2015–16,2015,actual,1093.647,1327.849,1.214
+Western Australia,WA,canola,2016–17,2016,actual,1349.373,2047.893,1.518
+Western Australia,WA,canola,2017–18,2017,actual,1530.626,1723.59,1.126
+Western Australia,WA,canola,2018–19,2018,actual,1129.414,1346.145,1.192
+Western Australia,WA,canola,2019–20,2019,actual,1148.202,1117.074,0.973
+Western Australia,WA,canola,2020–21,2020,actual,1183.635,1689.347,1.427
+Western Australia,WA,canola,2021–22,2021,actual,1512.566,2953.842,1.953
+Western Australia,WA,canola,2022–23,2022,estimate,2200.0,4500.0,2.045
+Western Australia,WA,canola,2023–24,2023,estimate,1800.0,2500.0,1.389
+Western Australia,WA,canola,2024–25,2024,estimate,1600.0,2900.0,1.812
+Western Australia,WA,canola,2025–26,2025,estimate,1950.0,4250.0,2.179
+Western Australia,WA,canola,2026–27,2026,forecast,2200.0,4000.0,1.818

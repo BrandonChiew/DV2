@@ -1,0 +1,219 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Scatterplot of Western Australia's statewide April to October rain against its wheat yield, 1989 to 2025. The points barely line up: in 2010 WA got 122% of its normal rain but only 60% of its normal yield; in 2018 it got 67% of normal rain and 126% of normal yield.",
+ "width": 380,
+ "height": 340,
+ "padding": {
+  "left": 4,
+  "right": 12,
+  "top": 10,
+  "bottom": 4
+ },
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "legend": {
+   "labelColor": "#F3EEDF",
+   "titleColor": "#F3EEDF",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 12.5,
+   "titleFontWeight": 600
+  },
+  "axis": {
+   "labelColor": "#F1D9C7",
+   "titleColor": "#F1D9C7",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#C98B66",
+   "tickColor": "#C98B66",
+   "gridColor": "#B0603A"
+  }
+ },
+ "params": [
+  {
+   "name": "selYear",
+   "value": 2019
+  }
+ ],
+ "data": {
+  "url": "data/processed/rain_vs_yield.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.state_code == 'WA'"
+  },
+  {
+   "calculate": "datum.year + ': ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal rain, ' + format(datum.yield_pct_of_avg, '.0f') + '% of normal yield'",
+   "as": "story"
+  }
+ ],
+ "encoding": {
+  "x": {
+   "field": "rain_cool_mm",
+   "type": "quantitative",
+   "scale": {
+    "domain": [
+     40,
+     240
+    ],
+    "nice": false
+   },
+   "axis": {
+    "title": "Statewide rain, April to October (mm)",
+    "values": [
+     50,
+     100,
+     150,
+     200
+    ],
+    "grid": false
+   }
+  },
+  "y": {
+   "field": "wheat_yield_t_ha",
+   "type": "quantitative",
+   "scale": {
+    "domain": [
+     0,
+     3.6
+    ],
+    "nice": false
+   },
+   "axis": {
+    "title": "Wheat yield (tonnes a hectare)",
+    "values": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "grid": true
+   }
+  }
+ },
+ "layer": [
+  {
+   "transform": [
+    {
+     "filter": "datum.year == selYear"
+    }
+   ],
+   "mark": {
+    "type": "point",
+    "size": 520,
+    "filled": false,
+    "color": "#F3EEDF",
+    "strokeWidth": 1.6,
+    "strokeDash": [
+     3,
+     2
+    ]
+   }
+  },
+  {
+   "mark": {
+    "type": "point",
+    "shape": "M0,-1 C0.62,-0.62 0.62,0.62 0,1 C-0.62,0.62 -0.62,-0.62 0,-1Z",
+    "filled": true,
+    "size": 130,
+    "angle": 30,
+    "fill": "#F0C766",
+    "stroke": "#16222C",
+    "strokeWidth": 0.8
+   },
+   "encoding": {
+    "tooltip": [
+     {
+      "field": "season",
+      "title": "Season"
+     },
+     {
+      "field": "rain_cool_mm",
+      "title": "Rain, Apr–Oct (mm)",
+      "format": ".0f"
+     },
+     {
+      "field": "rain_cool_pct_of_avg",
+      "title": "Rain, % of normal",
+      "format": ".0f"
+     },
+     {
+      "field": "wheat_yield_t_ha",
+      "title": "Wheat yield (t/ha)",
+      "format": ".2f"
+     },
+     {
+      "field": "yield_pct_of_avg",
+      "title": "Yield, % of normal",
+      "format": ".0f"
+     },
+     {
+      "field": "status",
+      "title": "Figure"
+     }
+    ]
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == 2010 || datum.year == 2018"
+    },
+    {
+     "calculate": "[datum.year + ': ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal rain,', format(datum.yield_pct_of_avg, '.0f') + '% of normal yield']",
+     "as": "lab"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "color": "#F3EEDF",
+    "fontSize": 12.5,
+    "fontWeight": 600,
+    "lineHeight": 15,
+    "align": "left",
+    "dx": 11,
+    "baseline": "middle"
+   },
+   "encoding": {
+    "text": {
+     "field": "lab"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == selYear && datum.year != 2010 && datum.year != 2018"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "color": "#F3EEDF",
+    "fontSize": 12.5,
+    "fontWeight": 600,
+    "align": "left",
+    "dx": 13,
+    "dy": -10
+   },
+   "encoding": {
+    "text": {
+     "field": "year"
+    }
+   }
+  }
+ ]
+}

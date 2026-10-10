@@ -1,0 +1,4 @@
+# large raw downloads (kept locally; the web page only loads data/processed)
+data/raw/**/*.zip
+_to_delete/
+.DS_Store

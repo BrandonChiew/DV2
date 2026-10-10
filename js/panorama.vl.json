@@ -1,0 +1,1817 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Four rows sharing one year axis, 1989 to 2025: the Pacific pattern (sun for El Niño, cloud for La Niña), rain capsules for five states coloured by percent of normal April to October rain, the national wheat harvest as an area, and money farmers kept after costs as bars hanging down. A light column marks the selected year.",
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelFont": "IBM Plex Sans",
+   "labelFontSize": 12
+  },
+  "title": {
+   "font": "IBM Plex Sans"
+  }
+ },
+ "padding": {
+  "left": 4,
+  "right": 4,
+  "top": 6,
+  "bottom": 6
+ },
+ "spacing": 14,
+ "params": [
+  {
+   "name": "yr",
+   "select": {
+    "type": "point",
+    "fields": [
+     "year"
+    ],
+    "on": "click",
+    "clear": false,
+    "toggle": false
+   },
+   "views": [
+    "strip_hit",
+    "caps_rect",
+    "wheat_hit",
+    "roots_hit"
+   ],
+   "value": [
+    {
+     "year": 2019
+    }
+   ]
+  }
+ ],
+ "vconcat": [
+  {
+   "name": "strip",
+   "width": 780,
+   "height": 36,
+   "title": {
+    "text": "Pacific pattern that year",
+    "anchor": "start",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "color": "#F3EEDF",
+    "offset": 6,
+    "font": "IBM Plex Sans"
+   },
+   "data": {
+    "url": "data/processed/climate_drivers.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "year": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "datum.enso == 'El Nino' ? 'El Niño' : datum.enso == 'La Nina' ? 'La Niña' : 'Neutral'",
+     "as": "pattern"
+    }
+   ],
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#F0C766",
+      "opacity": 0.07,
+      "cornerRadius": 10
+     },
+     "encoding": {
+      "x": {
+       "field": "g0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "g1"
+      },
+      "y": {
+       "value": -6
+      },
+      "y2": {
+       "value": 42
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.13,
+      "stroke": "#F3EEDF",
+      "strokeOpacity": 0.65,
+      "strokeWidth": 1,
+      "cornerRadius": 8
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": -4
+      },
+      "y2": {
+       "value": 40
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.enso == 'El Nino'"
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "filled": false,
+      "size": 260,
+      "shape": "M0,-0.36 A0.36,0.36 0 1 1 0,0.36 A0.36,0.36 0 1 1 0,-0.36Z M0,-1 L0,-0.68 M0,0.68 L0,1 M-1,0 L-0.68,0 M0.68,0 L1,0 M-0.71,-0.71 L-0.49,-0.49 M0.49,0.49 L0.71,0.71 M-0.71,0.71 L-0.49,0.49 M0.49,-0.49 L0.71,-0.71",
+      "color": "#E7A04B",
+      "strokeWidth": 1.6,
+      "fill": "#E7A04B",
+      "fillOpacity": 1
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "value": 18.0
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.enso == 'La Nina'"
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "filled": true,
+      "size": 300,
+      "shape": "M-0.9,0.55 A0.45,0.45 0 0 1 -0.78,-0.22 A0.56,0.56 0 0 1 0.22,-0.45 A0.45,0.45 0 0 1 0.9,0.22 A0.34,0.34 0 0 1 0.78,0.55Z",
+      "color": "#9CC3D6",
+      "opacity": 1
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "value": 18.0
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.enso == 'Neutral'"
+      }
+     ],
+     "mark": {
+      "type": "tick",
+      "thickness": 2,
+      "size": 9,
+      "color": "#8A7562"
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "value": 18.0
+      }
+     }
+    },
+    {
+     "name": "strip_hit",
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "calculate": "datum.enso == 'El Nino' ? 'El Niño' : datum.enso == 'La Nina' ? 'La Niña' : 'Neutral'",
+       "as": "pattern"
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.001,
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": 0
+      },
+      "y2": {
+       "value": 36
+      },
+      "tooltip": [
+       {
+        "field": "year",
+        "title": "Year"
+       },
+       {
+        "field": "pattern",
+        "title": "Pacific pattern"
+       },
+       {
+        "field": "note",
+        "title": "Note"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "caps",
+   "width": 780,
+   "height": 150,
+   "title": {
+    "text": "Rain from April to October, compared with normal",
+    "anchor": "start",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "color": "#F3EEDF",
+    "offset": 6,
+    "font": "IBM Plex Sans"
+   },
+   "data": {
+    "url": "data/processed/rain_vs_yield.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "year": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "filter": "datum.state_code != 'TAS'"
+    },
+    {
+     "calculate": "datum.year - 0.36",
+     "as": "x0"
+    },
+    {
+     "calculate": "datum.year + 0.36",
+     "as": "x1"
+    }
+   ],
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#F0C766",
+      "opacity": 0.07,
+      "cornerRadius": 10
+     },
+     "encoding": {
+      "x": {
+       "field": "g0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "g1"
+      },
+      "y": {
+       "value": -6
+      },
+      "y2": {
+       "value": 156
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.13,
+      "stroke": "#F3EEDF",
+      "strokeOpacity": 0.65,
+      "strokeWidth": 1,
+      "cornerRadius": 8
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": -4
+      },
+      "y2": {
+       "value": 154
+      }
+     }
+    },
+    {
+     "name": "caps_rect",
+     "mark": {
+      "type": "rect",
+      "cornerRadius": 7,
+      "cursor": "pointer",
+      "stroke": "#0F1A22",
+      "strokeWidth": 0.6,
+      "strokeOpacity": 0.6
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "field": "state_code",
+       "type": "nominal",
+       "sort": [
+        "NSW",
+        "VIC",
+        "SA",
+        "WA",
+        "QLD"
+       ],
+       "scale": {
+        "paddingInner": 0.22,
+        "paddingOuter": 0.1
+       },
+       "axis": {
+        "title": null,
+        "labelColor": "#F3EEDF",
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "domain": false,
+        "ticks": false,
+        "orient": "left",
+        "labelPadding": 8
+       }
+      },
+      "color": {
+       "field": "rain_cool_pct_of_avg",
+       "type": "quantitative",
+       "scale": {
+        "type": "threshold",
+        "domain": [
+         50,
+         70,
+         90,
+         110,
+         130,
+         150
+        ],
+        "range": [
+         "#8C510A",
+         "#D8B365",
+         "#F3DFA2",
+         "#E3EFE9",
+         "#A9DDD4",
+         "#4FB3A6",
+         "#01665E"
+        ]
+       },
+       "legend": null
+      },
+      "tooltip": [
+       {
+        "field": "year",
+        "title": "Year"
+       },
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "rain_cool_mm",
+        "title": "Rain, Apr–Oct (mm)",
+        "format": ".0f"
+       },
+       {
+        "field": "rain_cool_pct_of_avg",
+        "title": "% of normal",
+        "format": ".0f"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "wheat",
+   "width": 780,
+   "height": 170,
+   "title": {
+    "text": "Wheat harvest, Australia (million tonnes)",
+    "anchor": "start",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "color": "#F3EEDF",
+    "offset": 6,
+    "font": "IBM Plex Sans"
+   },
+   "data": {
+    "url": "data/processed/crops_by_state.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "year": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "filter": "datum.state_code == 'AUS' && datum.crop == 'wheat' && datum.year <= 2025"
+    },
+    {
+     "calculate": "datum.production_kt / 1000",
+     "as": "mt"
+    }
+   ],
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#F0C766",
+      "opacity": 0.07,
+      "cornerRadius": 10
+     },
+     "encoding": {
+      "x": {
+       "field": "g0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "g1"
+      },
+      "y": {
+       "value": -6
+      },
+      "y2": {
+       "value": 176
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.13,
+      "stroke": "#F3EEDF",
+      "strokeOpacity": 0.65,
+      "strokeWidth": 1,
+      "cornerRadius": 8
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": -4
+      },
+      "y2": {
+       "value": 174
+      }
+     }
+    },
+    {
+     "mark": {
+      "type": "area",
+      "color": "#C8901E",
+      "opacity": 0.95,
+      "interpolate": "monotone",
+      "line": {
+       "color": "#F0C766",
+       "strokeWidth": 2
+      }
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "field": "mt",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         0,
+         45
+        ],
+        "nice": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         0,
+         10,
+         20,
+         30,
+         40
+        ],
+        "orient": "right",
+        "grid": true,
+        "gridColor": "#2A3A46",
+        "gridOpacity": 0.8,
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#B9C6CC",
+        "labelExpr": "datum.value == 40 ? '40 Mt' : datum.value"
+       }
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "filled": true,
+      "size": 60,
+      "color": "#F3EEDF",
+      "stroke": "#16222C",
+      "strokeWidth": 1.5
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "field": "mt",
+       "type": "quantitative"
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/crops_by_state.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.state_code == 'AUS' && datum.crop == 'wheat' && datum.year <= 2025"
+      },
+      {
+       "calculate": "datum.production_kt / 1000",
+       "as": "mt"
+      },
+      {
+       "joinaggregate": [
+        {
+         "op": "max",
+         "field": "mt",
+         "as": "max_mt"
+        }
+       ]
+      },
+      {
+       "filter": "datum.year == 2002 || datum.year == 2006 || datum.mt == datum.max_mt"
+      },
+      {
+       "calculate": "format(datum.mt, '.1f') + ' Mt' + (datum.mt == datum.max_mt ? ', a record' : '')",
+       "as": "label"
+      },
+      {
+       "calculate": "datum.mt == datum.max_mt",
+       "as": "is_max"
+      },
+      {
+       "filter": "!datum.is_max"
+      },
+      {
+       "calculate": "datum.mt + 1.5",
+       "as": "y0"
+      }
+     ],
+     "mark": {
+      "type": "rule",
+      "color": "#F3EEDF",
+      "strokeWidth": 1,
+      "strokeDash": [
+       2,
+       2
+      ],
+      "opacity": 0.8
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "field": "y0",
+       "type": "quantitative"
+      },
+      "y2": {
+       "datum": 37
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/crops_by_state.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.state_code == 'AUS' && datum.crop == 'wheat' && datum.year <= 2025"
+      },
+      {
+       "calculate": "datum.production_kt / 1000",
+       "as": "mt"
+      },
+      {
+       "joinaggregate": [
+        {
+         "op": "max",
+         "field": "mt",
+         "as": "max_mt"
+        }
+       ]
+      },
+      {
+       "filter": "datum.year == 2002 || datum.year == 2006 || datum.mt == datum.max_mt"
+      },
+      {
+       "calculate": "format(datum.mt, '.1f') + ' Mt' + (datum.mt == datum.max_mt ? ', a record' : '')",
+       "as": "label"
+      },
+      {
+       "calculate": "datum.mt == datum.max_mt",
+       "as": "is_max"
+      },
+      {
+       "filter": "!datum.is_max"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 13,
+      "fontWeight": 600,
+      "dy": -2,
+      "baseline": "bottom"
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "datum": 37
+      },
+      "text": {
+       "field": "label"
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/crops_by_state.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.state_code == 'AUS' && datum.crop == 'wheat' && datum.year <= 2025"
+      },
+      {
+       "calculate": "datum.production_kt / 1000",
+       "as": "mt"
+      },
+      {
+       "joinaggregate": [
+        {
+         "op": "max",
+         "field": "mt",
+         "as": "max_mt"
+        }
+       ]
+      },
+      {
+       "filter": "datum.year == 2002 || datum.year == 2006 || datum.mt == datum.max_mt"
+      },
+      {
+       "calculate": "format(datum.mt, '.1f') + ' Mt' + (datum.mt == datum.max_mt ? ', a record' : '')",
+       "as": "label"
+      },
+      {
+       "calculate": "datum.mt == datum.max_mt",
+       "as": "is_max"
+      },
+      {
+       "filter": "datum.is_max"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 13,
+      "fontWeight": 600,
+      "align": "right",
+      "dx": -9,
+      "baseline": "middle"
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "y": {
+       "field": "mt",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "label"
+      }
+     }
+    },
+    {
+     "name": "wheat_hit",
+     "data": {
+      "url": "data/processed/crops_by_state.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.state_code == 'AUS' && datum.crop == 'wheat' && datum.year <= 2025"
+      },
+      {
+       "calculate": "datum.production_kt / 1000",
+       "as": "mt"
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.001,
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": null
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": 0
+      },
+      "y2": {
+       "value": 170
+      },
+      "tooltip": [
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "mt",
+        "title": "Wheat harvest (Mt)",
+        "format": ".1f"
+       },
+       {
+        "field": "status",
+        "title": "Figure"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "roots",
+   "width": 780,
+   "height": 130,
+   "title": {
+    "text": "Money farmers kept after costs ($ billion, today's dollars)",
+    "anchor": "start",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "color": "#F3EEDF",
+    "offset": 6,
+    "font": "IBM Plex Sans",
+    "subtitle": "Colour shows the Pacific pattern that year",
+    "subtitleColor": "#B9C6CC",
+    "subtitleFontSize": 12,
+    "subtitleFont": "IBM Plex Sans"
+   },
+   "data": {
+    "url": "data/processed/farm_income.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "year": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "filter": "datum.year <= 2025"
+    },
+    {
+     "lookup": "year",
+     "from": {
+      "data": {
+       "url": "data/processed/climate_drivers.csv",
+       "format": {
+        "type": "csv",
+        "parse": {
+         "year": "number"
+        }
+       }
+      },
+      "key": "year",
+      "fields": [
+       "enso"
+      ]
+     }
+    },
+    {
+     "calculate": "datum.enso == 'El Nino' ? 'El Niño' : datum.enso == 'La Nina' ? 'La Niña' : 'Neutral'",
+     "as": "pattern"
+    },
+    {
+     "calculate": "datum.real_net_value_m / 1000",
+     "as": "b"
+    },
+    {
+     "calculate": "datum.year - 0.36",
+     "as": "x0"
+    },
+    {
+     "calculate": "datum.year + 0.36",
+     "as": "x1"
+    }
+   ],
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#F0C766",
+      "opacity": 0.07,
+      "cornerRadius": 10
+     },
+     "encoding": {
+      "x": {
+       "field": "g0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "labelColor": "#F3EEDF",
+        "labelFontSize": 12,
+        "grid": false,
+        "orient": "bottom",
+        "domain": false,
+        "ticks": false,
+        "labelPadding": 8
+       }
+      },
+      "x2": {
+       "field": "g1"
+      },
+      "y": {
+       "value": -6
+      },
+      "y2": {
+       "value": 136
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/climate_drivers.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": {
+        "param": "yr"
+       }
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      },
+      {
+       "calculate": "datum.year - 0.95",
+       "as": "g0"
+      },
+      {
+       "calculate": "datum.year + 0.95",
+       "as": "g1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.13,
+      "stroke": "#F3EEDF",
+      "strokeOpacity": 0.65,
+      "strokeWidth": 1,
+      "cornerRadius": 8
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "labelColor": "#F3EEDF",
+        "labelFontSize": 12,
+        "grid": false,
+        "orient": "bottom",
+        "domain": false,
+        "ticks": false,
+        "labelPadding": 8
+       }
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": -4
+      },
+      "y2": {
+       "value": 134
+      }
+     }
+    },
+    {
+     "mark": {
+      "type": "rect",
+      "cornerRadiusBottomLeft": 6,
+      "cornerRadiusBottomRight": 6
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "labelColor": "#F3EEDF",
+        "labelFontSize": 12,
+        "grid": false,
+        "orient": "bottom",
+        "domain": false,
+        "ticks": false,
+        "labelPadding": 8
+       }
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "field": "b",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         0,
+         27
+        ],
+        "reverse": true,
+        "nice": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         0,
+         10,
+         20
+        ],
+        "orient": "right",
+        "labelColor": "#B9C6CC",
+        "grid": true,
+        "gridColor": "#2A3A46",
+        "domain": false,
+        "ticks": false,
+        "labelExpr": "'$' + datum.value + 'b'"
+       }
+      },
+      "y2": {
+       "datum": 0
+      },
+      "color": {
+       "field": "enso",
+       "type": "nominal",
+       "scale": {
+        "domain": [
+         "El Nino",
+         "La Nina",
+         "Neutral"
+        ],
+        "range": [
+         "#E7A04B",
+         "#9CC3D6",
+         "#8A7562"
+        ]
+       },
+       "legend": null
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/farm_income.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year <= 2025"
+      },
+      {
+       "lookup": "year",
+       "from": {
+        "data": {
+         "url": "data/processed/climate_drivers.csv",
+         "format": {
+          "type": "csv",
+          "parse": {
+           "year": "number"
+          }
+         }
+        },
+        "key": "year",
+        "fields": [
+         "enso"
+        ]
+       }
+      },
+      {
+       "calculate": "datum.enso == 'El Nino' ? 'El Niño' : datum.enso == 'La Nina' ? 'La Niña' : 'Neutral'",
+       "as": "pattern"
+      },
+      {
+       "calculate": "datum.real_net_value_m / 1000",
+       "as": "b"
+      },
+      {
+       "window": [
+        {
+         "op": "lag",
+         "field": "b",
+         "as": "prev_b"
+        }
+       ],
+       "sort": [
+        {
+         "field": "year"
+        }
+       ]
+      },
+      {
+       "joinaggregate": [
+        {
+         "op": "max",
+         "field": "b",
+         "as": "max_b"
+        }
+       ]
+      },
+      {
+       "filter": "datum.year == 1994 || datum.year == 2002 || datum.b == datum.max_b"
+      },
+      {
+       "calculate": "datum.year == 1994 ? [datum.season + ': $' + format(datum.b, '.1f') + 'b,', 'farmers kept', 'almost nothing'] : datum.b == datum.max_b ? ['a record $' + format(datum.b, '.1f') + 'b', 'in ' + datum.season] : [datum.year + ': about ' + (datum.b / datum.prev_b < 0.6 ? 'half' : format(datum.b / datum.prev_b, '.0%')), 'of ' + (datum.year - 1)]",
+       "as": "label"
+      },
+      {
+       "calculate": "datum.year == 1994 ? 12.8 : datum.b == datum.max_b ? 22.5 : 18.5",
+       "as": "ly"
+      },
+      {
+       "calculate": "datum.year == 1994 ? 'left' : datum.b == datum.max_b ? 'right' : 'center'",
+       "as": "al"
+      },
+      {
+       "calculate": "datum.year == 1994 ? datum.year - 0.3 : datum.b == datum.max_b ? datum.year - 0.7 : datum.year",
+       "as": "lx"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 12.5,
+      "fontStyle": "italic",
+      "lineHeight": 15,
+      "baseline": "middle",
+      "align": {
+       "expr": "datum.al"
+      }
+     },
+     "encoding": {
+      "x": {
+       "field": "lx",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "labelColor": "#F3EEDF",
+        "labelFontSize": 12,
+        "grid": false,
+        "orient": "bottom",
+        "domain": false,
+        "ticks": false,
+        "labelPadding": 8
+       }
+      },
+      "y": {
+       "field": "ly",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "label"
+      }
+     }
+    },
+    {
+     "name": "roots_hit",
+     "data": {
+      "url": "data/processed/farm_income.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year <= 2025"
+      },
+      {
+       "lookup": "year",
+       "from": {
+        "data": {
+         "url": "data/processed/climate_drivers.csv",
+         "format": {
+          "type": "csv",
+          "parse": {
+           "year": "number"
+          }
+         }
+        },
+        "key": "year",
+        "fields": [
+         "enso"
+        ]
+       }
+      },
+      {
+       "calculate": "datum.enso == 'El Nino' ? 'El Niño' : datum.enso == 'La Nina' ? 'La Niña' : 'Neutral'",
+       "as": "pattern"
+      },
+      {
+       "calculate": "datum.real_net_value_m / 1000",
+       "as": "b"
+      },
+      {
+       "calculate": "datum.year - 0.5",
+       "as": "x0"
+      },
+      {
+       "calculate": "datum.year + 0.5",
+       "as": "x1"
+      }
+     ],
+     "mark": {
+      "type": "rect",
+      "color": "#FFFFFF",
+      "opacity": 0.001,
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "x": {
+       "field": "x0",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "labelColor": "#F3EEDF",
+        "labelFontSize": 12,
+        "grid": false,
+        "orient": "bottom",
+        "domain": false,
+        "ticks": false,
+        "labelPadding": 8
+       }
+      },
+      "x2": {
+       "field": "x1"
+      },
+      "y": {
+       "value": 0
+      },
+      "y2": {
+       "value": 130
+      },
+      "tooltip": [
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "b",
+        "title": "Kept after costs ($b, today's dollars)",
+        "format": ".1f"
+       },
+       {
+        "field": "pattern",
+        "title": "Pacific pattern"
+       },
+       {
+        "field": "status",
+        "title": "Figure"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

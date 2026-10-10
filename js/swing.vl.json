@@ -1,0 +1,568 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Two linked charts for 2019 and 2022, Tasmania left out. Dumbbell: wheat yield per state; NSW rose from 0.8 to 3.0 tonnes a hectare, about 3.5 times more, the biggest jump. Slopegraph: states ranked by wheat grown; NSW climbs from fourth (1.8 Mt) to second (10.6 Mt).",
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "title": {
+   "font": "IBM Plex Sans",
+   "subtitleFont": "IBM Plex Sans"
+  },
+  "axis": {
+   "labelFont": "IBM Plex Sans"
+  }
+ },
+ "padding": 4,
+ "spacing": 56,
+ "params": [
+  {
+   "name": "hl",
+   "select": {
+    "type": "point",
+    "fields": [
+     "state_code"
+    ],
+    "on": "pointerover",
+    "clear": "pointerout"
+   },
+   "views": [
+    "db_hit",
+    "sl_hit"
+   ]
+  }
+ ],
+ "hconcat": [
+  {
+   "width": 360,
+   "height": 250,
+   "title": {
+    "text": "Wheat yield, tonnes a hectare",
+    "subtitle": "2019 (brown) to 2022 (teal)",
+    "anchor": "start",
+    "fontSize": 14,
+    "fontWeight": 600,
+    "color": "#16222C",
+    "subtitleColor": "#5A5144",
+    "subtitleFontSize": 12.5,
+    "offset": 10
+   },
+   "data": {
+    "url": "data/processed/crops_by_state.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "year": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "filter": "datum.crop == 'wheat' && (datum.year == 2019 || datum.year == 2022) && datum.state_code != 'AUS' && datum.state_code != 'TAS'"
+    },
+    {
+     "calculate": "datum.production_kt / 1000",
+     "as": "mt"
+    },
+    {
+     "pivot": "year",
+     "value": "yield_t_ha",
+     "groupby": [
+      "state_code",
+      "state"
+     ]
+    },
+    {
+     "calculate": "datum['2022'] / datum['2019']",
+     "as": "ratio"
+    }
+   ],
+   "encoding": {
+    "y": {
+     "field": "state",
+     "type": "nominal",
+     "sort": {
+      "field": "ratio",
+      "order": "descending"
+     },
+     "axis": {
+      "title": null,
+      "domain": false,
+      "ticks": false,
+      "labelFontSize": 13,
+      "labelColor": "#16222C",
+      "labelPadding": 10
+     },
+     "scale": {
+      "paddingInner": 0.4
+     }
+    }
+   },
+   "layer": [
+    {
+     "name": "db_hit",
+     "mark": {
+      "type": "rect",
+      "color": "#7A5300",
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "x": {
+       "value": 0
+      },
+      "x2": {
+       "value": 360
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": false,
+        "value": 0.08
+       },
+       "value": 0.001
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "2019",
+        "title": "Yield 2019 (t/ha)",
+        "format": ".2f"
+       },
+       {
+        "field": "2022",
+        "title": "Yield 2022 (t/ha)",
+        "format": ".2f"
+       },
+       {
+        "field": "ratio",
+        "title": "Times more",
+        "format": ".1f"
+       }
+      ]
+     }
+    },
+    {
+     "mark": {
+      "type": "rule",
+      "strokeWidth": 3,
+      "color": "#9C8B74",
+      "strokeCap": "round"
+     },
+     "encoding": {
+      "x": {
+       "field": "2019",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         0,
+         3.8
+        ],
+        "nice": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "format": "d",
+        "grid": true,
+        "gridColor": "#DCCBA8",
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#5A5144"
+       }
+      },
+      "x2": {
+       "field": "2022"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.25
+      }
+     }
+    },
+    {
+     "mark": {
+      "type": "circle",
+      "size": 150,
+      "color": "#8C510A",
+      "stroke": "#F1E4C8",
+      "strokeWidth": 1.5
+     },
+     "encoding": {
+      "x": {
+       "field": "2019",
+       "type": "quantitative"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.25
+      }
+     }
+    },
+    {
+     "mark": {
+      "type": "circle",
+      "size": 150,
+      "color": "#01665E",
+      "stroke": "#F1E4C8",
+      "strokeWidth": 1.5
+     },
+     "encoding": {
+      "x": {
+       "field": "2022",
+       "type": "quantitative"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.25
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.state_code == 'NSW'"
+      },
+      {
+       "calculate": "format(datum['2022'], '.1f') + ', about ' + format(datum.ratio, '.1f') + ' times more'",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "align": "left",
+      "dx": 12,
+      "fontSize": 13,
+      "fontWeight": 600,
+      "color": "#01665E",
+      "baseline": "middle"
+     },
+     "encoding": {
+      "x": {
+       "field": "2022",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "lab"
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.state_code == 'NSW'"
+      },
+      {
+       "calculate": "format(datum['2019'], '.1f')",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "align": "right",
+      "dx": -11,
+      "fontSize": 13,
+      "fontWeight": 600,
+      "color": "#8C510A",
+      "baseline": "middle"
+     },
+     "encoding": {
+      "x": {
+       "field": "2019",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "lab"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "width": 320,
+   "height": 250,
+   "title": {
+    "text": "Rank by wheat grown",
+    "subtitle": "Million tonnes, 2019 and 2022",
+    "anchor": "start",
+    "fontSize": 14,
+    "fontWeight": 600,
+    "color": "#16222C",
+    "subtitleColor": "#5A5144",
+    "subtitleFontSize": 12.5,
+    "offset": 10
+   },
+   "data": {
+    "url": "data/processed/crops_by_state.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "year": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "filter": "datum.crop == 'wheat' && (datum.year == 2019 || datum.year == 2022) && datum.state_code != 'AUS' && datum.state_code != 'TAS'"
+    },
+    {
+     "calculate": "datum.production_kt / 1000",
+     "as": "mt"
+    },
+    {
+     "window": [
+      {
+       "op": "row_number",
+       "as": "rank"
+      }
+     ],
+     "groupby": [
+      "year"
+     ],
+     "sort": [
+      {
+       "field": "mt",
+       "order": "descending"
+      }
+     ]
+    },
+    {
+     "calculate": "toString(datum.year)",
+     "as": "yr"
+    }
+   ],
+   "encoding": {
+    "x": {
+     "field": "yr",
+     "type": "ordinal",
+     "scale": {
+      "domain": [
+       "2019",
+       "2022"
+      ],
+      "range": [
+       70,
+       250
+      ]
+     },
+     "axis": {
+      "title": null,
+      "orient": "top",
+      "domain": false,
+      "ticks": false,
+      "labelFontSize": 15,
+      "labelFontWeight": 600,
+      "labelPadding": 8,
+      "labelAngle": 0,
+      "labelColor": {
+       "expr": "datum.value == '2019' ? '#8C510A' : '#01665E'"
+      }
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    }
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "line",
+      "strokeWidth": 2.5
+     },
+     "encoding": {
+      "detail": {
+       "field": "state_code"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.state_code == 'NSW'",
+        "value": "#7A5300"
+       },
+       "value": "#9C8B74"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.2
+      }
+     }
+    },
+    {
+     "name": "sl_hit",
+     "mark": {
+      "type": "line",
+      "strokeWidth": 16,
+      "color": "#000",
+      "opacity": 0.001,
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "detail": {
+       "field": "state_code"
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       }
+      ]
+     }
+    },
+    {
+     "mark": {
+      "type": "circle",
+      "size": 70
+     },
+     "encoding": {
+      "color": {
+       "condition": {
+        "test": "datum.year == 2019",
+        "value": "#8C510A"
+       },
+       "value": "#01665E"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.25
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "mt",
+        "title": "Wheat grown (Mt)",
+        "format": ".1f"
+       },
+       {
+        "field": "rank",
+        "title": "Rank"
+       },
+       {
+        "field": "status",
+        "title": "Figure"
+       }
+      ]
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.year == 2019"
+      },
+      {
+       "calculate": "datum.rank + '. ' + datum.state_code + '  ' + format(datum.mt, '.1f')",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "align": "right",
+      "dx": -10,
+      "fontSize": 13,
+      "baseline": "middle",
+      "fontWeight": {
+       "expr": "datum.state_code == 'NSW' ? 700 : 400"
+      }
+     },
+     "encoding": {
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "value": "#16222C"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.3
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.year == 2022"
+      },
+      {
+       "calculate": "format(datum.mt, '.1f') + '  ' + datum.state_code + ' ' + datum.rank + '.'",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "align": "left",
+      "dx": 10,
+      "fontSize": 13,
+      "baseline": "middle",
+      "fontWeight": {
+       "expr": "datum.state_code == 'NSW' ? 700 : 400"
+      }
+     },
+     "encoding": {
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "value": "#16222C"
+      },
+      "opacity": {
+       "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+       },
+       "value": 0.3
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

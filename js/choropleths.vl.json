@@ -1,0 +1,815 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Four maps of Australia's states. Top row: April to October rain in 2019 and 2022 as a percent of each state's normal. Bottom row: wheat yield as a percent of normal. 2019 is brown almost everywhere (NSW: 40% of normal rain, 41% of normal yield); 2022 is teal (NSW: 170% of normal rain, 146% of normal yield).",
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "title": {
+   "font": "IBM Plex Sans"
+  }
+ },
+ "padding": {
+  "left": 4,
+  "right": 4,
+  "top": 4,
+  "bottom": 4
+ },
+ "columns": 2,
+ "spacing": {
+  "row": 18,
+  "column": 22
+ },
+ "concat": [
+  {
+   "width": 205,
+   "height": 170,
+   "title": {
+    "text": "Rain, April–October, 2019",
+    "anchor": "start",
+    "fontSize": 13.5,
+    "fontWeight": 600,
+    "color": "#8C510A",
+    "offset": 4
+   },
+   "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+     -18,
+     -36
+    ],
+    "rotate": [
+     -132,
+     0
+    ],
+    "center": [
+     0,
+     -27
+    ]
+   },
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "mark": {
+      "type": "geoshape",
+      "fill": "#C9C2B4",
+      "stroke": "#FFFFFF",
+      "strokeWidth": 0.7
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2019"
+      },
+      {
+       "calculate": "datum.rain_cool_pct_of_avg",
+       "as": "pct"
+      },
+      {
+       "lookup": "state",
+       "from": {
+        "data": {
+         "url": "data/processed/aus_states.topojson",
+         "format": {
+          "type": "topojson",
+          "feature": "states"
+         }
+        },
+        "key": "properties.name"
+       },
+       "as": "geo"
+      }
+     ],
+     "mark": {
+      "type": "geoshape",
+      "stroke": "#16222C",
+      "strokeWidth": 0.6
+     },
+     "encoding": {
+      "shape": {
+       "field": "geo",
+       "type": "geojson"
+      },
+      "color": {
+       "field": "pct",
+       "type": "quantitative",
+       "scale": {
+        "type": "threshold",
+        "domain": [
+         50,
+         70,
+         90,
+         110,
+         130,
+         150
+        ],
+        "range": [
+         "#8C510A",
+         "#D8B365",
+         "#F3DFA2",
+         "#E3EFE9",
+         "#A9DDD4",
+         "#4FB3A6",
+         "#01665E"
+        ]
+       },
+       "legend": {
+        "title": "% of the state's normal",
+        "orient": "bottom",
+        "direction": "horizontal",
+        "symbolType": "square",
+        "symbolSize": 180,
+        "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
+        "columns": 7,
+        "labelFontSize": 11.5,
+        "titleFontSize": 12.5,
+        "titleFontWeight": 600,
+        "labelColor": "#3B372F",
+        "titleColor": "#16222C",
+        "symbolStrokeColor": "#8A7A62",
+        "symbolStrokeWidth": 0.5
+       }
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "rain_cool_mm",
+        "title": "Rain (mm)",
+        "format": ".0f"
+       },
+       {
+        "field": "pct",
+        "title": "% of normal",
+        "format": ".0f"
+       }
+      ]
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2019 && datum.state_code == 'NSW'"
+      },
+      {
+       "calculate": "datum.rain_cool_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 12.5,
+      "fontWeight": 600,
+      "color": "#16222C"
+     },
+     "encoding": {
+      "longitude": {
+       "datum": 146.6
+      },
+      "latitude": {
+       "datum": -32.4
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#F3EEDF"
+       },
+       "value": "#16222C"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "width": 205,
+   "height": 170,
+   "title": {
+    "text": "Rain, April–October, 2022",
+    "anchor": "start",
+    "fontSize": 13.5,
+    "fontWeight": 600,
+    "color": "#01665E",
+    "offset": 4
+   },
+   "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+     -18,
+     -36
+    ],
+    "rotate": [
+     -132,
+     0
+    ],
+    "center": [
+     0,
+     -27
+    ]
+   },
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "mark": {
+      "type": "geoshape",
+      "fill": "#C9C2B4",
+      "stroke": "#FFFFFF",
+      "strokeWidth": 0.7
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2022"
+      },
+      {
+       "calculate": "datum.rain_cool_pct_of_avg",
+       "as": "pct"
+      },
+      {
+       "lookup": "state",
+       "from": {
+        "data": {
+         "url": "data/processed/aus_states.topojson",
+         "format": {
+          "type": "topojson",
+          "feature": "states"
+         }
+        },
+        "key": "properties.name"
+       },
+       "as": "geo"
+      }
+     ],
+     "mark": {
+      "type": "geoshape",
+      "stroke": "#16222C",
+      "strokeWidth": 0.6
+     },
+     "encoding": {
+      "shape": {
+       "field": "geo",
+       "type": "geojson"
+      },
+      "color": {
+       "field": "pct",
+       "type": "quantitative",
+       "scale": {
+        "type": "threshold",
+        "domain": [
+         50,
+         70,
+         90,
+         110,
+         130,
+         150
+        ],
+        "range": [
+         "#8C510A",
+         "#D8B365",
+         "#F3DFA2",
+         "#E3EFE9",
+         "#A9DDD4",
+         "#4FB3A6",
+         "#01665E"
+        ]
+       },
+       "legend": {
+        "title": "% of the state's normal",
+        "orient": "bottom",
+        "direction": "horizontal",
+        "symbolType": "square",
+        "symbolSize": 180,
+        "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
+        "columns": 7,
+        "labelFontSize": 11.5,
+        "titleFontSize": 12.5,
+        "titleFontWeight": 600,
+        "labelColor": "#3B372F",
+        "titleColor": "#16222C",
+        "symbolStrokeColor": "#8A7A62",
+        "symbolStrokeWidth": 0.5
+       }
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "rain_cool_mm",
+        "title": "Rain (mm)",
+        "format": ".0f"
+       },
+       {
+        "field": "pct",
+        "title": "% of normal",
+        "format": ".0f"
+       }
+      ]
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2022 && datum.state_code == 'NSW'"
+      },
+      {
+       "calculate": "datum.rain_cool_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 12.5,
+      "fontWeight": 600,
+      "color": "#16222C"
+     },
+     "encoding": {
+      "longitude": {
+       "datum": 146.6
+      },
+      "latitude": {
+       "datum": -32.4
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#F3EEDF"
+       },
+       "value": "#16222C"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "width": 205,
+   "height": 170,
+   "title": {
+    "text": "Wheat yield, 2019",
+    "anchor": "start",
+    "fontSize": 13.5,
+    "fontWeight": 600,
+    "color": "#8C510A",
+    "offset": 4
+   },
+   "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+     -18,
+     -36
+    ],
+    "rotate": [
+     -132,
+     0
+    ],
+    "center": [
+     0,
+     -27
+    ]
+   },
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "mark": {
+      "type": "geoshape",
+      "fill": "#C9C2B4",
+      "stroke": "#FFFFFF",
+      "strokeWidth": 0.7
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2019"
+      },
+      {
+       "calculate": "datum.yield_pct_of_avg",
+       "as": "pct"
+      },
+      {
+       "lookup": "state",
+       "from": {
+        "data": {
+         "url": "data/processed/aus_states.topojson",
+         "format": {
+          "type": "topojson",
+          "feature": "states"
+         }
+        },
+        "key": "properties.name"
+       },
+       "as": "geo"
+      }
+     ],
+     "mark": {
+      "type": "geoshape",
+      "stroke": "#16222C",
+      "strokeWidth": 0.6
+     },
+     "encoding": {
+      "shape": {
+       "field": "geo",
+       "type": "geojson"
+      },
+      "color": {
+       "field": "pct",
+       "type": "quantitative",
+       "scale": {
+        "type": "threshold",
+        "domain": [
+         50,
+         70,
+         90,
+         110,
+         130,
+         150
+        ],
+        "range": [
+         "#8C510A",
+         "#D8B365",
+         "#F3DFA2",
+         "#E3EFE9",
+         "#A9DDD4",
+         "#4FB3A6",
+         "#01665E"
+        ]
+       },
+       "legend": {
+        "title": "% of the state's normal",
+        "orient": "bottom",
+        "direction": "horizontal",
+        "symbolType": "square",
+        "symbolSize": 180,
+        "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
+        "columns": 7,
+        "labelFontSize": 11.5,
+        "titleFontSize": 12.5,
+        "titleFontWeight": 600,
+        "labelColor": "#3B372F",
+        "titleColor": "#16222C",
+        "symbolStrokeColor": "#8A7A62",
+        "symbolStrokeWidth": 0.5
+       }
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "wheat_yield_t_ha",
+        "title": "Wheat yield (t/ha)",
+        "format": ".2f"
+       },
+       {
+        "field": "pct",
+        "title": "% of normal",
+        "format": ".0f"
+       }
+      ]
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2019 && datum.state_code == 'NSW'"
+      },
+      {
+       "calculate": "datum.yield_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 12.5,
+      "fontWeight": 600,
+      "color": "#16222C"
+     },
+     "encoding": {
+      "longitude": {
+       "datum": 146.6
+      },
+      "latitude": {
+       "datum": -32.4
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#F3EEDF"
+       },
+       "value": "#16222C"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "width": 205,
+   "height": 170,
+   "title": {
+    "text": "Wheat yield, 2022",
+    "anchor": "start",
+    "fontSize": 13.5,
+    "fontWeight": 600,
+    "color": "#01665E",
+    "offset": 4
+   },
+   "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+     -18,
+     -36
+    ],
+    "rotate": [
+     -132,
+     0
+    ],
+    "center": [
+     0,
+     -27
+    ]
+   },
+   "layer": [
+    {
+     "data": {
+      "url": "data/processed/aus_states.topojson",
+      "format": {
+       "type": "topojson",
+       "feature": "states"
+      }
+     },
+     "mark": {
+      "type": "geoshape",
+      "fill": "#C9C2B4",
+      "stroke": "#FFFFFF",
+      "strokeWidth": 0.7
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2022"
+      },
+      {
+       "calculate": "datum.yield_pct_of_avg",
+       "as": "pct"
+      },
+      {
+       "lookup": "state",
+       "from": {
+        "data": {
+         "url": "data/processed/aus_states.topojson",
+         "format": {
+          "type": "topojson",
+          "feature": "states"
+         }
+        },
+        "key": "properties.name"
+       },
+       "as": "geo"
+      }
+     ],
+     "mark": {
+      "type": "geoshape",
+      "stroke": "#16222C",
+      "strokeWidth": 0.6
+     },
+     "encoding": {
+      "shape": {
+       "field": "geo",
+       "type": "geojson"
+      },
+      "color": {
+       "field": "pct",
+       "type": "quantitative",
+       "scale": {
+        "type": "threshold",
+        "domain": [
+         50,
+         70,
+         90,
+         110,
+         130,
+         150
+        ],
+        "range": [
+         "#8C510A",
+         "#D8B365",
+         "#F3DFA2",
+         "#E3EFE9",
+         "#A9DDD4",
+         "#4FB3A6",
+         "#01665E"
+        ]
+       },
+       "legend": {
+        "title": "% of the state's normal",
+        "orient": "bottom",
+        "direction": "horizontal",
+        "symbolType": "square",
+        "symbolSize": 180,
+        "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
+        "columns": 7,
+        "labelFontSize": 11.5,
+        "titleFontSize": 12.5,
+        "titleFontWeight": 600,
+        "labelColor": "#3B372F",
+        "titleColor": "#16222C",
+        "symbolStrokeColor": "#8A7A62",
+        "symbolStrokeWidth": 0.5
+       }
+      },
+      "tooltip": [
+       {
+        "field": "state",
+        "title": "State"
+       },
+       {
+        "field": "season",
+        "title": "Season"
+       },
+       {
+        "field": "wheat_yield_t_ha",
+        "title": "Wheat yield (t/ha)",
+        "format": ".2f"
+       },
+       {
+        "field": "pct",
+        "title": "% of normal",
+        "format": ".0f"
+       }
+      ]
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2022 && datum.state_code == 'NSW'"
+      },
+      {
+       "calculate": "datum.yield_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 12.5,
+      "fontWeight": 600,
+      "color": "#16222C"
+     },
+     "encoding": {
+      "longitude": {
+       "datum": 146.6
+      },
+      "latitude": {
+       "datum": -32.4
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#F3EEDF"
+       },
+       "value": "#16222C"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

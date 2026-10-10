@@ -1,0 +1,261 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Diverging bars: how far each crop's national harvest fell compared with the average of the five years before. 2002: wheat −55%, barley −41%, canola −49%. 2006: wheat −50%, barley −46%, canola −61%. 2019: wheat −38%, barley +3%, canola −32%.",
+ "width": 560,
+ "height": {
+  "step": 22
+ },
+ "padding": {
+  "left": 4,
+  "right": 12,
+  "top": 4,
+  "bottom": 4
+ },
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelColor": "#C9BFAE",
+   "titleColor": "#C9BFAE",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#6B5A48",
+   "tickColor": "#6B5A48",
+   "gridColor": "#4A3A2E"
+  },
+  "legend": {
+   "labelColor": "#F3EEDF",
+   "titleColor": "#F3EEDF",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 13,
+   "titleFontSize": 13
+  }
+ },
+ "title": {
+  "text": "How far each crop fell, compared with the five years before",
+  "anchor": "start",
+  "color": "#F3EEDF",
+  "fontSize": 15,
+  "fontWeight": 600,
+  "font": "IBM Plex Sans",
+  "offset": 14
+ },
+ "data": {
+  "url": "data/processed/crops_by_state.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.state_code == 'AUS'"
+  },
+  {
+   "calculate": "+datum.production_kt",
+   "as": "kt"
+  },
+  {
+   "window": [
+    {
+     "op": "sum",
+     "field": "kt",
+     "as": "sum6"
+    },
+    {
+     "op": "count",
+     "field": "kt",
+     "as": "n6"
+    }
+   ],
+   "frame": [
+    -5,
+    0
+   ],
+   "groupby": [
+    "crop"
+   ],
+   "sort": [
+    {
+     "field": "year"
+    }
+   ]
+  },
+  {
+   "filter": "(datum.year == 2002 || datum.year == 2006 || datum.year == 2019) && datum.n6 == 6"
+  },
+  {
+   "calculate": "(datum.sum6 - datum.kt) / 5",
+   "as": "prev5"
+  },
+  {
+   "calculate": "100 * (datum.production_kt / datum.prev5 - 1)",
+   "as": "pct"
+  },
+  {
+   "calculate": "(datum.pct > 0 ? '+' : '−') + format(abs(datum.pct), '.0f') + '%'",
+   "as": "lab"
+  },
+  {
+   "calculate": "upper(slice(datum.crop, 0, 1)) + slice(datum.crop, 1)",
+   "as": "Crop"
+  },
+  {
+   "calculate": "toString(datum.year)",
+   "as": "yr"
+  }
+ ],
+ "encoding": {
+  "y": {
+   "field": "yr",
+   "type": "nominal",
+   "sort": [
+    "2002",
+    "2006",
+    "2019"
+   ],
+   "axis": {
+    "title": null,
+    "domain": false,
+    "ticks": false,
+    "labelFont": "Big Shoulders Display",
+    "labelFontSize": 22,
+    "labelFontWeight": 800,
+    "labelColor": "#F3EEDF",
+    "labelPadding": 14
+   },
+   "scale": {
+    "paddingInner": 0.35
+   }
+  },
+  "yOffset": {
+   "field": "Crop",
+   "sort": [
+    "Wheat",
+    "Barley",
+    "Canola"
+   ]
+  },
+  "x": {
+   "field": "pct",
+   "type": "quantitative",
+   "scale": {
+    "domain": [
+     -70,
+     20
+    ],
+    "nice": false
+   },
+   "axis": {
+    "title": "Change in harvest (%)",
+    "values": [
+     -60,
+     -40,
+     -20,
+     0,
+     20
+    ],
+    "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : datum.value == 0 ? '0' : '−' + abs(datum.value) + '%'",
+    "grid": true,
+    "domain": false
+   }
+  }
+ },
+ "layer": [
+  {
+   "mark": {
+    "type": "bar",
+    "cornerRadius": 3,
+    "height": {
+     "band": 0.86
+    }
+   },
+   "encoding": {
+    "color": {
+     "field": "crop",
+     "type": "nominal",
+     "scale": {
+      "domain": [
+       "wheat",
+       "barley",
+       "canola"
+      ],
+      "range": [
+       "#C8901E",
+       "#A88660",
+       "#E9CF4B"
+      ]
+     },
+     "legend": null
+    },
+    "tooltip": [
+     {
+      "field": "Crop"
+     },
+     {
+      "field": "season",
+      "title": "Season"
+     },
+     {
+      "field": "production_kt",
+      "title": "Harvest (thousand t)",
+      "format": ",.0f"
+     },
+     {
+      "field": "prev5",
+      "title": "Five years before, average (thousand t)",
+      "format": ",.0f"
+     },
+     {
+      "field": "lab",
+      "title": "Change"
+     }
+    ]
+   }
+  },
+  {
+   "mark": {
+    "type": "rule",
+    "color": "#F3EEDF",
+    "strokeWidth": 1.4
+   },
+   "encoding": {
+    "x": {
+     "datum": 0
+    },
+    "y": null,
+    "yOffset": null
+   }
+  },
+  {
+   "mark": {
+    "type": "text",
+    "fontSize": 12.5,
+    "color": "#F3EEDF",
+    "baseline": "middle",
+    "align": {
+     "expr": "datum.pct < 0 ? 'right' : 'left'"
+    },
+    "dx": {
+     "expr": "datum.pct < 0 ? -6 : 6"
+    }
+   },
+   "encoding": {
+    "text": {
+     "value": {
+      "expr": "datum.Crop + ' ' + datum.lab"
+     }
+    }
+   }
+  }
+ ]
+}

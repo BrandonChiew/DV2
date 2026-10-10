@@ -1,0 +1,462 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Streamgraph of Australia's wheat, barley and canola harvests, 1989 to 2025, in million tonnes, stacked around a centre line. The stream narrows sharply in 2002, 2006 and 2019, and is widest in 2022.",
+ "width": 900,
+ "height": 300,
+ "padding": {
+  "left": 4,
+  "right": 4,
+  "top": 8,
+  "bottom": 4
+ },
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelColor": "#C9BFAE",
+   "titleColor": "#C9BFAE",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#6B5A48",
+   "tickColor": "#6B5A48",
+   "gridColor": "#4A3A2E"
+  },
+  "legend": {
+   "labelColor": "#F3EEDF",
+   "titleColor": "#F3EEDF",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 13,
+   "titleFontSize": 13
+  }
+ },
+ "title": {
+  "text": "Wheat, barley and canola grown in Australia",
+  "subtitle": "Million tonnes; the numbers on the lines are all three crops together",
+  "anchor": "start",
+  "color": "#F3EEDF",
+  "subtitleColor": "#C9BFAE",
+  "fontSize": 15,
+  "fontWeight": 600,
+  "subtitleFontSize": 12.5,
+  "font": "IBM Plex Sans",
+  "subtitleFont": "IBM Plex Sans",
+  "offset": 12
+ },
+ "params": [
+  {
+   "name": "selYear",
+   "value": 2019
+  }
+ ],
+ "data": {
+  "url": "data/processed/crops_by_state.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.state_code == 'AUS' && datum.year <= 2025"
+  },
+  {
+   "calculate": "datum.production_kt / 1000",
+   "as": "mt"
+  },
+  {
+   "calculate": "indexof([\"wheat\", \"barley\", \"canola\"], datum.crop)",
+   "as": "crop_order"
+  }
+ ],
+ "layer": [
+  {
+   "data": {
+    "values": [
+     {}
+    ]
+   },
+   "transform": [
+    {
+     "calculate": "selYear - 0.5",
+     "as": "x0"
+    },
+    {
+     "calculate": "selYear + 0.5",
+     "as": "x1"
+    }
+   ],
+   "mark": {
+    "type": "rect",
+    "color": "#FFFFFF",
+    "opacity": 0.12,
+    "stroke": "#F3EEDF",
+    "strokeOpacity": 0.6,
+    "cornerRadius": 8
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelColor": "#F3EEDF",
+      "labelPadding": 6
+     }
+    },
+    "x2": {
+     "field": "x1"
+    },
+    "y": {
+     "value": 0
+    },
+    "y2": {
+     "value": 300
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "area",
+    "interpolate": "monotone",
+    "stroke": "#2C2118",
+    "strokeWidth": 0.6
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelColor": "#F3EEDF",
+      "labelPadding": 6
+     }
+    },
+    "y": {
+     "field": "mt",
+     "type": "quantitative",
+     "stack": "center",
+     "axis": null,
+     "scale": {
+      "range": [
+       300,
+       48
+      ]
+     }
+    },
+    "color": {
+     "field": "crop",
+     "type": "nominal",
+     "scale": {
+      "domain": [
+       "wheat",
+       "barley",
+       "canola"
+      ],
+      "range": [
+       "#C8901E",
+       "#A88660",
+       "#E9CF4B"
+      ]
+     },
+     "legend": {
+      "title": null,
+      "orient": "bottom",
+      "direction": "horizontal",
+      "symbolType": "square",
+      "symbolSize": 220,
+      "labelExpr": "upper(slice(datum.label, 0, 1)) + slice(datum.label, 1)",
+      "offset": 0
+     }
+    },
+    "order": {
+     "field": "crop_order"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "indexof([2002, 2006, 2019, 2022], datum.year) >= 0"
+    },
+    {
+     "aggregate": [
+      {
+       "op": "sum",
+       "field": "mt",
+       "as": "total"
+      }
+     ],
+     "groupby": [
+      "year"
+     ]
+    },
+    {
+     "calculate": "[toString(datum.year), format(datum.total, '.1f') + ' Mt']",
+     "as": "lab"
+    }
+   ],
+   "layer": [
+    {
+     "mark": {
+      "type": "rule",
+      "color": "#F3EEDF",
+      "strokeDash": [
+       2,
+       3
+      ],
+      "opacity": 0.7
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#F3EEDF",
+        "labelPadding": 6
+       }
+      },
+      "y": {
+       "value": 40
+      },
+      "y2": {
+       "value": 300
+      }
+     }
+    },
+    {
+     "mark": {
+      "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 13,
+      "fontWeight": 600,
+      "baseline": "bottom",
+      "dy": -3,
+      "lineHeight": 15
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       },
+       "axis": {
+        "title": null,
+        "values": [
+         1989,
+         1994,
+         1999,
+         2004,
+         2009,
+         2014,
+         2019,
+         2024
+        ],
+        "format": "d",
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#F3EEDF",
+        "labelPadding": 6
+       }
+      },
+      "y": {
+       "value": 40
+      },
+      "text": {
+       "field": "lab"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "transform": [
+    {
+     "pivot": "crop",
+     "value": "mt",
+     "groupby": [
+      "year",
+      "season",
+      "status"
+     ]
+    },
+    {
+     "calculate": "datum.wheat + datum.barley + datum.canola",
+     "as": "total"
+    },
+    {
+     "calculate": "datum.year - 0.5",
+     "as": "x0"
+    },
+    {
+     "calculate": "datum.year + 0.5",
+     "as": "x1"
+    }
+   ],
+   "mark": {
+    "type": "rect",
+    "color": "#FFFFFF",
+    "opacity": 0.001
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelColor": "#F3EEDF",
+      "labelPadding": 6
+     }
+    },
+    "x2": {
+     "field": "x1"
+    },
+    "y": {
+     "value": 30
+    },
+    "y2": {
+     "value": 300
+    },
+    "tooltip": [
+     {
+      "field": "season",
+      "title": "Season"
+     },
+     {
+      "field": "wheat",
+      "title": "Wheat (Mt)",
+      "format": ".1f"
+     },
+     {
+      "field": "barley",
+      "title": "Barley (Mt)",
+      "format": ".1f"
+     },
+     {
+      "field": "canola",
+      "title": "Canola (Mt)",
+      "format": ".1f"
+     },
+     {
+      "field": "total",
+      "title": "All three (Mt)",
+      "format": ".1f"
+     },
+     {
+      "field": "status",
+      "title": "Figure"
+     }
+    ]
+   }
+  }
+ ],
+ "resolve": {
+  "scale": {
+   "y": "independent"
+  }
+ }
+}

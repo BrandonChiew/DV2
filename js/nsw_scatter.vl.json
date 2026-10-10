@@ -1,0 +1,512 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Connected scatterplot for New South Wales, 1989 to 2025: April to October rain against wheat yield, one grain per year joined in time order. Dry years sit low and left (2019: 118 mm and 0.8 t/ha), wet years high and right (2022: 495 mm and 3.0 t/ha).",
+ "width": 440,
+ "height": 380,
+ "padding": {
+  "left": 4,
+  "right": 10,
+  "top": 10,
+  "bottom": 4
+ },
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelColor": "#3B372F",
+   "titleColor": "#3B372F",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#9AA8A3",
+   "tickColor": "#9AA8A3",
+   "gridColor": "#C6D6D0"
+  }
+ },
+ "params": [
+  {
+   "name": "rain",
+   "value": 130
+  },
+  {
+   "name": "selYear",
+   "value": 2019
+  }
+ ],
+ "data": {
+  "url": "data/processed/rain_vs_yield.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.state_code == 'NSW'"
+  },
+  {
+   "calculate": "datum.rain_cool_mm * 100 / datum.rain_cool_pct_of_avg",
+   "as": "normal_rain"
+  },
+  {
+   "calculate": "datum.wheat_yield_t_ha * 100 / datum.yield_pct_of_avg",
+   "as": "normal_yield"
+  }
+ ],
+ "encoding": {
+  "x": {
+   "field": "rain_cool_mm",
+   "type": "quantitative",
+   "scale": {
+    "domain": [
+     80,
+     520
+    ],
+    "nice": false
+   },
+   "axis": {
+    "title": "Rain from April to October (mm)",
+    "values": [
+     100,
+     200,
+     300,
+     400,
+     500
+    ],
+    "grid": false
+   }
+  },
+  "y": {
+   "field": "wheat_yield_t_ha",
+   "type": "quantitative",
+   "scale": {
+    "domain": [
+     0,
+     3.6
+    ],
+    "nice": false
+   },
+   "axis": {
+    "title": "Wheat yield (tonnes a hectare)",
+    "values": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "grid": true
+   }
+  }
+ },
+ "layer": [
+  {
+   "data": {
+    "values": [
+     {}
+    ]
+   },
+   "transform": [
+    {
+     "calculate": "rain - 30",
+     "as": "lo"
+    },
+    {
+     "calculate": "rain + 30",
+     "as": "hi"
+    }
+   ],
+   "mark": {
+    "type": "rect",
+    "color": "#8C510A",
+    "opacity": 0.12
+   },
+   "encoding": {
+    "x": {
+     "field": "lo",
+     "type": "quantitative"
+    },
+    "x2": {
+     "field": "hi"
+    },
+    "y": {
+     "value": 0
+    },
+    "y2": {
+     "value": 380
+    }
+   }
+  },
+  {
+   "data": {
+    "values": [
+     {}
+    ]
+   },
+   "transform": [
+    {
+     "calculate": "rain - 30",
+     "as": "lo"
+    },
+    {
+     "calculate": "rain + 30",
+     "as": "hi"
+    },
+    {
+     "calculate": "format(rain - 30, 'd') + '–' + format(rain + 30, 'd') + ' mm'",
+     "as": "lab"
+    },
+    {
+     "calculate": "rain",
+     "as": "mid"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "color": "#8C510A",
+    "fontSize": 12,
+    "fontWeight": 600,
+    "baseline": "top",
+    "dy": 4
+   },
+   "encoding": {
+    "x": {
+     "field": "mid",
+     "type": "quantitative"
+    },
+    "y": {
+     "value": 0
+    },
+    "text": {
+     "field": "lab"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "aggregate": [
+      {
+       "op": "mean",
+       "field": "normal_rain",
+       "as": "nr"
+      }
+     ]
+    }
+   ],
+   "mark": {
+    "type": "rule",
+    "color": "#5A5144",
+    "strokeDash": [
+     4,
+     3
+    ],
+    "opacity": 0.7
+   },
+   "encoding": {
+    "x": {
+     "field": "nr",
+     "type": "quantitative"
+    },
+    "y": null
+   }
+  },
+  {
+   "transform": [
+    {
+     "aggregate": [
+      {
+       "op": "mean",
+       "field": "normal_rain",
+       "as": "nr"
+      }
+     ]
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "color": "#5A5144",
+    "fontSize": 11.5,
+    "fontStyle": "italic",
+    "align": "left",
+    "dx": 4,
+    "baseline": "bottom",
+    "y": 380,
+    "dy": -4
+   },
+   "encoding": {
+    "x": {
+     "field": "nr",
+     "type": "quantitative"
+    },
+    "y": null,
+    "text": {
+     "value": "normal rain"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "aggregate": [
+      {
+       "op": "mean",
+       "field": "normal_yield",
+       "as": "ny"
+      }
+     ]
+    }
+   ],
+   "mark": {
+    "type": "rule",
+    "color": "#5A5144",
+    "strokeDash": [
+     4,
+     3
+    ],
+    "opacity": 0.7
+   },
+   "encoding": {
+    "y": {
+     "field": "ny",
+     "type": "quantitative"
+    },
+    "x": null
+   }
+  },
+  {
+   "transform": [
+    {
+     "aggregate": [
+      {
+       "op": "mean",
+       "field": "normal_yield",
+       "as": "ny"
+      }
+     ]
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "color": "#5A5144",
+    "fontSize": 11.5,
+    "fontStyle": "italic",
+    "align": "right",
+    "baseline": "bottom",
+    "x": 440,
+    "dy": -3
+   },
+   "encoding": {
+    "y": {
+     "field": "ny",
+     "type": "quantitative"
+    },
+    "x": null,
+    "text": {
+     "value": "normal yield"
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "line",
+    "color": "#16222C",
+    "opacity": 0.32,
+    "strokeWidth": 1.2,
+    "interpolate": "linear"
+   },
+   "encoding": {
+    "order": {
+     "field": "year",
+     "type": "quantitative"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == selYear"
+    }
+   ],
+   "mark": {
+    "type": "point",
+    "size": 520,
+    "filled": false,
+    "color": "#16222C",
+    "strokeWidth": 1.6,
+    "strokeDash": [
+     3,
+     2
+    ]
+   }
+  },
+  {
+   "mark": {
+    "type": "point",
+    "shape": "M0,-1 C0.62,-0.62 0.62,0.62 0,1 C-0.62,0.62 -0.62,-0.62 0,-1Z",
+    "filled": true,
+    "stroke": "#16222C",
+    "strokeWidth": 0.8,
+    "angle": 30,
+    "cursor": "default"
+   },
+   "encoding": {
+    "fill": {
+     "condition": {
+      "test": "abs(datum.rain_cool_mm - rain) <= 30",
+      "value": "#8C510A"
+     },
+     "value": "#C8901E"
+    },
+    "size": {
+     "condition": {
+      "test": "abs(datum.rain_cool_mm - rain) <= 30",
+      "value": 210
+     },
+     "value": 120
+    },
+    "opacity": {
+     "condition": {
+      "test": "abs(datum.rain_cool_mm - rain) <= 30",
+      "value": 1
+     },
+     "value": 0.8
+    },
+    "tooltip": [
+     {
+      "field": "season",
+      "title": "Season"
+     },
+     {
+      "field": "rain_cool_mm",
+      "title": "Rain, Apr–Oct (mm)",
+      "format": ".0f"
+     },
+     {
+      "field": "rain_cool_pct_of_avg",
+      "title": "Rain, % of normal",
+      "format": ".0f"
+     },
+     {
+      "field": "wheat_yield_t_ha",
+      "title": "Wheat yield (t/ha)",
+      "format": ".2f"
+     },
+     {
+      "field": "yield_pct_of_avg",
+      "title": "Yield, % of normal",
+      "format": ".0f"
+     },
+     {
+      "field": "status",
+      "title": "Figure"
+     }
+    ]
+   }
+  },
+  {
+   "transform": [
+    {
+     "lookup": "year",
+     "from": {
+      "data": {
+       "values": [
+        {
+         "year": 1994,
+         "dx": 0,
+         "dy": 16,
+         "align": "center"
+        },
+        {
+         "year": 2002,
+         "dx": -11,
+         "dy": -6,
+         "align": "right"
+        },
+        {
+         "year": 2019,
+         "dx": 10,
+         "dy": -10,
+         "align": "left"
+        },
+        {
+         "year": 2018,
+         "dx": 11,
+         "dy": 4,
+         "align": "left"
+        },
+        {
+         "year": 2022,
+         "dx": 0,
+         "dy": 16,
+         "align": "center"
+        }
+       ]
+      },
+      "key": "year",
+      "fields": [
+       "dx",
+       "dy",
+       "align"
+      ]
+     }
+    },
+    {
+     "filter": "datum.align || datum.year == selYear"
+    },
+    {
+     "calculate": "datum.align || 'left'",
+     "as": "al"
+    },
+    {
+     "calculate": "datum.align ? datum.dx : 12",
+     "as": "ddx"
+    },
+    {
+     "calculate": "datum.align ? datum.dy : -10",
+     "as": "ddy"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "color": "#16222C",
+    "align": {
+     "expr": "datum.al"
+    },
+    "dx": {
+     "expr": "datum.ddx"
+    },
+    "dy": {
+     "expr": "datum.ddy"
+    },
+    "baseline": "middle"
+   },
+   "encoding": {
+    "text": {
+     "field": "year"
+    },
+    "color": {
+     "condition": [
+      {
+       "test": "datum.year == 2019",
+       "value": "#8C510A"
+      },
+      {
+       "test": "datum.year == 2022",
+       "value": "#01665E"
+      }
+     ],
+     "value": "#16222C"
+    }
+   }
+  }
+ ]
+}

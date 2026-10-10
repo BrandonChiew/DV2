@@ -1,0 +1,603 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Map of Australia's average yearly rainfall in nine bands, from sand (under 200 mm) to deep teal (over 2400 mm). A gold line outlines the 300 to 600 mm wheat belt in the south. Gold circles show wheat grown per state each year, 2015 to 2024 average: WA 9.8, NSW 8.1, SA 4.3, VIC 3.9, QLD 1.4 million tonnes.",
+  "width": 610,
+  "height": 530,
+  "padding": {
+    "left": 0,
+    "right": 0,
+    "top": 4,
+    "bottom": 4
+  },
+  "config": {
+    "font": "IBM Plex Sans",
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelColor": "#3B372F",
+      "titleColor": "#16222C",
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 600,
+      "titleLimit": 220,
+      "labelLimit": 220,
+      "rowPadding": 3,
+      "offset": 22,
+      "padding": 0
+    }
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -27
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "stroke": "independent"
+    },
+    "legend": {
+      "stroke": "independent"
+    }
+  },
+  "layer": [
+    {
+      "name": "land",
+      "data": {
+        "url": "data/processed/isohyets_annual_avg.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "isohyets"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "strokeWidth": 0.4
+      },
+      "encoding": {
+        "fill": {
+          "field": "properties.band",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "0–200 mm",
+              "200–300 mm",
+              "300–400 mm",
+              "400–600 mm",
+              "600–800 mm",
+              "800–1200 mm",
+              "1200–1600 mm",
+              "1600–2400 mm",
+              "2400+ mm"
+            ],
+            "range": [
+              "#F6EBD0",
+              "#E3E4C0",
+              "#C9DDB8",
+              "#A6D2B4",
+              "#7CC1AE",
+              "#52A9A2",
+              "#2E8C8F",
+              "#146E78",
+              "#0B4F5E"
+            ]
+          },
+          "legend": {
+            "title": "Average rain in a year",
+            "orient": "right",
+            "symbolType": "square",
+            "symbolSize": 200,
+            "symbolStrokeColor": "#8A7A62",
+            "symbolStrokeWidth": 0.6,
+            "order": 1
+          }
+        },
+        "stroke": {
+          "field": "properties.band",
+          "type": "ordinal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "0–200 mm",
+              "200–300 mm",
+              "300–400 mm",
+              "400–600 mm",
+              "600–800 mm",
+              "800–1200 mm",
+              "1200–1600 mm",
+              "1600–2400 mm",
+              "2400+ mm"
+            ],
+            "range": [
+              "#F6EBD0",
+              "#E3E4C0",
+              "#C9DDB8",
+              "#A6D2B4",
+              "#7CC1AE",
+              "#52A9A2",
+              "#2E8C8F",
+              "#146E78",
+              "#0B4F5E"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.band",
+            "title": "Average rain in a year"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/aus_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#6B5A48",
+        "strokeWidth": 0.9,
+        "strokeOpacity": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/wheatbelt_outline.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "filled": false,
+        "stroke": "#7A5300",
+        "strokeWidth": 4.2,
+        "strokeOpacity": 0.55,
+        "strokeJoin": "round",
+        "strokeCap": "round"
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/wheatbelt_outline.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "filled": false,
+        "strokeWidth": 2,
+        "strokeJoin": "round",
+        "strokeCap": "round"
+      },
+      "encoding": {
+        "stroke": {
+          "datum": "300–600 mm, in the south",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "#F0C766"
+            ]
+          },
+          "legend": {
+            "title": "The wheat belt",
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3,
+            "symbolSize": 260,
+            "orient": "right",
+            "order": 2
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/crops_by_state.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.crop == 'wheat' && datum.status != 'forecast' && datum.year >= 2015 && datum.year <= 2024 && datum.state_code != 'AUS' && datum.state_code != 'TAS'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "production_kt",
+              "as": "kt"
+            }
+          ],
+          "groupby": [
+            "state_code",
+            "state"
+          ]
+        },
+        {
+          "lookup": "state_code",
+          "from": {
+            "data": {
+              "values": [
+                {
+                  "code": "WA",
+                  "lon": 117.8,
+                  "lat": -31.6
+                },
+                {
+                  "code": "SA",
+                  "lon": 137.3,
+                  "lat": -33.2
+                },
+                {
+                  "code": "VIC",
+                  "lon": 142.5,
+                  "lat": -35.9
+                },
+                {
+                  "code": "NSW",
+                  "lon": 147.6,
+                  "lat": -32.0
+                },
+                {
+                  "code": "QLD",
+                  "lon": 149.6,
+                  "lat": -27.2
+                }
+              ]
+            },
+            "key": "code",
+            "fields": [
+              "lon",
+              "lat"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.kt / 1000",
+          "as": "mt"
+        },
+        {
+          "calculate": "format(datum.mt, '.1f')",
+          "as": "mt_label"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "fill": "#C8901E",
+            "stroke": "#16222C",
+            "strokeWidth": 1.5,
+            "opacity": 0.93
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "field": "mt",
+              "type": "quantitative",
+              "scale": {
+                "type": "linear",
+                "zero": true,
+                "domain": [
+                  0,
+                  12
+                ],
+                "range": [
+                  0,
+                  3800
+                ]
+              },
+              "legend": {
+                "title": [
+                  "Wheat grown a year",
+                  "2015–24 average"
+                ],
+                "values": [
+                  2,
+                  5,
+                  10
+                ],
+                "symbolFillColor": "#C8901E",
+                "symbolStrokeColor": "#16222C",
+                "symbolStrokeWidth": 1,
+                "symbolOpacity": 0.93,
+                "orient": "right",
+                "order": 3,
+                "labelExpr": "datum.value + ' Mt'"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "title": "State"
+              },
+              {
+                "field": "mt",
+                "title": "Wheat a year, 2015–24 average (Mt)",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.mt >= 6"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "font": "Big Shoulders Display",
+            "fontWeight": 800,
+            "fontSize": 15,
+            "baseline": "middle",
+            "color": "#16222C",
+            "lineHeight": 14
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "value": {
+                "expr": "[datum.state_code, datum.mt_label]"
+              }
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.mt < 6"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "font": "Big Shoulders Display",
+            "fontWeight": 800,
+            "fontSize": 15,
+            "baseline": "middle",
+            "align": "left",
+            "lineHeight": 14,
+            "dx": {
+              "expr": "sqrt(3800 / 12 * datum.mt / PI) + 5"
+            },
+            "color": "#F1E4C8",
+            "stroke": "#F1E4C8",
+            "strokeWidth": 3.5,
+            "strokeJoin": "round"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "value": {
+                "expr": "[datum.state_code, datum.mt_label]"
+              }
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.mt < 6"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "font": "Big Shoulders Display",
+            "fontWeight": 800,
+            "fontSize": 15,
+            "baseline": "middle",
+            "align": "left",
+            "lineHeight": 14,
+            "dx": {
+              "expr": "sqrt(3800 / 12 * datum.mt / PI) + 5"
+            },
+            "color": "#16222C"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "value": {
+                "expr": "[datum.state_code, datum.mt_label]"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Perth",
+            "lon": 115.86,
+            "lat": -31.95,
+            "align": "right",
+            "dx": -6,
+            "dy": 0
+          },
+          {
+            "city": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93,
+            "align": "right",
+            "dx": -6,
+            "dy": 4
+          },
+          {
+            "city": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81,
+            "align": "center",
+            "dx": 0,
+            "dy": 13
+          },
+          {
+            "city": "Sydney",
+            "lon": 151.21,
+            "lat": -33.87,
+            "align": "left",
+            "dx": 6,
+            "dy": 0
+          },
+          {
+            "city": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46,
+            "align": "left",
+            "dx": 7,
+            "dy": -2,
+            "note": "1,600–2,400 mm a year"
+          },
+          {
+            "city": "Alice Springs",
+            "lon": 133.88,
+            "lat": -23.7,
+            "align": "left",
+            "dx": 7,
+            "dy": 0,
+            "note": "200–300 mm a year"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 22,
+            "fill": "#16222C",
+            "stroke": "#F3EEDF",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "city",
+                "title": "City"
+              },
+              {
+                "field": "note",
+                "title": "Average rain"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#16222C",
+            "baseline": "middle",
+            "align": {
+              "expr": "datum.align"
+            },
+            "dx": {
+              "expr": "datum.dx"
+            },
+            "dy": {
+              "expr": "datum.dy"
+            }
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "color": "#3B372F",
+            "baseline": "middle",
+            "align": "left",
+            "dx": 7,
+            "dy": 13
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
