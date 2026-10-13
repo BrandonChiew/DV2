@@ -18,13 +18,17 @@ function embed(id, spec) {
 // stays readable; whatever is still too wide scrolls sideways, with a cue.
 // (Every interaction picks marks by their SVG element, so scaling is safe.)
 const MIN_SCALE = 0.72;
+// Charts that sit in a column of known width may also grow to fill it (up to this factor),
+// so a narrow chart is not left floating in an empty section.
+const MAX_UP = { 'c-guess': 1.3, 'c-enso': 1.4, 'c-sown': 1.4, 'c-diverge': 1.35, 'c-five': 1.25,
+  'c-bump': 1.2, 'c-swing': 1.15, 'c-stream': 1.2, 'c-nsw': 1.2, 'c-choro': 1.2, 'c-wamap': 1.25, 'c-wa': 1.25 };
 function fit(id) {
   const box = document.getElementById(id);
   const svg = box && box.querySelector('svg');
   if (!svg) return;
   const natural = +svg.getAttribute('width');
-  const avail = box.clientWidth;
-  const w = Math.max(Math.min(natural, avail), Math.round(natural * MIN_SCALE));
+  const avail = (box.parentElement || box).clientWidth; // Vega shrink-wraps the chart box itself
+  const w = Math.max(Math.min(natural * (MAX_UP[id] || 1), avail), Math.round(natural * MIN_SCALE));
   svg.style.width = w + 'px';
   svg.style.height = 'auto';
   box.classList.toggle('swipe', w > avail + 1);
