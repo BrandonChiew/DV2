@@ -16,7 +16,7 @@ then visit http://localhost:8000.
 ## What is where
 | Path | Contents |
 |---|---|
-| `index.html` | the page: hero, nine story sections, footer |
+| `index.html` | the page: hero, ten story sections, footer |
 | `css/style.css` | design tokens, layout, layered SVG scenes, phone layout |
 | `js/main.js` | embeds every chart, the guess game, the rain slider, the page-wide year link, text readouts computed from the CSVs |
 | `js/*.vl.json` | one Vega-Lite spec per chart (list below) |
@@ -31,11 +31,15 @@ then visit http://localhost:8000.
 | `guess.vl.json` | bar chart, guess-first | drag the 2019 bar (or slider), reveal button; guess is kept for the last section |
 | `map_isohyets.vl.json` | isohyet bands (scalar field map) + proportional circles | tooltips |
 | `panorama.vl.json` | four linked rows on one year axis: ENSO strip, rain capsule heatmap, wheat area, income "roots" | click a year (or use the slider) — the light column moves and later charts follow |
+| `enso_jitter.vl.json` | jitter plot of every wheat harvest, grouped by El Niño / neutral / La Niña, with the average of each group | click a dot to choose that year for the page; follows the selected year |
+| `sown_vs_yield.vl.json` | lollipop chart: change in area sown and in yield against the five years before (2002, 2006, 2019, 2022) | tooltips |
 | `nsw_scatter.vl.json` | connected scatterplot | "be the farmer" rain slider; follows the selected year |
+| `five_scatter.vl.json` | small-multiple scatterplots of rain against yield for each mainland state, with the correlation r worked out in the spec | follows the selected year |
 | `choropleths.vl.json` | choropleth small multiples (2 × 2) | tooltips |
 | `wa_map.vl.json` | WA map with rain-band overlay + locator | tooltips |
 | `wa_scatter.vl.json` | scatterplot | follows the selected year |
 | `swing.vl.json` | dumbbell + slopegraph | hover a state to highlight it in both |
+| `bump.vl.json` | bump chart: each state's rank by wheat grown, every season | hover a line; click a dot to choose that year for the page; follows the selected year |
 | `streamgraph.vl.json` | streamgraph | tooltips; follows the selected year |
 | `diverging.vl.json` | diverging bars | tooltips |
 
