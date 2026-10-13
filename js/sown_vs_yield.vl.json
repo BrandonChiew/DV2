@@ -1,0 +1,375 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Lollipop chart for four years. For each year, one stick shows how much the area sown to wheat changed and one shows how much the yield changed, both against the average of the five years before. In 2002 and 2006 the sown area barely changed (minus 3 and minus 4 percent) while yield fell by about half. In 2019 area fell 14 percent and yield 27 percent. In 2022 area rose 15 percent and yield 49 percent.",
+ "width": 620,
+ "padding": {
+  "left": 4,
+  "right": 8,
+  "top": 8,
+  "bottom": 4
+ },
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelColor": "#3B372F",
+   "titleColor": "#3B372F",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#9AA8A3",
+   "tickColor": "#9AA8A3",
+   "gridColor": "#C6D6D0"
+  },
+  "legend": {
+   "labelColor": "#3B372F",
+   "titleColor": "#3B372F",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 12
+  }
+ },
+ "title": {
+  "text": "Wheat in Australia: how much was sown, and what each hectare gave",
+  "subtitle": "Change compared with the average of the five years before",
+  "anchor": "start",
+  "color": "#16222C",
+  "subtitleColor": "#5A5144",
+  "fontSize": 15,
+  "fontWeight": 600,
+  "subtitleFontSize": 12.5,
+  "font": "IBM Plex Sans",
+  "subtitleFont": "IBM Plex Sans",
+  "offset": 12
+ },
+ "data": {
+  "url": "data/processed/crops_by_state.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number",
+    "area_kha": "number",
+    "yield_t_ha": "number",
+    "production_kt": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.state_code == 'AUS' && datum.crop == 'wheat'"
+  },
+  {
+   "window": [
+    {
+     "op": "sum",
+     "field": "area_kha",
+     "as": "sum_area"
+    },
+    {
+     "op": "sum",
+     "field": "yield_t_ha",
+     "as": "sum_yield"
+    },
+    {
+     "op": "count",
+     "field": "area_kha",
+     "as": "n6"
+    }
+   ],
+   "frame": [
+    -5,
+    0
+   ],
+   "sort": [
+    {
+     "field": "year"
+    }
+   ]
+  },
+  {
+   "filter": "(datum.year == 2002 || datum.year == 2006 || datum.year == 2019 || datum.year == 2022) && datum.n6 == 6"
+  },
+  {
+   "calculate": "(datum.sum_area - datum.area_kha) / 5",
+   "as": "prev_area"
+  },
+  {
+   "calculate": "(datum.sum_yield - datum.yield_t_ha) / 5",
+   "as": "prev_yield"
+  },
+  {
+   "calculate": "100 * (datum.area_kha / datum.prev_area - 1)",
+   "as": "Area sown"
+  },
+  {
+   "calculate": "100 * (datum.yield_t_ha / datum.prev_yield - 1)",
+   "as": "Yield"
+  },
+  {
+   "calculate": "datum.year == 2019 ? '2019, driest' : datum.year == 2022 ? '2022, record' : toString(datum.year)",
+   "as": "yr"
+  },
+  {
+   "fold": [
+    "Area sown",
+    "Yield"
+   ],
+   "as": [
+    "measure",
+    "pct"
+   ]
+  },
+  {
+   "calculate": "(datum.pct > 0 ? '+' : '−') + format(abs(datum.pct), '.0f') + '%'",
+   "as": "lab"
+  }
+ ],
+ "facet": {
+  "row": {
+   "field": "yr",
+   "type": "ordinal",
+   "sort": [
+    "2002",
+    "2006",
+    "2019, driest",
+    "2022, record"
+   ],
+   "header": {
+    "title": null,
+    "labelOrient": "left",
+    "labelAngle": 0,
+    "labelAlign": "left",
+    "labelFont": "Big Shoulders Display",
+    "labelFontSize": 24,
+    "labelFontWeight": 800,
+    "labelColor": "#16222C",
+    "labelPadding": 14
+   }
+  }
+ },
+ "spec": {
+  "width": 520,
+  "height": 56,
+  "layer": [
+   {
+    "mark": {
+     "type": "rule",
+     "strokeWidth": 3
+    },
+    "encoding": {
+     "x": {
+      "field": "pct",
+      "type": "quantitative",
+      "scale": {
+       "domain": [
+        -70,
+        70
+       ],
+       "nice": false
+      },
+      "axis": {
+       "title": "Change, %",
+       "values": [
+        -60,
+        -40,
+        -20,
+        0,
+        20,
+        40,
+        60
+       ],
+       "grid": true,
+       "labelExpr": "datum.value > 0 ? '+' + datum.value : datum.value < 0 ? '−' + abs(datum.value) : '0'"
+      }
+     },
+     "x2": {
+      "datum": 0
+     },
+     "y": {
+      "field": "measure",
+      "type": "nominal",
+      "sort": [
+       "Area sown",
+       "Yield"
+      ],
+      "axis": {
+       "title": null,
+       "labelFontSize": 13,
+       "domain": false,
+       "ticks": false,
+       "labelPadding": 8
+      },
+      "scale": {
+       "paddingInner": 0.5
+      }
+     },
+     "color": {
+      "field": "measure",
+      "type": "nominal",
+      "scale": {
+       "domain": [
+        "Area sown",
+        "Yield"
+       ],
+       "range": [
+        "#6B5A48",
+        "#C8901E"
+       ]
+      },
+      "legend": null
+     }
+    }
+   },
+   {
+    "mark": {
+     "type": "circle",
+     "size": 190,
+     "stroke": "#F1E4C8",
+     "strokeWidth": 1.5
+    },
+    "encoding": {
+     "x": {
+      "field": "pct",
+      "type": "quantitative"
+     },
+     "y": {
+      "field": "measure",
+      "type": "nominal",
+      "sort": [
+       "Area sown",
+       "Yield"
+      ]
+     },
+     "color": {
+      "field": "measure",
+      "type": "nominal",
+      "scale": {
+       "domain": [
+        "Area sown",
+        "Yield"
+       ],
+       "range": [
+        "#6B5A48",
+        "#C8901E"
+       ]
+      },
+      "legend": null
+     },
+     "tooltip": [
+      {
+       "field": "season",
+       "title": "Season"
+      },
+      {
+       "field": "measure",
+       "title": "Measure"
+      },
+      {
+       "field": "lab",
+       "title": "Change vs previous 5 years"
+      },
+      {
+       "field": "area_kha",
+       "title": "Area sown ('000 ha)",
+       "format": ",.0f"
+      },
+      {
+       "field": "yield_t_ha",
+       "title": "Yield (t/ha)",
+       "format": ".2f"
+      }
+     ]
+    }
+   },
+   {
+    "transform": [
+     {
+      "filter": "datum.pct < 0"
+     }
+    ],
+    "mark": {
+     "type": "text",
+     "align": "right",
+     "dx": -12,
+     "fontSize": 14,
+     "fontWeight": 700,
+     "baseline": "middle"
+    },
+    "encoding": {
+     "x": {
+      "field": "pct",
+      "type": "quantitative"
+     },
+     "y": {
+      "field": "measure",
+      "type": "nominal",
+      "sort": [
+       "Area sown",
+       "Yield"
+      ]
+     },
+     "text": {
+      "field": "lab"
+     },
+     "color": {
+      "condition": {
+       "test": "datum.measure == 'Yield'",
+       "value": "#7A5300"
+      },
+      "value": "#3B372F"
+     }
+    }
+   },
+   {
+    "transform": [
+     {
+      "filter": "datum.pct >= 0"
+     }
+    ],
+    "mark": {
+     "type": "text",
+     "align": "left",
+     "dx": 12,
+     "fontSize": 14,
+     "fontWeight": 700,
+     "baseline": "middle"
+    },
+    "encoding": {
+     "x": {
+      "field": "pct",
+      "type": "quantitative"
+     },
+     "y": {
+      "field": "measure",
+      "type": "nominal",
+      "sort": [
+       "Area sown",
+       "Yield"
+      ]
+     },
+     "text": {
+      "field": "lab"
+     },
+     "color": {
+      "condition": {
+       "test": "datum.measure == 'Yield'",
+       "value": "#7A5300"
+      },
+      "value": "#3B372F"
+     }
+    }
+   }
+  ]
+ },
+ "resolve": {
+  "axis": {
+   "x": "shared"
+  }
+ }
+}
