@@ -1,0 +1,369 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Five small scatterplots, one per mainland state, of April to October rain against wheat yield, both as a percent of that state's normal, 1989 to 2025. The dots rise to the right in New South Wales (r 0.62), Victoria (0.61), South Australia (0.59) and Queensland (0.48), but hardly in Western Australia (0.24).",
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelColor": "#3B372F",
+   "titleColor": "#3B372F",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#9AA8A3",
+   "tickColor": "#9AA8A3",
+   "gridColor": "#C6D6D0"
+  },
+  "legend": {
+   "labelColor": "#3B372F",
+   "titleColor": "#3B372F",
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelFontSize": 12,
+   "titleFontSize": 12
+  }
+ },
+ "title": {
+  "text": "Rain against wheat yield, state by state, 1989 to 2025",
+  "subtitle": "One dot per season. Across: April to October rain. Up: wheat yield. Both as a % of the state's normal; r is how closely the dots follow a straight line.",
+  "anchor": "start",
+  "color": "#16222C",
+  "subtitleColor": "#5A5144",
+  "fontSize": 15,
+  "fontWeight": 600,
+  "subtitleFontSize": 12.5,
+  "font": "IBM Plex Sans",
+  "subtitleFont": "IBM Plex Sans",
+  "offset": 12
+ },
+ "params": [
+  {
+   "name": "selYear",
+   "value": 2019
+  }
+ ],
+ "data": {
+  "url": "data/processed/rain_vs_yield.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number",
+    "rain_cool_pct_of_avg": "number",
+    "yield_pct_of_avg": "number",
+    "rain_cool_mm": "number",
+    "wheat_yield_t_ha": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.state_code != 'TAS' && datum.year <= 2025 && isValid(datum.yield_pct_of_avg) && isValid(datum.rain_cool_pct_of_avg)"
+  },
+  {
+   "joinaggregate": [
+    {
+     "op": "mean",
+     "field": "rain_cool_pct_of_avg",
+     "as": "mx"
+    },
+    {
+     "op": "mean",
+     "field": "yield_pct_of_avg",
+     "as": "my"
+    },
+    {
+     "op": "stdevp",
+     "field": "rain_cool_pct_of_avg",
+     "as": "sx"
+    },
+    {
+     "op": "stdevp",
+     "field": "yield_pct_of_avg",
+     "as": "sy"
+    }
+   ],
+   "groupby": [
+    "state"
+   ]
+  },
+  {
+   "calculate": "((datum.rain_cool_pct_of_avg - datum.mx) / datum.sx) * ((datum.yield_pct_of_avg - datum.my) / datum.sy)",
+   "as": "z"
+  },
+  {
+   "joinaggregate": [
+    {
+     "op": "mean",
+     "field": "z",
+     "as": "r"
+    }
+   ],
+   "groupby": [
+    "state"
+   ]
+  },
+  {
+   "calculate": "datum.year == 2019 ? '2019 (driest year)' : datum.year == 2022 ? '2022 (record harvest)' : 'Other seasons'",
+   "as": "grp"
+  }
+ ],
+ "facet": {
+  "field": "state",
+  "type": "nominal",
+  "sort": [
+   "New South Wales",
+   "Victoria",
+   "South Australia",
+   "Queensland",
+   "Western Australia"
+  ],
+  "header": {
+   "title": null,
+   "labelFont": "IBM Plex Sans",
+   "labelFontSize": 15,
+   "labelFontWeight": 600,
+   "labelColor": "#16222C",
+   "labelAnchor": "start",
+   "labelPadding": 6
+  }
+ },
+ "columns": 3,
+ "spacing": {
+  "row": 26,
+  "column": 22
+ },
+ "spec": {
+  "width": 245,
+  "height": 190,
+  "layer": [
+   {
+    "mark": {
+     "type": "rule",
+     "strokeDash": [
+      4,
+      4
+     ],
+     "color": "#7C8B86",
+     "strokeWidth": 1
+    },
+    "encoding": {
+     "x": {
+      "datum": 100,
+      "type": "quantitative"
+     }
+    }
+   },
+   {
+    "mark": {
+     "type": "rule",
+     "strokeDash": [
+      4,
+      4
+     ],
+     "color": "#7C8B86",
+     "strokeWidth": 1
+    },
+    "encoding": {
+     "y": {
+      "datum": 100,
+      "type": "quantitative"
+     }
+    }
+   },
+   {
+    "transform": [
+     {
+      "regression": "yield_pct_of_avg",
+      "on": "rain_cool_pct_of_avg"
+     }
+    ],
+    "mark": {
+     "type": "line",
+     "color": "#5A5144",
+     "strokeWidth": 2,
+     "opacity": 0.8
+    },
+    "encoding": {
+     "x": {
+      "field": "rain_cool_pct_of_avg",
+      "type": "quantitative"
+     },
+     "y": {
+      "field": "yield_pct_of_avg",
+      "type": "quantitative"
+     }
+    }
+   },
+   {
+    "mark": {
+     "type": "circle",
+     "stroke": "#DCE8E4",
+     "strokeWidth": 0.8,
+     "opacity": 0.95
+    },
+    "encoding": {
+     "x": {
+      "field": "rain_cool_pct_of_avg",
+      "type": "quantitative",
+      "scale": {
+       "domain": [
+        20,
+        220
+       ],
+       "nice": false
+      },
+      "axis": {
+       "title": null,
+       "values": [
+        50,
+        100,
+        150,
+        200
+       ],
+       "grid": false
+      }
+     },
+     "y": {
+      "field": "yield_pct_of_avg",
+      "type": "quantitative",
+      "scale": {
+       "domain": [
+        0,
+        200
+       ],
+       "nice": false
+      },
+      "axis": {
+       "title": null,
+       "values": [
+        0,
+        50,
+        100,
+        150,
+        200
+       ],
+       "grid": true
+      }
+     },
+     "color": {
+      "field": "grp",
+      "type": "nominal",
+      "scale": {
+       "domain": [
+        "2019 (driest year)",
+        "2022 (record harvest)",
+        "Other seasons"
+       ],
+       "range": [
+        "#8C510A",
+        "#01665E",
+        "#C8901E"
+       ]
+      },
+      "legend": {
+       "title": null,
+       "orient": "top",
+       "direction": "horizontal",
+       "symbolType": "circle",
+       "labelFontSize": 12.5,
+       "offset": 4
+      }
+     },
+     "size": {
+      "condition": {
+       "test": "datum.year == 2019 || datum.year == 2022",
+       "value": 120
+      },
+      "value": 48
+     },
+     "tooltip": [
+      {
+       "field": "state",
+       "title": "State"
+      },
+      {
+       "field": "season",
+       "title": "Season"
+      },
+      {
+       "field": "rain_cool_pct_of_avg",
+       "title": "Rain, % of normal",
+       "format": ".0f"
+      },
+      {
+       "field": "yield_pct_of_avg",
+       "title": "Wheat yield, % of normal",
+       "format": ".0f"
+      },
+      {
+       "field": "wheat_yield_t_ha",
+       "title": "Yield (t/ha)",
+       "format": ".1f"
+      }
+     ]
+    }
+   },
+   {
+    "transform": [
+     {
+      "filter": "datum.year == selYear"
+     }
+    ],
+    "mark": {
+     "type": "point",
+     "filled": false,
+     "size": 260,
+     "stroke": "#16222C",
+     "strokeWidth": 2
+    },
+    "encoding": {
+     "x": {
+      "field": "rain_cool_pct_of_avg",
+      "type": "quantitative"
+     },
+     "y": {
+      "field": "yield_pct_of_avg",
+      "type": "quantitative"
+     }
+    }
+   },
+   {
+    "transform": [
+     {
+      "filter": "datum.year == 1989"
+     },
+     {
+      "calculate": "'r = ' + format(datum.r, '.2f') + (datum.state_code == 'WA' ? ', the odd one out' : '')",
+      "as": "lab"
+     }
+    ],
+    "mark": {
+     "type": "text",
+     "align": "left",
+     "baseline": "top",
+     "x": 6,
+     "y": 4,
+     "fontSize": 13,
+     "fontWeight": 700
+    },
+    "encoding": {
+     "text": {
+      "field": "lab"
+     },
+     "color": {
+      "condition": {
+       "test": "datum.state_code == 'WA'",
+       "value": "#8C510A"
+      },
+      "value": "#16222C"
+     }
+    }
+   }
+  ]
+ }
+}
