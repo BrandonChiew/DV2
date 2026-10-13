@@ -1,0 +1,764 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Bump chart of the five mainland states ranked by wheat grown each season, 1989 to 2025. Western Australia is first in 29 of 37 seasons. New South Wales is usually second but drops to fourth in drought years such as 1994, 2018 and 2019, and is first in 8 seasons. South Australia, Victoria and Queensland mostly hold third, fourth and fifth.",
+ "width": 900,
+ "height": 220,
+ "padding": {
+  "left": 4,
+  "right": 4,
+  "top": 8,
+  "bottom": 4
+ },
+ "config": {
+  "font": "IBM Plex Sans",
+  "background": null,
+  "view": {
+   "stroke": null
+  },
+  "axis": {
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelColor": "#5A5144",
+   "titleColor": "#5A5144",
+   "labelFontSize": 12,
+   "titleFontSize": 13,
+   "titleFontWeight": 400,
+   "domainColor": "#9C8B74",
+   "tickColor": "#9C8B74",
+   "gridColor": "#DCCDAE"
+  },
+  "legend": {
+   "labelFont": "IBM Plex Sans",
+   "titleFont": "IBM Plex Sans",
+   "labelColor": "#16222C",
+   "titleColor": "#16222C",
+   "labelFontSize": 13,
+   "titleFontSize": 13,
+   "titleFontWeight": 400
+  }
+ },
+ "title": {
+  "text": "Rank by wheat grown, every season",
+  "subtitle": "1 = most wheat. Tasmania left out",
+  "anchor": "start",
+  "color": "#16222C",
+  "subtitleColor": "#5A5144",
+  "fontSize": 15,
+  "fontWeight": 600,
+  "subtitleFontSize": 12.5,
+  "font": "IBM Plex Sans",
+  "subtitleFont": "IBM Plex Sans",
+  "offset": 12
+ },
+ "params": [
+  {
+   "name": "selYear",
+   "value": 2019
+  }
+ ],
+ "data": {
+  "url": "data/processed/crops_by_state.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "year": "number",
+    "production_kt": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "filter": "datum.crop == 'wheat' && datum.year <= 2025 && datum.state_code != 'AUS' && datum.state_code != 'TAS'"
+  },
+  {
+   "calculate": "datum.production_kt / 1000",
+   "as": "mt"
+  },
+  {
+   "window": [
+    {
+     "op": "row_number",
+     "as": "rank"
+    }
+   ],
+   "groupby": [
+    "year"
+   ],
+   "sort": [
+    {
+     "field": "mt",
+     "order": "descending"
+    }
+   ]
+  }
+ ],
+ "layer": [
+  {
+   "data": {
+    "values": [
+     {}
+    ]
+   },
+   "transform": [
+    {
+     "calculate": "selYear - 0.5",
+     "as": "x0"
+    },
+    {
+     "calculate": "selYear + 0.5",
+     "as": "x1"
+    }
+   ],
+   "mark": {
+    "type": "rect",
+    "color": "#F0C766",
+    "opacity": 0.45,
+    "cornerRadius": 6
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "x2": {
+     "field": "x1"
+    },
+    "y": {
+     "value": 0
+    },
+    "y2": {
+     "value": 220
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "line",
+    "strokeWidth": 3,
+    "interpolate": "monotone"
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "color": {
+     "field": "state_code",
+     "type": "nominal",
+     "legend": null,
+     "scale": {
+      "domain": [
+       "WA",
+       "NSW",
+       "SA",
+       "VIC",
+       "QLD"
+      ],
+      "range": [
+       "#9A4A24",
+       "#7A5300",
+       "#2E8C8F",
+       "#5A5144",
+       "#A88660"
+      ]
+     }
+    },
+    "detail": {
+     "field": "state_code"
+    },
+    "opacity": {
+     "condition": {
+      "param": "st",
+      "empty": true,
+      "value": 1
+     },
+     "value": 0.15
+    }
+   }
+  },
+  {
+   "name": "bump_hit",
+   "mark": {
+    "type": "line",
+    "strokeWidth": 14,
+    "color": "#000",
+    "opacity": 0.001,
+    "interpolate": "monotone"
+   },
+   "params": [
+    {
+     "name": "st",
+     "select": {
+      "type": "point",
+      "fields": [
+       "state_code"
+      ],
+      "on": "pointerover",
+      "clear": "pointerout"
+     }
+    }
+   ],
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "detail": {
+     "field": "state_code"
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "circle",
+    "size": 46,
+    "opacity": 1,
+    "stroke": "#F1E4C8",
+    "strokeWidth": 1,
+    "cursor": "pointer"
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "color": {
+     "field": "state_code",
+     "type": "nominal",
+     "legend": null,
+     "scale": {
+      "domain": [
+       "WA",
+       "NSW",
+       "SA",
+       "VIC",
+       "QLD"
+      ],
+      "range": [
+       "#9A4A24",
+       "#7A5300",
+       "#2E8C8F",
+       "#5A5144",
+       "#A88660"
+      ]
+     }
+    },
+    "opacity": {
+     "condition": {
+      "param": "st",
+      "empty": true,
+      "value": 1
+     },
+     "value": 0.15
+    },
+    "tooltip": [
+     {
+      "field": "state",
+      "title": "State"
+     },
+     {
+      "field": "season",
+      "title": "Season"
+     },
+     {
+      "field": "rank",
+      "title": "Rank"
+     },
+     {
+      "field": "mt",
+      "title": "Wheat grown (Mt)",
+      "format": ".1f"
+     },
+     {
+      "field": "status",
+      "title": "Figure"
+     }
+    ]
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == selYear"
+    },
+    {
+     "calculate": "format(datum.mt, '.1f')",
+     "as": "lab"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 9,
+    "dy": 0,
+    "baseline": "middle",
+    "fontSize": 12,
+    "fontWeight": 700,
+    "color": "#16222C",
+    "stroke": "#F1E4C8",
+    "strokeWidth": 4,
+    "strokeJoin": "round"
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "lab"
+    },
+    "opacity": {
+     "condition": {
+      "param": "st",
+      "empty": true,
+      "value": 1
+     },
+     "value": 0.15
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == selYear"
+    },
+    {
+     "calculate": "format(datum.mt, '.1f')",
+     "as": "lab"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 9,
+    "dy": 0,
+    "baseline": "middle",
+    "fontSize": 12,
+    "fontWeight": 700,
+    "color": "#16222C"
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "lab"
+    },
+    "opacity": {
+     "condition": {
+      "param": "st",
+      "empty": true,
+      "value": 1
+     },
+     "value": 0.15
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == 2025"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 10,
+    "fontSize": 13,
+    "fontWeight": 600,
+    "baseline": "middle"
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "state_code"
+    },
+    "color": {
+     "field": "state_code",
+     "type": "nominal",
+     "legend": null,
+     "scale": {
+      "domain": [
+       "WA",
+       "NSW",
+       "SA",
+       "VIC",
+       "QLD"
+      ],
+      "range": [
+       "#9A4A24",
+       "#7A5300",
+       "#2E8C8F",
+       "#5A5144",
+       "#A88660"
+      ]
+     }
+    },
+    "opacity": {
+     "condition": {
+      "param": "st",
+      "empty": true,
+      "value": 1
+     },
+     "value": 0.15
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.year == 1989"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "right",
+    "dx": -10,
+    "fontSize": 13,
+    "fontWeight": 600,
+    "baseline": "middle"
+   },
+   "encoding": {
+    "x": {
+     "field": "year",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       1988.5,
+       2025.5
+      ],
+      "nice": false,
+      "zero": false
+     },
+     "axis": {
+      "title": null,
+      "values": [
+       1989,
+       1994,
+       1999,
+       2004,
+       2009,
+       2014,
+       2019,
+       2024
+      ],
+      "format": "d",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 8
+     }
+    },
+    "y": {
+     "field": "rank",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0.6,
+       5.4
+      ],
+      "reverse": true,
+      "nice": false
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "state_code"
+    },
+    "color": {
+     "field": "state_code",
+     "type": "nominal",
+     "legend": null,
+     "scale": {
+      "domain": [
+       "WA",
+       "NSW",
+       "SA",
+       "VIC",
+       "QLD"
+      ],
+      "range": [
+       "#9A4A24",
+       "#7A5300",
+       "#2E8C8F",
+       "#5A5144",
+       "#A88660"
+      ]
+     }
+    },
+    "opacity": {
+     "condition": {
+      "param": "st",
+      "empty": true,
+      "value": 1
+     },
+     "value": 0.15
+    }
+   }
+  }
+ ]
+}
