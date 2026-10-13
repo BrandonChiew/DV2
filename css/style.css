@@ -34,6 +34,10 @@ p { margin: 0 0 1em; }
   font: italic 400 21px/1.5 var(--body); margin: 48px 0 0; max-width: 46ch;
 }
 .hint { font-size: 16px; opacity: .85; padding-left: 26px; position: relative; }
+.copy.extra { margin-top: 56px; }
+.s-dusk .note { color: var(--muted-dark); margin-top: 10px; }
+.pano-notes #income-note:empty { display: none; }
+
 .hint::before { /* small pointer glyph, not colour alone */
   content: "\2197"; position: absolute; left: 0; top: 0; font-weight: 600;
 }

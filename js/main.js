@@ -123,6 +123,8 @@ function yearCard(d, year) {
 // through their own "selYear" signal (added section by section).
 let currentYear = 2019;
 const yearListeners = [];
+// Choose a year for the whole page from any chart (set up by the panorama).
+let selectYear = y => setYear(y);
 function setYear(year) {
   currentYear = year;
   dataReady.then(d => {
@@ -141,9 +143,8 @@ function setupPanorama(view) {
     if (y && y !== currentYear) setYear(y);
   });
   // Keyboard / slider route to the same selection.
-  input.addEventListener('input', () => {
-    view.data('yr_store', [{ unit, fields, values: [+input.value] }]).runAsync();
-  });
+  selectYear = y => view.data('yr_store', [{ unit, fields, values: [y] }]).runAsync();
+  input.addEventListener('input', () => selectYear(+input.value));
   yearListeners.push(y => { input.value = y; });
   setYear(currentYear);
 }
@@ -152,6 +153,17 @@ function setupPanorama(view) {
 function followYear(view) {
   yearListeners.push(y => view.signal('selYear', y).runAsync());
   view.signal('selYear', currentYear).runAsync();
+}
+
+// Charts whose dots carry a year: clicking a dot chooses that year for the page.
+// (Lines and areas are skipped: their datum is only the first point.)
+function clickYear(view) {
+  view.addEventListener('click', (evt, item) => {
+    const type = item && item.mark && item.mark.marktype;
+    if (type === 'line' || type === 'area') return;
+    const y = item && item.datum && item.datum.year;
+    if (y >= 1989 && y <= 2025) selectYear(y);
+  });
 }
 
 /* ---------- NSW: be the farmer ---------- */
@@ -198,6 +210,55 @@ function barleyNote() {
   });
 }
 
+/* ---------- More text readouts (numbers come from the CSVs, not from this file) ---------- */
+const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
+const absPct = v => Math.abs(Math.round(v)) + '%';
+
+// "Farmers still sow": change in area sown and in yield against the five years before.
+function sownNote() {
+  const el = document.getElementById('sown-note');
+  dataReady.then(d => {
+    const w = d.crops.filter(r => r.state_code === 'AUS' && r.crop === 'wheat');
+    const change = (field, year) => {
+      const prev = w.filter(r => r.year >= year - 5 && r.year < year).map(r => r[field]);
+      return 100 * (w.find(r => r.year === year)[field] / mean(prev) - 1);
+    };
+    const one = (year, label) => {
+      const a = change('area_kha', year), y = change('yield_t_ha', year);
+      return `${label}, farmers sowed ${absPct(a)} ${a < 0 ? 'less' : 'more'} wheat and the yield ${y < 0 ? 'fell' : 'rose'} ${absPct(y)}.`;
+    };
+    el.textContent = [one(2002, 'In 2002'), one(2006, 'In 2006'), one(2019, 'In 2019, the driest year'),
+      one(2022, 'In 2022, the record harvest')].join(' ') + ' All changes are against the average of the five years before.';
+  });
+}
+
+// Five-state chart: how closely rain and yield move together in each state (correlation r).
+function fiveNote() {
+  const el = document.getElementById('five-note');
+  dataReady.then(d => {
+    const r = code => {
+      const rows = d.rain.filter(x => x.state_code === code && x.year <= 2025 && x.yield_pct_of_avg != null);
+      const xs = rows.map(x => x.rain_cool_pct_of_avg), ys = rows.map(x => x.yield_pct_of_avg);
+      const mx = mean(xs), my = mean(ys);
+      return xs.reduce((s, x, i) => s + (x - mx) * (ys[i] - my), 0) /
+        Math.sqrt(xs.reduce((s, x) => s + (x - mx) ** 2, 0) * ys.reduce((s, y) => s + (y - my) ** 2, 0));
+    };
+    const f = code => r(code).toFixed(2);
+    el.textContent = `Is New South Wales special? Here is the same test in every mainland state. A wetter season goes with a bigger yield in New South Wales (r = ${f('NSW')}), ` +
+      `Victoria (${f('VIC')}), South Australia (${f('SA')}) and Queensland (${f('QLD')}). Western Australia is the odd one out (${f('WA')}).`;
+  });
+}
+
+// Panorama side note: 2019 is the exception for money.
+function incomeNote() {
+  const el = document.getElementById('income-note');
+  dataReady.then(d => {
+    const kept = y => (d.income.find(r => r.year === y).real_net_value_m / 1000).toFixed(1);
+    el.textContent = `Money did not follow in 2019: farmers kept $${kept(2019)}b after costs, against $${kept(2018)}b the year before. ` +
+      'That figure covers every farm product, not wheat alone.';
+  });
+}
+
 // Wait for web fonts so Vega measures text with the right typeface.
 (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
   embed('c-guess', 'guess.vl.json').then(v => v && setupGuess(v));
@@ -210,5 +271,12 @@ function barleyNote() {
   embed('c-swing', 'swing.vl.json');
   embed('c-stream', 'streamgraph.vl.json').then(v => v && followYear(v));
   embed('c-diverge', 'diverging.vl.json');
+  embed('c-enso', 'enso_jitter.vl.json').then(v => { if (v) { followYear(v); clickYear(v); } });
+  embed('c-sown', 'sown_vs_yield.vl.json');
+  embed('c-five', 'five_scatter.vl.json').then(v => v && followYear(v));
+  embed('c-bump', 'bump.vl.json').then(v => { if (v) { followYear(v); clickYear(v); } });
   barleyNote();
+  sownNote();
+  fiveNote();
+  incomeNote();
 });
