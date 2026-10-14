@@ -3,7 +3,7 @@
 How rainfall and drought shape Australia's grain harvests, 1989–2025. A single scrolling story page built with Vega-Lite.
 
 FIT3179 Data Visualisation 2 — Chew Chen Hin (35154667), Monash University Malaysia, 2026.
-Live page: https://brandonchiew.github.io/dv2-farmers-climate/
+Live page: https://brandonchiew.github.io/DV2/
 
 ## Run it locally
 The charts fetch their JSON and CSV files, so open the page through a web server, not `file://`:
@@ -42,6 +42,13 @@ then visit http://localhost:8000.
 | `bump.vl.json` | bump chart: each state's rank by wheat grown, every season | hover a line; click a dot to choose that year for the page; follows the selected year |
 | `streamgraph.vl.json` | streamgraph | tooltips; follows the selected year |
 | `diverging.vl.json` | diverging bars | tooltips |
+
+## Use of AI
+I used Claude, through Claude Code, as a coding assistant.
+
+- **Claude did:** wrote the HTML, CSS and JavaScript and the Vega-Lite chart specs; drew the SVG illustrations (hero, night scene, farm strip); wrote the scripts that turned the raw downloads into the files in `data/processed/`; helped plan the structure of the page.
+- **I did:** chose the topic and the story; picked and checked the data sources; wrote or edited the final wording; chose the colour palette and the typefaces (Young Serif and Bricolage Grotesque).
+- **How the numbers were checked:** the key figures (harvests, averages, percentage changes, correlations and farm income) were recomputed from the CSVs in `data/processed/` with a script and compared with the text on the page. Several sentences on the page work out their own numbers from the CSVs in the browser, so they cannot drift from the data.
 
 ## Data
 Bureau of Meteorology (rainfall series and grid, ENSO history, Annual Climate Statements), ABARES (Australian Crop Report and Agricultural commodities, September 2026) and the Australian Bureau of Statistics (state boundaries). Details in `data/SOURCES.md`.
