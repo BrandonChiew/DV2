@@ -12,7 +12,13 @@
    "subtitleFont": "IBM Plex Sans"
   },
   "axis": {
-   "labelFont": "IBM Plex Sans"
+   "labelFont": "IBM Plex Sans",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "padding": 4,
@@ -46,7 +52,7 @@
     "fontWeight": 600,
     "color": "#16222C",
     "subtitleColor": "#5A5144",
-    "subtitleFontSize": 12.5,
+    "subtitleFontSize": 13,
     "offset": 10
    },
    "data": {
@@ -310,7 +316,7 @@
     "fontWeight": 600,
     "color": "#16222C",
     "subtitleColor": "#5A5144",
-    "subtitleFontSize": 12.5,
+    "subtitleFontSize": 13,
     "offset": 10
    },
    "data": {

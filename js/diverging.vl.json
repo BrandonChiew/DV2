@@ -22,8 +22,8 @@
    "titleColor": "#C9BFAE",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#6B5A48",
    "tickColor": "#6B5A48",
@@ -35,7 +35,7 @@
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
    "labelFontSize": 13,
-   "titleFontSize": 13
+   "titleFontSize": 13.5
   }
  },
  "title": {
@@ -239,7 +239,7 @@
   {
    "mark": {
     "type": "text",
-    "fontSize": 12.5,
+    "fontSize": 13,
     "color": "#F3EEDF",
     "baseline": "middle",
     "align": {

@@ -21,7 +21,7 @@ const MIN_SCALE = 0.72;
 // Charts that sit in a column of known width may also grow to fill it (up to this factor),
 // so a narrow chart is not left floating in an empty section.
 const MAX_UP = { 'c-guess': 1.3, 'c-enso': 1.4, 'c-sown': 1.4, 'c-diverge': 1.35, 'c-five': 1.25,
-  'c-bump': 1.2, 'c-swing': 1.15, 'c-stream': 1.2, 'c-nsw': 1.2, 'c-choro': 1.2, 'c-wamap': 1.25, 'c-wa': 1.25 };
+  'c-map': 1.12, 'c-bump': 1.2, 'c-swing': 1.15, 'c-stream': 1.2, 'c-nsw': 1.2, 'c-choro': 1.2, 'c-wamap': 1.25, 'c-wa': 1.25 };
 function fit(id) {
   const box = document.getElementById(id);
   const svg = box && box.querySelector('svg');

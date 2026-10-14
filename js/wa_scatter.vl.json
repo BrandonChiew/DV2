@@ -20,8 +20,8 @@
    "titleColor": "#F3EEDF",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 12.5,
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 600
   },
   "axis": {
@@ -29,8 +29,8 @@
    "titleColor": "#F1D9C7",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#C98B66",
    "tickColor": "#C98B66",
@@ -181,7 +181,7 @@
    "mark": {
     "type": "text",
     "color": "#F3EEDF",
-    "fontSize": 12.5,
+    "fontSize": 13,
     "fontWeight": 600,
     "lineHeight": 15,
     "align": "left",
@@ -203,7 +203,7 @@
    "mark": {
     "type": "text",
     "color": "#F3EEDF",
-    "fontSize": 12.5,
+    "fontSize": 13,
     "fontWeight": 600,
     "align": "left",
     "dx": 13,

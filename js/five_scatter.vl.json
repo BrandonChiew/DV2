@@ -12,8 +12,8 @@
    "titleColor": "#3B372F",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#9AA8A3",
    "tickColor": "#9AA8A3",
@@ -24,8 +24,8 @@
    "titleColor": "#3B372F",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 12
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "title": {
@@ -36,7 +36,7 @@
   "subtitleColor": "#5A5144",
   "fontSize": 15,
   "fontWeight": 600,
-  "subtitleFontSize": 12.5,
+  "subtitleFontSize": 13,
   "font": "IBM Plex Sans",
   "subtitleFont": "IBM Plex Sans",
   "offset": 12
@@ -270,7 +270,7 @@
        "orient": "top",
        "direction": "horizontal",
        "symbolType": "circle",
-       "labelFontSize": 12.5,
+       "labelFontSize": 13,
        "offset": 4
       }
      },

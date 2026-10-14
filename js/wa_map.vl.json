@@ -12,8 +12,8 @@
    "titleColor": "#F3EEDF",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 12.5,
+   "labelFontSize": 14,
+   "titleFontSize": 14.5,
    "titleFontWeight": 600
   },
   "axis": {
@@ -21,8 +21,8 @@
    "titleColor": "#F1D9C7",
    "labelFont": "IBM Plex Sans",
    "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFontSize": 14,
+   "titleFontSize": 14.5,
    "titleFontWeight": 400,
    "domainColor": "#C98B66",
    "tickColor": "#C98B66",
@@ -236,8 +236,47 @@
      },
      "mark": {
       "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 14,
+      "lineHeight": 16,
+      "align": "left",
+      "baseline": "middle",
+      "fontWeight": 600,
+      "stroke": "#F3EEDF",
+      "strokeWidth": 4,
+      "strokeJoin": "round"
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "t"
+      }
+     }
+    },
+    {
+     "data": {
+      "values": [
+       {
+        "lon": 119.2,
+        "lat": -29.4,
+        "t": [
+         "The wheat belt:",
+         "the thin south-west corner"
+        ]
+       }
+      ]
+     },
+     "mark": {
+      "type": "text",
       "color": "#16222C",
-      "fontSize": 13,
+      "fontSize": 14,
       "lineHeight": 16,
       "align": "left",
       "baseline": "middle",
@@ -296,8 +335,45 @@
      },
      "mark": {
       "type": "text",
+      "color": "#F3EEDF",
+      "fontSize": 14,
+      "lineHeight": 16,
+      "align": "right",
+      "baseline": "middle",
+      "fontWeight": 600,
+      "dx": -6,
+      "stroke": "#F3EEDF",
+      "strokeWidth": 4,
+      "strokeJoin": "round"
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "t"
+      }
+     }
+    },
+    {
+     "data": {
+      "values": [
+       {
+        "lon": 115.86,
+        "lat": -31.95,
+        "t": "Perth"
+       }
+      ]
+     },
+     "mark": {
+      "type": "text",
       "color": "#16222C",
-      "fontSize": 12,
+      "fontSize": 14,
       "lineHeight": 16,
       "align": "right",
       "baseline": "middle",
@@ -328,7 +404,7 @@
      "title": {
       "text": "Where WA is",
       "anchor": "start",
-      "fontSize": 12,
+      "fontSize": 14,
       "fontWeight": 400,
       "color": "#F1D9C7",
       "font": "IBM Plex Sans",

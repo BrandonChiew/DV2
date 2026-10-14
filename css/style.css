@@ -62,10 +62,13 @@ p { margin: 0 0 1em; }
   font-size: clamp(76px, 15.5vw, 196px); line-height: .82; color: var(--cream);
   text-shadow: 6px 6px 0 rgba(15, 26, 34, .55);
 }
+/* The lede sits on its own dark card, above the foreground stalks, in the clear band between them. */
 .hero-lede {
-  font-size: clamp(17px, 1.6vw, 20px); line-height: 1.55; max-width: 31ch;
-  margin: 28px 0 0 clamp(0px, 26vw, 360px);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  position: absolute; z-index: 3; left: 33%; bottom: clamp(24px, 6vh, 64px);
+  width: min(540px, 52%); margin: 0; padding: 18px 24px;
+  background: rgba(15, 26, 34, .93); color: var(--cream);
+  border-left: 4px solid var(--gold); box-shadow: 8px 8px 0 rgba(0, 0, 0, .35);
+  font-size: clamp(18px, 1.5vw, 21px); line-height: 1.55;
 }
 /* When the screen is wider than the drawing (1100:860), the drawing scales
    with the width, so pin the text to the drawing's units (1 unit = 100vw/1100):
@@ -73,12 +76,9 @@ p { margin: 0 0 1em; }
 @media (min-aspect-ratio: 1100/860) and (min-width: 701px) {
   .hero-text {
     --h1: min(196px, 15.3vw, 21vh);
-    --hero-h: clamp(620px, 100vh, 1000px);
-    top: auto; left: 5.45vw; right: auto;
-    bottom: max(2vh, min(22.7vw, calc(var(--hero-h) - 1.64 * var(--h1) - 190px)));
+    top: clamp(48px, 11vh, 130px); left: 5.45vw; right: auto;
   }
   .hero h1 { font-size: var(--h1); }
-  .hero-lede { margin-left: 25.9vw; font-size: clamp(17px, 1.4vw, 21px); }
 }
 
 /* ---------- Sections ---------- */
@@ -98,7 +98,7 @@ p { margin: 0 0 1em; }
 
 .split { display: grid; grid-template-columns: minmax(260px, 1fr) auto; gap: 48px; align-items: start; }
 .split.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); justify-content: space-between; gap: 32px; margin-top: 12px; }
-.map-split { grid-template-columns: minmax(240px, 360px) auto; justify-content: space-between; }
+.map-split { grid-template-columns: minmax(240px, 330px) minmax(0, 1fr); gap: 40px; }
 .figure { min-width: 0; margin: 0; }
 .chart { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
 .chart > div, .chart svg { display: block; }
@@ -194,7 +194,7 @@ button[disabled] { opacity: .55; cursor: default; }
 }
 @media (max-width: 600px) {
   body { font-size: 17px; }
-  .hero-lede { margin-left: 0; max-width: 28ch; }
+  .hero-lede { left: 16px; right: 16px; width: auto; bottom: 24px; padding: 16px 18px; font-size: 17px; }
   .hero-text { top: 7vh; }
   .bridge { font-size: 19px; }
   .chart { padding-bottom: 6px; }

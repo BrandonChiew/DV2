@@ -9,6 +9,14 @@
   },
   "title": {
    "font": "IBM Plex Sans"
+  },
+  "axis": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "padding": {
@@ -139,8 +147,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -195,7 +203,7 @@
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
@@ -336,8 +344,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -392,7 +400,7 @@
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
@@ -533,8 +541,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -589,7 +597,7 @@
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
@@ -730,8 +738,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -786,7 +794,7 @@
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },

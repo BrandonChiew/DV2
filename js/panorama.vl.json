@@ -9,10 +9,15 @@
   },
   "axis": {
    "labelFont": "IBM Plex Sans",
-   "labelFontSize": 12
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   },
   "title": {
    "font": "IBM Plex Sans"
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "padding": {
@@ -1234,7 +1239,7 @@
     "font": "IBM Plex Sans",
     "subtitle": "Colour shows the Pacific pattern that year",
     "subtitleColor": "#B9C6CC",
-    "subtitleFontSize": 12,
+    "subtitleFontSize": 13,
     "subtitleFont": "IBM Plex Sans"
    },
    "data": {
@@ -1352,7 +1357,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1440,7 +1445,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1492,7 +1497,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1638,7 +1643,7 @@
      "mark": {
       "type": "text",
       "color": "#F3EEDF",
-      "fontSize": 12.5,
+      "fontSize": 13,
       "fontStyle": "italic",
       "lineHeight": 15,
       "baseline": "middle",
@@ -1673,7 +1678,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1773,7 +1778,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,

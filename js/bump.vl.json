@@ -20,8 +20,8 @@
    "titleFont": "IBM Plex Sans",
    "labelColor": "#5A5144",
    "titleColor": "#5A5144",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#9C8B74",
    "tickColor": "#9C8B74",
@@ -33,7 +33,7 @@
    "labelColor": "#16222C",
    "titleColor": "#16222C",
    "labelFontSize": 13,
-   "titleFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400
   }
  },
@@ -45,7 +45,7 @@
   "subtitleColor": "#5A5144",
   "fontSize": 15,
   "fontWeight": 600,
-  "subtitleFontSize": 12.5,
+  "subtitleFontSize": 13,
   "font": "IBM Plex Sans",
   "subtitleFont": "IBM Plex Sans",
   "offset": 12
@@ -435,7 +435,7 @@
     "dx": 9,
     "dy": 0,
     "baseline": "middle",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 700,
     "color": "#16222C",
     "stroke": "#F1E4C8",
@@ -515,7 +515,7 @@
     "dx": 9,
     "dy": 0,
     "baseline": "middle",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 700,
     "color": "#16222C"
    },
@@ -580,6 +580,10 @@
    "transform": [
     {
      "filter": "datum.year == 2025"
+    },
+    {
+     "calculate": "{'WA': '#9A4A24', 'NSW': '#7A5300', 'SA': '#1B6A6D', 'VIC': '#5A5144', 'QLD': '#6E5434'}[datum.state_code]",
+     "as": "tc"
     }
    ],
    "mark": {
@@ -638,25 +642,10 @@
      "field": "state_code"
     },
     "color": {
-     "field": "state_code",
+     "field": "tc",
      "type": "nominal",
-     "legend": null,
-     "scale": {
-      "domain": [
-       "WA",
-       "NSW",
-       "SA",
-       "VIC",
-       "QLD"
-      ],
-      "range": [
-       "#9A4A24",
-       "#7A5300",
-       "#2E8C8F",
-       "#5A5144",
-       "#A88660"
-      ]
-     }
+     "scale": null,
+     "legend": null
     },
     "opacity": {
      "condition": {
@@ -672,6 +661,10 @@
    "transform": [
     {
      "filter": "datum.year == 1989"
+    },
+    {
+     "calculate": "{'WA': '#9A4A24', 'NSW': '#7A5300', 'SA': '#1B6A6D', 'VIC': '#5A5144', 'QLD': '#6E5434'}[datum.state_code]",
+     "as": "tc"
     }
    ],
    "mark": {
@@ -730,25 +723,10 @@
      "field": "state_code"
     },
     "color": {
-     "field": "state_code",
+     "field": "tc",
      "type": "nominal",
-     "legend": null,
-     "scale": {
-      "domain": [
-       "WA",
-       "NSW",
-       "SA",
-       "VIC",
-       "QLD"
-      ],
-      "range": [
-       "#9A4A24",
-       "#7A5300",
-       "#2E8C8F",
-       "#5A5144",
-       "#A88660"
-      ]
-     }
+     "scale": null,
+     "legend": null
     },
     "opacity": {
      "condition": {
