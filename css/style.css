@@ -139,6 +139,13 @@ button.chip-btn:active { transform: none; box-shadow: none; }
   font-size: 14px; opacity: .8; padding-top: 6px;
 }
 
+/* Malaysia comparison beside the map */
+.my-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; margin: 14px 0 0; padding: 14px 0 0; border-top: 3px solid var(--wet); }
+.my-stat { margin: 0; font-size: 17px; line-height: 1.45; }
+.my-stat strong { display: block; font: 400 30px/1.1 var(--display); color: var(--wet); white-space: nowrap; }
+.my-source { grid-column: 1 / -1; margin: 4px 0 0; font-size: 14px; color: var(--muted-light); }
+.soil h3.sub { margin-top: 22px; }
+
 /* Section heading beside its intro, so the chart starts higher */
 .sec-head { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 8px 56px; align-items: end; margin-bottom: 24px; }
 .sec-head h2 { margin: 0; max-width: 17ch; }
@@ -251,6 +258,7 @@ button[disabled] { opacity: .55; cursor: default; }
   .sec { padding: 44px 0 64px; }
   .sec-head { grid-template-columns: minmax(0, 1fr); }
   .five-aside { position: static; width: auto; margin-top: 12px; }
+  .my-compare { grid-template-columns: minmax(0, 1fr); }
   .year-chip { right: 10px; bottom: 10px; padding: 6px 10px; }
   .pano-try { padding: 10px 12px; }
 }
