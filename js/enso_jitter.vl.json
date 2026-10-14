@@ -10,7 +10,7 @@
   "bottom": 4
  },
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -18,10 +18,10 @@
   "axis": {
    "labelColor": "#C9D6DC",
    "titleColor": "#C9D6DC",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#4A5B66",
    "tickColor": "#4A5B66",
@@ -30,10 +30,10 @@
   "legend": {
    "labelColor": "#F3EEDF",
    "titleColor": "#F3EEDF",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 12
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "title": {
@@ -44,9 +44,9 @@
   "subtitleColor": "#C9BFAE",
   "fontSize": 15,
   "fontWeight": 600,
-  "subtitleFontSize": 12.5,
-  "font": "IBM Plex Sans",
-  "subtitleFont": "IBM Plex Sans",
+  "subtitleFontSize": 13,
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
+  "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif",
   "offset": 12
  },
  "params": [
@@ -131,6 +131,10 @@
     {
      "calculate": "datum.idx + 0.4",
      "as": "xb"
+    },
+    {
+     "calculate": "datum.phase + ' years averaged ' + format(datum.avg, '.1f') + ' million tonnes of wheat (' + datum.n + ' years).'",
+     "as": "tip"
     }
    ],
    "mark": {
@@ -161,17 +165,9 @@
     },
     "tooltip": [
      {
-      "field": "phase",
-      "title": "Pacific pattern"
-     },
-     {
-      "field": "avg",
-      "title": "Average harvest (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "n",
-      "title": "Years"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
    }
@@ -309,21 +305,18 @@
     },
     "tooltip": [
      {
-      "field": "year",
-      "title": "Year",
-      "format": "d"
-     },
-     {
-      "field": "phase",
-      "title": "Pacific pattern"
-     },
-     {
-      "field": "mt",
-      "title": "Wheat harvest (Mt)",
-      "format": ".1f"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "datum.year + ' was ' + (datum.phase == 'El Niño' ? 'an El Niño' : datum.phase == 'La Niña' ? 'a La Niña' : 'a neutral') + ' year. Australia grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat.'",
+     "as": "tip"
+    }
+   ]
   },
   {
    "transform": [
@@ -369,7 +362,7 @@
    ],
    "mark": {
     "type": "text",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 600,
     "dy": 20,
     "color": "#1B2A35",
@@ -411,7 +404,7 @@
    ],
    "mark": {
     "type": "text",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 600,
     "dy": 20,
     "color": "#F3EEDF"
@@ -450,7 +443,7 @@
    ],
    "mark": {
     "type": "text",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 600,
     "align": "right",
     "dx": -10,
@@ -493,7 +486,7 @@
    ],
    "mark": {
     "type": "text",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 600,
     "align": "right",
     "dx": -10,

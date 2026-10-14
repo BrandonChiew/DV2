@@ -2,17 +2,23 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Two linked charts for 2019 and 2022, Tasmania left out. Dumbbell: wheat yield per state; NSW rose from 0.8 to 3.0 tonnes a hectare, about 3.5 times more, the biggest jump. Slopegraph: states ranked by wheat grown; NSW climbs from fourth (1.8 Mt) to second (10.6 Mt).",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
   },
   "title": {
-   "font": "IBM Plex Sans",
-   "subtitleFont": "IBM Plex Sans"
+   "font": "Bricolage Grotesque, system-ui, sans-serif",
+   "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif"
   },
   "axis": {
-   "labelFont": "IBM Plex Sans"
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "padding": 4,
@@ -40,13 +46,13 @@
    "height": 250,
    "title": {
     "text": "Wheat yield, tonnes a hectare",
-    "subtitle": "2019 (brown) to 2022 (teal)",
+    "subtitle": "2019 (brown diamond) to 2022 (teal triangle)",
     "anchor": "start",
     "fontSize": 14,
     "fontWeight": 600,
     "color": "#16222C",
     "subtitleColor": "#5A5144",
-    "subtitleFontSize": 12.5,
+    "subtitleFontSize": 13,
     "offset": 10
    },
    "data": {
@@ -125,26 +131,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "2019",
-        "title": "Yield 2019 (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "2022",
-        "title": "Yield 2022 (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "ratio",
-        "title": "Times more",
-        "format": ".1f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ': wheat yield rose from ' + format(datum['2019'], '.1f') + ' tonnes a hectare in 2019 to ' + format(datum['2022'], '.1f') + ' in 2022, ' + format(datum.ratio, '.1f') + ' times more.'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "mark": {
@@ -195,8 +193,10 @@
     },
     {
      "mark": {
-      "type": "circle",
-      "size": 150,
+      "type": "point",
+      "filled": true,
+      "shape": "diamond",
+      "size": 190,
       "color": "#8C510A",
       "stroke": "#F1E4C8",
       "strokeWidth": 1.5
@@ -218,8 +218,10 @@
     },
     {
      "mark": {
-      "type": "circle",
-      "size": 150,
+      "type": "point",
+      "filled": true,
+      "shape": "triangle-up",
+      "size": 190,
       "color": "#01665E",
       "stroke": "#F1E4C8",
       "strokeWidth": 1.5
@@ -310,7 +312,7 @@
     "fontWeight": 600,
     "color": "#16222C",
     "subtitleColor": "#5A5144",
-    "subtitleFontSize": 12.5,
+    "subtitleFontSize": 13,
     "offset": 10
    },
    "data": {
@@ -436,11 +438,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ': rank by wheat grown, 2019 to 2022'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "mark": {
@@ -465,28 +474,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "mt",
-        "title": "Wheat grown (Mt)",
-        "format": ".1f"
-       },
-       {
-        "field": "rank",
-        "title": "Rank"
-       },
-       {
-        "field": "status",
-        "title": "Figure"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ' grew ' + format(datum.mt, '.1f') + ' million tonnes in ' + datum.season + ', ranking ' + ['first', 'second', 'third', 'fourth', 'fifth'][datum.rank - 1] + ' of the five mainland states.'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "transform": [

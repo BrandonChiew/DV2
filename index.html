@@ -7,7 +7,7 @@
 <meta name="description" content="How rainfall and drought shape Australia's wheat, barley and canola harvests, 1989 to 2025.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Young+Serif&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
@@ -15,6 +15,10 @@
 </head>
 <body>
 <a class="skip" href="#guess">Skip to the story</a>
+<div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+<a class="year-chip" id="year-chip" href="#seasons" aria-label="The year chosen for the whole page: 2019. Go to the panorama to change it.">
+<span class="yc-label">Year chosen</span> <strong id="yc-year">2019</strong>
+</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
@@ -53,12 +57,12 @@
 </svg>
 <div class="hero-text">
 <h1>When the<br>rain stops</h1>
-<p class="hero-lede">For Australia’s grain farmers, one season of rain decides whether the paddocks give a little or a lot. This is 37 harvests, told through the rain that made them.</p>
 </div>
 <svg class="fill front" viewBox="0 0 1100 860" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
 <use href="#stalkDark" x="-10" y="430" width="110" height="440"/><use href="#stalkDark" x="60" y="500" width="90" height="360"/><use href="#stalkDark" x="120" y="470" width="100" height="400"/><use href="#stalkDark" x="200" y="560" width="70" height="300"/><use href="#stalkDark" x="250" y="520" width="80" height="340"/>
 <use href="#stalkDark" x="930" y="520" width="80" height="340"/><use href="#stalkDark" x="990" y="460" width="110" height="420"/>
 </svg>
+<p class="hero-lede">For Australia’s grain farmers, one season of rain decides whether the paddocks give a little or a lot. This is 37 harvests, told through the rain that made them.</p>
 </header>
 
 <main>
@@ -69,14 +73,15 @@
 <h2 id="h-guess">Guess the 2019 harvest</h2>
 <p>In 2016, a good year, Australia grew 31.8 million tonnes of wheat. 2019 was the driest year Australia has ever recorded. Drag the empty bar to your guess.</p>
 <p class="hint">Your guess stays on the page and comes back in the last section.</p>
-</div>
-<div class="figure">
-<div class="chart guess-chart" id="c-guess" role="img" aria-label="Bar chart. 2016 wheat harvest: 31.8 million tonnes. A dashed bar for 2019 shows your guess; drag it up or down, or use the slider below."></div>
 <div class="guess-controls">
 <label class="guess-range">Or set your guess: <input type="range" id="guess-input" min="0" max="40" step="0.5" value="25"> <output id="guess-out" for="guess-input">25.0 Mt</output></label>
 <button type="button" id="reveal">Show the real harvest</button>
 </div>
 <p class="guess-result" id="guess-result" aria-live="polite"></p>
+</div>
+<div class="figure">
+<div class="chart guess-chart" id="c-guess" role="img" aria-label="Bar chart. 2016 wheat harvest: 31.8 million tonnes. A dashed bar for 2019 shows your guess; drag it up or down, or use the slider below."></div>
+
 </div>
 </div>
 <div class="wrap"><p class="bridge">To see why a dry year hurts so much, start with where the rain falls.</p></div>
@@ -89,38 +94,61 @@
 
 <section class="sec s-sand" id="crescent" aria-labelledby="h-crescent">
 <div class="wrap wide">
-<h2 id="h-crescent">Only a thin wet crescent can grow grain</h2>
 <div class="split map-split">
 <div class="copy">
-<p>Most of the continent is the colour of sand: too dry to farm. Wheat grows on the curve where the colour turns green-blue, around Perth, Adelaide, Melbourne and inland Sydney. Australia is about 23 times the size of Malaysia, and most of it is in that sand.</p>
+<h2 id="h-crescent">Only a thin wet crescent can grow grain</h2>
+<p>Most of the continent is the colour of sand: too dry to farm. Wheat grows on the curve where the colour turns green-blue, around Perth, Adelaide, Melbourne and inland Sydney.</p>
+<p class="bridge">That crescent is a narrow margin. What happens in the years the rain doesn’t come?</p>
 </div>
 <div class="figure">
 <div class="chart map-shadow" id="c-map" role="img" aria-label="Map of Australia's average yearly rainfall. Most of the inland is under 300 mm, the colour of sand. A gold line marks the wheat belt, the 300 to 600 mm band in the south from Perth to inland Sydney. Gold circles show wheat grown each year, 2015 to 2024 average: Western Australia 9.8 million tonnes, New South Wales 8.1, South Australia 4.3, Victoria 3.9, Queensland 1.4."></div>
+<p class="map-caption">Gold circles show the wheat each state grows in a year, 2015–24 average, in million tonnes. The gold line marks the 300 to 600 mm wheat belt.</p>
+<aside class="my-compare" aria-label="Australia compared with Malaysia">
+<p class="my-stat"><strong>23×</strong><span>Malaysia would fit inside Australia about 23 times (7.69 million km² against 0.33 million).</span></p>
+<p class="my-stat"><strong>3,100 mm</strong><span>of rain falls on Malaysia in an average year. The wheat belt gets 300 to 600 mm.</span></p>
+<p class="my-source">Sources: Geoscience Australia, CIA World Factbook and the World Bank, linked in the footer.</p>
+</aside>
 </div>
 </div>
-<p class="bridge">That crescent is a narrow margin. What happens in the years the rain doesn’t come?</p>
 </div>
 <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,46 C200,86 420,8 700,42 C960,74 1180,14 1440,40 L1440,90 L0,90Z" fill="#1B2A35"/></svg>
 </section>
 
 <section class="sec s-dusk" id="seasons" aria-labelledby="h-seasons">
 <div class="wrap wide">
+<div class="sec-head">
 <h2 id="h-seasons">37 seasons, one landscape</h2>
 <div class="copy">
 <p>Each column is one growing season, 1989 to 2025. Read it from the top down: the Pacific pattern that year, the rain each state got from April to October, the wheat harvest, and the money farmers kept after paying their costs.</p>
+</div>
 </div>
 <div class="pano-legend" aria-label="Legend">
 <span class="lg"><svg viewBox="0 0 24 24" class="lg-sun" aria-hidden="true"><use href="#sun"/></svg>El Niño (usually dry)</span>
 <span class="lg"><svg viewBox="0 0 28 18" class="lg-cloud" aria-hidden="true"><use href="#cloud"/></svg>La Niña (usually wet)</span>
 <span class="lg"><span class="lg-tick" aria-hidden="true"></span>Neutral</span>
-<span class="lg lg-scale">Rain, % of normal:
-<span class="sw" style="background:#8C510A"></span>&lt;50
-<span class="sw" style="background:#D8B365"></span>50–70
-<span class="sw" style="background:#F3DFA2"></span>70–90
-<span class="sw" style="background:#E3EFE9"></span>90–110
+<span class="lg lg-scale">Rain, % of normal (triangles mark the driest and wettest):
+<span class="sw sw-dn" style="background:#8C510A"></span>&lt;50
+<span class="sw sw-dn dk" style="background:#D8B365"></span>50–70
+<span class="sw" style="background:#EBCF8A"></span>70–90
+<span class="sw" style="background:#F4F7F2"></span>90–110
 <span class="sw" style="background:#A9DDD4"></span>110–130
-<span class="sw" style="background:#4FB3A6"></span>130–150
-<span class="sw" style="background:#01665E"></span>150+</span>
+<span class="sw sw-up dk" style="background:#4FB3A6"></span>130–150
+<span class="sw sw-up" style="background:#01665E"></span>150+</span>
+</div>
+<div class="pano-try" role="group" aria-label="Choose a year">
+<svg class="try-icon" viewBox="0 0 84 56" aria-hidden="true">
+<g><rect x="8" y="9" width="14" height="9" rx="4.5" fill="#D8B365"/><rect x="8" y="22" width="14" height="9" rx="4.5" fill="#A9DDD4"/><rect x="8" y="35" width="14" height="9" rx="4.5" fill="#EBCF8A"/>
+<rect x="34" y="9" width="14" height="9" rx="4.5" fill="#8C510A"/><rect x="34" y="22" width="14" height="9" rx="4.5" fill="#8C510A"/><rect x="34" y="35" width="14" height="9" rx="4.5" fill="#D8B365"/>
+<rect x="60" y="9" width="14" height="9" rx="4.5" fill="#4FB3A6"/><rect x="60" y="22" width="14" height="9" rx="4.5" fill="#01665E"/><rect x="60" y="35" width="14" height="9" rx="4.5" fill="#4FB3A6"/></g>
+<rect x="29" y="3" width="24" height="46" rx="9" fill="#FFFFFF" fill-opacity=".14" stroke="#F3EEDF" stroke-opacity=".75"/>
+<path d="M45 36 L45 53 L49.5 48.5 L53 55 L56 53.5 L52.5 47.5 L58.5 47Z" fill="#F3EEDF" stroke="#0F1A22" stroke-width="1.4" stroke-linejoin="round"/>
+</svg>
+<p class="try-text"><strong>Click any year in the chart.</strong> The light column moves, and every chart further down the page follows that year. Try one:</p>
+<div class="try-buttons">
+<button type="button" class="chip-btn" data-year="2002" aria-pressed="false">2002 <span>El Niño, dry</span></button>
+<button type="button" class="chip-btn" data-year="2019" aria-pressed="true">2019 <span>driest on record</span></button>
+<button type="button" class="chip-btn" data-year="2022" aria-pressed="false">2022 <span>record harvest</span></button>
+</div>
 </div>
 <div class="pano">
 <div class="figure">
@@ -136,7 +164,6 @@
 <p id="income-note"></p>
 </aside>
 </div>
-<p class="hint">Click or tap any year: the light column moves, and the charts further down the page that run through time follow that year.</p>
 <div class="pair extra">
 <div class="figure"><div class="chart" id="c-enso" role="img" aria-label="Jitter plot of Australia's wheat harvest in each year from 1989 to 2025, grouped by Pacific pattern. El Niño years average 16.2 million tonnes, neutral years 22.0 and La Niña years 27.0. 2002 and 2006, both El Niño years, are among the lowest dots. 2019 is a neutral year but also low, at 14.5. 2022, a La Niña year, is the highest at 40.5."></div></div>
 <aside class="pano-notes">
@@ -151,25 +178,29 @@
 
 <section class="sec s-sand" id="sown" aria-labelledby="h-sown">
 <div class="wrap">
-<h2 id="h-sown">Farmers still sow. The rain decides the yield.</h2>
 <div class="pair text-first">
 <div class="pair-text">
+<h2 id="h-sown">Farmers still sow. The rain decides the yield.</h2>
 <p>A dry year does not stop farmers planting wheat. What changes is how much each hectare gives back.</p>
+<p class="bridge">If the yield is what moves, follow it against the rain. Start with New South Wales.</p>
+</div>
+<div class="figure">
+<div class="chart" id="c-sown" role="img" aria-label="Lollipop chart for four years. For each year, one stick shows how much the area sown to wheat changed and one shows how much the yield changed, compared with the average of the five years before. In 2002 and 2006 the area barely changed, minus 3 and minus 4 percent, while the yield fell by 53 and 47 percent. In 2019 the area fell 14 percent and the yield 27 percent. In 2022 the area rose 15 percent and the yield 49 percent."></div>
 <p id="sown-note"></p>
 <p class="hint">Hover a stick for the area, the yield and the season.</p>
 </div>
-<div class="figure"><div class="chart" id="c-sown" role="img" aria-label="Lollipop chart for four years. For each year, one stick shows how much the area sown to wheat changed and one shows how much the yield changed, compared with the average of the five years before. In 2002 and 2006 the area barely changed, minus 3 and minus 4 percent, while the yield fell by 53 and 47 percent. In 2019 the area fell 14 percent and the yield 27 percent. In 2022 the area rose 15 percent and the yield 49 percent."></div></div>
 </div>
-<p class="bridge">If the yield is what moves, follow it against the rain. Start with New South Wales.</p>
 </div>
 <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,34 C240,70 500,12 760,40 C1020,66 1230,16 1440,40 L1440,90 L0,90Z" fill="#DCE8E4"/></svg>
 </section>
 
 <section class="sec s-sage" id="nsw" aria-labelledby="h-nsw">
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-nsw">In New South Wales the harvest follows the rain</h2>
 <div class="copy">
 <p>Each grain is one year, joined in time order. Dry seasons sit low and to the left; wet seasons high and to the right. In 2019 NSW got about 40% of its normal rain, and its wheat yield fell to about 41% of normal.</p>
+</div>
 </div>
 <div class="split even">
 <div class="figure">
@@ -183,11 +214,13 @@
 <div class="figure"><div class="chart" id="c-choro" role="img" aria-label="Four maps of Australia's states. Top: April to October rain in 2019 and 2022 as a percent of normal. Bottom: wheat yield as a percent of normal. In 2019 most states are brown, below normal; in 2022 most are teal, above normal. New South Wales: 40 percent of normal rain and 41 percent of normal yield in 2019; 170 and 146 percent in 2022."></div></div>
 </div>
 <p class="hint">Drag the rain slider: the grains that got that much rain turn brown. Hover any grain or state for its numbers.</p>
-<div class="copy extra">
-<p id="five-note">Is New South Wales special? Here is the same test in every mainland state.</p>
-</div>
+<div class="five-wrap">
 <div class="figure"><div class="chart" id="c-five" role="img" aria-label="Five small scatterplots, one per mainland state, of April to October rain against wheat yield, both as a percent of that state's normal, 1989 to 2025. The dots rise to the right in New South Wales (correlation 0.62), Victoria (0.61), South Australia (0.59) and Queensland (0.48), but hardly at all in Western Australia (0.24). 2019 is brown and 2022 is teal."></div></div>
-<p class="hint">Brown is 2019 and teal is 2022. The ringed dot is the year you chose in the panorama.</p>
+<div class="five-aside">
+<p id="five-note">Is New South Wales special? Here is the same test in every mainland state.</p>
+<p class="hint">Diamonds are 2019 (brown), triangles are 2022 (teal). The ringed dot is the year you chose in the panorama.</p>
+</div>
+</div>
 <p class="bridge">It holds almost everywhere, except Western Australia, the biggest grower of all.</p>
 </div>
 <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C240,10 470,74 720,44 C980,14 1200,70 1440,36 L1440,90 L0,90Z" fill="#9A4A24"/></svg>
@@ -195,9 +228,11 @@
 
 <section class="sec s-red" id="wa" aria-labelledby="h-wa">
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-wa">WA’s rain average is mostly desert</h2>
 <div class="copy">
 <p>Western Australia’s yields barely move with its statewide rain, because the state average is mostly desert. The wheat is in the thin south-west corner, which this average hides.</p>
+</div>
 </div>
 <div class="split even">
 <div class="figure"><div class="chart map-shadow" id="c-wamap" role="img" aria-label="Map of Western Australia. Most of the state is desert, plain red earth. Only the south-west corner around Perth gets 300 mm of rain or more a year, and that is where the wheat grows. A small locator map shows WA as the western third of Australia."></div></div>
@@ -213,9 +248,11 @@
 
 <section class="sec s-sand" id="swing" aria-labelledby="h-swing">
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-swing">NSW swings hardest: from fourth to second</h2>
 <div class="copy">
 <p>Between 2019, the driest year on record, and 2022, the record harvest, every mainland state’s wheat yield rose. New South Wales rose the most: from 0.8 to 3.0 tonnes a hectare. It went from the fourth-biggest wheat grower to the second.</p>
+</div>
 </div>
 <div class="figure"><div class="chart" id="c-swing" role="img" aria-label="Two linked charts comparing 2019 and 2022, Tasmania left out. Left, a dumbbell chart of wheat yield: New South Wales rose from 0.8 to 3.0 tonnes a hectare, about 3.5 times more, the biggest jump; Queensland 0.9 to 2.7, South Australia 1.6 to 3.3, Western Australia 1.4 to 3.1, Victoria 2.6 to 3.6. Right, a slopegraph of rank by wheat grown: Western Australia stays first; New South Wales climbs from fourth, 1.8 million tonnes, to second, 10.6."></div></div>
 <p class="hint">Hover a state to light it up in both charts. Tasmania grows too little wheat to show.</p>
@@ -243,9 +280,11 @@
 </g>
 </svg>
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-paddock">The whole paddock rises and falls</h2>
 <div class="copy">
 <p>Barley and canola grow in the same season, on the same farms, under the same sky. Stacked together, the drought years cut into all of them.</p>
+</div>
 </div>
 <div class="figure"><div class="chart" id="c-stream" role="img" aria-label="Streamgraph of wheat, barley and canola harvests in Australia, 1989 to 2025, stacked around a centre line. The whole stream narrows in the drought years 2002, 2006 and 2019, and is widest in 2022."></div></div>
 <div class="pair extra">
@@ -285,6 +324,12 @@
 <li><a href="https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/australian-crop-report/september-2026">ABARES</a>: Australian Crop Report, September 2026; <a href="https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/data">Agricultural commodities</a>, September quarter 2026.</li>
 <li><a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files">Australian Bureau of Statistics</a>: state boundaries, 2021.</li>
 </ul>
+<h3 class="sub">For readers in Malaysia</h3>
+<ul>
+<li><a href="https://ga.gov.au/scientific-topics/national-location-information/dimensions/area-of-australia-states-and-territories">Geoscience Australia</a>: area of Australia, 7,688,287 km².</li>
+<li><a href="https://www.cia.gov/the-world-factbook/countries/malaysia/">CIA World Factbook</a>: area of Malaysia, 329,847 km². The ratio is 23.3.</li>
+<li><a href="https://climateknowledgeportal.worldbank.org/node/2456">World Bank Climate Knowledge Portal</a>: Malaysia’s mean annual rainfall, 3,085 mm.</li>
+</ul>
 </div>
 <div>
 <h3>Made by</h3>
@@ -292,11 +337,14 @@
 </div>
 <div>
 <h3>Use of AI</h3>
-<p>Claude helped plan the design, process the data and check grammar. Every illustration on this page is an original vector drawing.</p>
+<p>I used Claude, through Claude Code, as a coding assistant. Claude wrote the HTML, CSS and JavaScript and the Vega-Lite chart specs, drew the SVG illustrations, wrote the scripts that turned the raw downloads into the cleaned data files the charts load, and helped plan the structure of the page.</p>
+<p>I chose the topic and the story, picked and checked the data sources, wrote or edited the final wording, and chose the colour palette and the typefaces (Young Serif and Bricolage Grotesque).</p>
+<p>To check the numbers, the key figures (harvests, averages, percentage changes, correlations and farm income) were recomputed from the CSVs with a script and compared with the text on the page. Several sentences work out their own numbers from the CSVs in the browser.</p>
 </div>
 </div>
 </footer>
 
+<script src="js/mobile.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

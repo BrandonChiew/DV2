@@ -9,7 +9,7 @@
   "bottom": 4
  },
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -17,10 +17,10 @@
   "axis": {
    "labelColor": "#3B372F",
    "titleColor": "#3B372F",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#9AA8A3",
    "tickColor": "#9AA8A3",
@@ -29,10 +29,10 @@
   "legend": {
    "labelColor": "#3B372F",
    "titleColor": "#3B372F",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 12
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "title": {
@@ -43,9 +43,9 @@
   "subtitleColor": "#5A5144",
   "fontSize": 15,
   "fontWeight": 600,
-  "subtitleFontSize": 12.5,
-  "font": "IBM Plex Sans",
-  "subtitleFont": "IBM Plex Sans",
+  "subtitleFontSize": 13,
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
+  "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif",
   "offset": 12
  },
  "data": {
@@ -145,9 +145,9 @@
     "labelOrient": "left",
     "labelAngle": 0,
     "labelAlign": "left",
-    "labelFont": "Big Shoulders Display",
-    "labelFontSize": 24,
-    "labelFontWeight": 800,
+    "labelFont": "Young Serif, Georgia, serif",
+    "labelFontSize": 22,
+    "labelFontWeight": 400,
     "labelColor": "#16222C",
     "labelPadding": 14
    }
@@ -263,29 +263,18 @@
      },
      "tooltip": [
       {
-       "field": "season",
-       "title": "Season"
-      },
-      {
-       "field": "measure",
-       "title": "Measure"
-      },
-      {
-       "field": "lab",
-       "title": "Change vs previous 5 years"
-      },
-      {
-       "field": "area_kha",
-       "title": "Area sown ('000 ha)",
-       "format": ",.0f"
-      },
-      {
-       "field": "yield_t_ha",
-       "title": "Yield (t/ha)",
-       "format": ".2f"
+       "field": "tip",
+       "type": "nominal",
+       "title": "tip"
       }
      ]
-    }
+    },
+    "transform": [
+     {
+      "calculate": "datum.measure == 'Yield' ? 'In ' + datum.season + ' wheat yielded ' + format(datum.yield_t_ha, '.2f') + ' tonnes a hectare, ' + format(abs(datum.pct), '.0f') + '% ' + (datum.pct < 0 ? 'below' : 'above') + ' the average of the five years before.' : 'In ' + datum.season + ' farmers sowed ' + format(datum.area_kha / 1000, '.1f') + ' million hectares of wheat, ' + format(abs(datum.pct), '.0f') + '% ' + (datum.pct < 0 ? 'less' : 'more') + ' than the average of the five years before.'",
+      "as": "tip"
+     }
+    ]
    },
    {
     "transform": [

@@ -10,7 +10,7 @@
   "bottom": 4
  },
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -18,14 +18,18 @@
   "axis": {
    "labelColor": "#3B372F",
    "titleColor": "#3B372F",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#9AA8A3",
    "tickColor": "#9AA8A3",
    "gridColor": "#C6D6D0"
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "params": [
@@ -170,7 +174,7 @@
    "mark": {
     "type": "text",
     "color": "#8C510A",
-    "fontSize": 12,
+    "fontSize": 13,
     "fontWeight": 600,
     "baseline": "top",
     "dy": 4
@@ -232,8 +236,7 @@
    "mark": {
     "type": "text",
     "color": "#5A5144",
-    "fontSize": 11.5,
-    "fontStyle": "italic",
+    "fontSize": 13,
     "align": "left",
     "dx": 4,
     "baseline": "bottom",
@@ -295,8 +298,7 @@
    "mark": {
     "type": "text",
     "color": "#5A5144",
-    "fontSize": 11.5,
-    "fontStyle": "italic",
+    "fontSize": 13,
     "align": "right",
     "baseline": "bottom",
     "x": 440,
@@ -380,35 +382,18 @@
     },
     "tooltip": [
      {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "rain_cool_mm",
-      "title": "Rain, Apr–Oct (mm)",
-      "format": ".0f"
-     },
-     {
-      "field": "rain_cool_pct_of_avg",
-      "title": "Rain, % of normal",
-      "format": ".0f"
-     },
-     {
-      "field": "wheat_yield_t_ha",
-      "title": "Wheat yield (t/ha)",
-      "format": ".2f"
-     },
-     {
-      "field": "yield_pct_of_avg",
-      "title": "Yield, % of normal",
-      "format": ".0f"
-     },
-     {
-      "field": "status",
-      "title": "Figure"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "'NSW, ' + datum.season + ': ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October (' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal) and wheat at ' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare (' + format(datum.yield_pct_of_avg, '.0f') + '% of normal).' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+     "as": "tip"
+    }
+   ]
   },
   {
    "transform": [

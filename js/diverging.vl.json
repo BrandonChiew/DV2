@@ -12,7 +12,7 @@
   "bottom": 4
  },
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -20,10 +20,10 @@
   "axis": {
    "labelColor": "#C9BFAE",
    "titleColor": "#C9BFAE",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#6B5A48",
    "tickColor": "#6B5A48",
@@ -32,10 +32,10 @@
   "legend": {
    "labelColor": "#F3EEDF",
    "titleColor": "#F3EEDF",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 13,
-   "titleFontSize": 13
+   "titleFontSize": 13.5
   }
  },
  "title": {
@@ -44,7 +44,7 @@
   "color": "#F3EEDF",
   "fontSize": 15,
   "fontWeight": 600,
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "offset": 14
  },
  "data": {
@@ -127,9 +127,9 @@
     "title": null,
     "domain": false,
     "ticks": false,
-    "labelFont": "Big Shoulders Display",
-    "labelFontSize": 22,
-    "labelFontWeight": 800,
+    "labelFont": "Young Serif, Georgia, serif",
+    "labelFontSize": 20,
+    "labelFontWeight": 400,
     "labelColor": "#F3EEDF",
     "labelPadding": 14
    },
@@ -191,7 +191,7 @@
       ],
       "range": [
        "#C8901E",
-       "#A88660",
+       "#7D6347",
        "#E9CF4B"
       ]
      },
@@ -199,28 +199,18 @@
     },
     "tooltip": [
      {
-      "field": "Crop"
-     },
-     {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "production_kt",
-      "title": "Harvest (thousand t)",
-      "format": ",.0f"
-     },
-     {
-      "field": "prev5",
-      "title": "Five years before, average (thousand t)",
-      "format": ",.0f"
-     },
-     {
-      "field": "lab",
-      "title": "Change"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "datum.Crop + ' in ' + datum.season + ': ' + format(datum.production_kt / 1000, '.1f') + ' million tonnes, ' + format(abs(datum.pct), '.0f') + '% ' + (datum.pct < 0 ? 'below' : 'above') + ' the average of the five years before (' + format(datum.prev5 / 1000, '.1f') + ').'",
+     "as": "tip"
+    }
+   ]
   },
   {
    "mark": {
@@ -239,7 +229,7 @@
   {
    "mark": {
     "type": "text",
-    "fontSize": 12.5,
+    "fontSize": 13,
     "color": "#F3EEDF",
     "baseline": "middle",
     "align": {

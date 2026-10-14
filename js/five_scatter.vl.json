@@ -2,7 +2,7 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Five small scatterplots, one per mainland state, of April to October rain against wheat yield, both as a percent of that state's normal, 1989 to 2025. The dots rise to the right in New South Wales (r 0.62), Victoria (0.61), South Australia (0.59) and Queensland (0.48), but hardly in Western Australia (0.24).",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -10,10 +10,10 @@
   "axis": {
    "labelColor": "#3B372F",
    "titleColor": "#3B372F",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 13,
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5,
    "titleFontWeight": 400,
    "domainColor": "#9AA8A3",
    "tickColor": "#9AA8A3",
@@ -22,10 +22,10 @@
   "legend": {
    "labelColor": "#3B372F",
    "titleColor": "#3B372F",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
-   "labelFontSize": 12,
-   "titleFontSize": 12
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "title": {
@@ -36,9 +36,9 @@
   "subtitleColor": "#5A5144",
   "fontSize": 15,
   "fontWeight": 600,
-  "subtitleFontSize": 12.5,
-  "font": "IBM Plex Sans",
-  "subtitleFont": "IBM Plex Sans",
+  "subtitleFontSize": 13,
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
+  "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif",
   "offset": 12
  },
  "params": [
@@ -124,7 +124,7 @@
   ],
   "header": {
    "title": null,
-   "labelFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 15,
    "labelFontWeight": 600,
    "labelColor": "#16222C",
@@ -138,8 +138,8 @@
   "column": 22
  },
  "spec": {
-  "width": 245,
-  "height": 190,
+  "width": 318,
+  "height": 196,
   "layer": [
    {
     "mark": {
@@ -201,7 +201,8 @@
    },
    {
     "mark": {
-     "type": "circle",
+     "type": "point",
+     "filled": true,
      "stroke": "#DCE8E4",
      "strokeWidth": 0.8,
      "opacity": 0.95
@@ -269,44 +270,54 @@
        "title": null,
        "orient": "top",
        "direction": "horizontal",
-       "symbolType": "circle",
-       "labelFontSize": 12.5,
+       "labelFontSize": 13,
        "offset": 4
       }
      },
      "size": {
       "condition": {
        "test": "datum.year == 2019 || datum.year == 2022",
-       "value": 120
+       "value": 170
       },
       "value": 48
      },
      "tooltip": [
       {
-       "field": "state",
-       "title": "State"
-      },
-      {
-       "field": "season",
-       "title": "Season"
-      },
-      {
-       "field": "rain_cool_pct_of_avg",
-       "title": "Rain, % of normal",
-       "format": ".0f"
-      },
-      {
-       "field": "yield_pct_of_avg",
-       "title": "Wheat yield, % of normal",
-       "format": ".0f"
-      },
-      {
-       "field": "wheat_yield_t_ha",
-       "title": "Yield (t/ha)",
-       "format": ".1f"
+       "field": "tip",
+       "type": "nominal",
+       "title": "tip"
       }
-     ]
-    }
+     ],
+     "shape": {
+      "field": "grp",
+      "type": "nominal",
+      "scale": {
+       "domain": [
+        "2019 (driest year)",
+        "2022 (record harvest)",
+        "Other seasons"
+       ],
+       "range": [
+        "diamond",
+        "triangle-up",
+        "circle"
+       ]
+      },
+      "legend": {
+       "title": null,
+       "orient": "top",
+       "direction": "horizontal",
+       "labelFontSize": 13,
+       "offset": 4
+      }
+     }
+    },
+    "transform": [
+     {
+      "calculate": "datum.state + ', ' + datum.season + ': ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal rain and ' + format(datum.yield_pct_of_avg, '.0f') + '% of normal yield (' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare).'",
+      "as": "tip"
+     }
+    ]
    },
    {
     "transform": [

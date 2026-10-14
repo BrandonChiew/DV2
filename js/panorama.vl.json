@@ -2,17 +2,22 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Four rows sharing one year axis, 1989 to 2025: the Pacific pattern (sun for El Niño, cloud for La Niña), rain capsules for five states coloured by percent of normal April to October rain, the national wheat harvest as an area, and money farmers kept after costs as bars hanging down. A light column marks the selected year.",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
   },
   "axis": {
-   "labelFont": "IBM Plex Sans",
-   "labelFontSize": 12
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   },
   "title": {
-   "font": "IBM Plex Sans"
+   "font": "Bricolage Grotesque, system-ui, sans-serif"
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "padding": {
@@ -59,7 +64,7 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans"
+    "font": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/climate_drivers.csv",
@@ -335,6 +340,10 @@
       {
        "calculate": "datum.year + 0.5",
        "as": "x1"
+      },
+      {
+       "calculate": "datum.year + ' was ' + (datum.pattern == 'El Niño' ? 'an El Niño' : datum.pattern == 'La Niña' ? 'a La Niña' : 'a neutral') + ' year.' + (datum.note ? ' ' + replace(replace(datum.note, 'La Nina', 'La Niña'), 'El Nino', 'El Niño') + '.' : '')",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -369,16 +378,9 @@
       },
       "tooltip": [
        {
-        "field": "year",
-        "title": "Year"
-       },
-       {
-        "field": "pattern",
-        "title": "Pacific pattern"
-       },
-       {
-        "field": "note",
-        "title": "Note"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -396,7 +398,7 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans"
+    "font": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/rain_vs_yield.csv",
@@ -623,8 +625,8 @@
         "range": [
          "#8C510A",
          "#D8B365",
-         "#F3DFA2",
-         "#E3EFE9",
+         "#EBCF8A",
+         "#F4F7F2",
          "#A9DDD4",
          "#4FB3A6",
          "#01665E"
@@ -634,22 +636,149 @@
       },
       "tooltip": [
        {
-        "field": "year",
-        "title": "Year"
-       },
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
+       }
+      ]
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.year + ', ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal.'",
+       "as": "tip"
+      }
+     ]
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.rain_cool_pct_of_avg < 70"
+      },
+      {
+       "calculate": "(datum.rain_cool_pct_of_avg < 50 || datum.rain_cool_pct_of_avg >= 150) ? '#F3EEDF' : '#16222C'",
+       "as": "mk"
+      },
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.year + ', ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal.'",
+       "as": "tip"
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "shape": "triangle-down",
+      "filled": true,
+      "size": 34,
+      "opacity": 0.95,
+      "strokeWidth": 0,
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       }
+      },
+      "y": {
+       "field": "state_code",
+       "type": "nominal",
+       "sort": [
+        "NSW",
+        "VIC",
+        "SA",
+        "WA",
+        "QLD"
+       ],
+       "scale": {
+        "paddingInner": 0.22,
+        "paddingOuter": 0.1
+       }
+      },
+      "color": {
+       "field": "mk",
+       "type": "nominal",
+       "scale": null,
+       "legend": null
+      },
+      "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
+       }
+      ]
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.rain_cool_pct_of_avg >= 130"
+      },
+      {
+       "calculate": "(datum.rain_cool_pct_of_avg < 50 || datum.rain_cool_pct_of_avg >= 150) ? '#F3EEDF' : '#16222C'",
+       "as": "mk"
+      },
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.year + ', ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal.'",
+       "as": "tip"
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "shape": "triangle-up",
+      "filled": true,
+      "size": 34,
+      "opacity": 0.95,
+      "strokeWidth": 0,
+      "cursor": "pointer"
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       }
+      },
+      "y": {
+       "field": "state_code",
+       "type": "nominal",
+       "sort": [
+        "NSW",
+        "VIC",
+        "SA",
+        "WA",
+        "QLD"
+       ],
+       "scale": {
+        "paddingInner": 0.22,
+        "paddingOuter": 0.1
+       }
+      },
+      "color": {
+       "field": "mk",
+       "type": "nominal",
+       "scale": null,
+       "legend": null
+      },
+      "tooltip": [
        {
-        "field": "rain_cool_mm",
-        "title": "Rain, Apr–Oct (mm)",
-        "format": ".0f"
-       },
-       {
-        "field": "rain_cool_pct_of_avg",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -667,7 +796,7 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans"
+    "font": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/crops_by_state.csv",
@@ -1169,6 +1298,10 @@
       {
        "calculate": "datum.year + 0.5",
        "as": "x1"
+      },
+      {
+       "calculate": "'Australia grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat in ' + datum.season + '.' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -1203,17 +1336,9 @@
       },
       "tooltip": [
        {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "mt",
-        "title": "Wheat harvest (Mt)",
-        "format": ".1f"
-       },
-       {
-        "field": "status",
-        "title": "Figure"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -1231,11 +1356,11 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans",
-    "subtitle": "Colour shows the Pacific pattern that year",
+    "font": "Bricolage Grotesque, system-ui, sans-serif",
+    "subtitle": "Colour and symbol show the Pacific pattern: sun = El Niño, cloud = La Niña",
     "subtitleColor": "#B9C6CC",
-    "subtitleFontSize": 12,
-    "subtitleFont": "IBM Plex Sans"
+    "subtitleFontSize": 13,
+    "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/farm_income.csv",
@@ -1352,7 +1477,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1440,7 +1565,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1492,7 +1617,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1549,6 +1674,100 @@
         ]
        },
        "legend": null
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.enso == 'El Nino' && datum.b >= 2"
+      },
+      {
+       "calculate": "datum.b - 1.7",
+       "as": "gy"
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "shape": "M0,-0.36 A0.36,0.36 0 1 1 0,0.36 A0.36,0.36 0 1 1 0,-0.36Z M0,-1 L0,-0.68 M0,0.68 L0,1 M-1,0 L-0.68,0 M0.68,0 L1,0 M-0.71,-0.71 L-0.49,-0.49 M0.49,0.49 L0.71,0.71 M-0.71,0.71 L-0.49,0.49 M0.49,-0.49 L0.71,-0.71",
+      "filled": false,
+      "size": 120,
+      "color": "#16222C",
+      "strokeWidth": 1.4,
+      "opacity": 1
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       }
+      },
+      "y": {
+       "field": "gy",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         0,
+         27
+        ],
+        "reverse": true,
+        "nice": false
+       }
+      }
+     }
+    },
+    {
+     "transform": [
+      {
+       "filter": "datum.enso == 'La Nina' && datum.b >= 2"
+      },
+      {
+       "calculate": "datum.b - 1.7",
+       "as": "gy"
+      }
+     ],
+     "mark": {
+      "type": "point",
+      "shape": "M-0.9,0.55 A0.45,0.45 0 0 1 -0.78,-0.22 A0.56,0.56 0 0 1 0.22,-0.45 A0.45,0.45 0 0 1 0.9,0.22 A0.34,0.34 0 0 1 0.78,0.55Z",
+      "filled": true,
+      "size": 110,
+      "color": "#16222C",
+      "strokeWidth": 1.4,
+      "opacity": 1
+     },
+     "encoding": {
+      "x": {
+       "field": "year",
+       "type": "quantitative",
+       "scale": {
+        "type": "linear",
+        "domain": [
+         1988.5,
+         2025.5
+        ],
+        "nice": false,
+        "zero": false
+       }
+      },
+      "y": {
+       "field": "gy",
+       "type": "quantitative",
+       "scale": {
+        "domain": [
+         0,
+         27
+        ],
+        "reverse": true,
+        "nice": false
+       }
       }
      }
     },
@@ -1638,8 +1857,7 @@
      "mark": {
       "type": "text",
       "color": "#F3EEDF",
-      "fontSize": 12.5,
-      "fontStyle": "italic",
+      "fontSize": 13,
       "lineHeight": 15,
       "baseline": "middle",
       "align": {
@@ -1673,7 +1891,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1738,6 +1956,10 @@
       {
        "calculate": "datum.year + 0.5",
        "as": "x1"
+      },
+      {
+       "calculate": "'In ' + datum.season + ' farmers kept $' + format(datum.b, '.1f') + ' billion after costs, in today’s dollars. The Pacific pattern was ' + (datum.pattern == 'Neutral' ? 'neutral' : datum.pattern) + '.' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -1773,7 +1995,7 @@
         ],
         "format": "d",
         "labelColor": "#F3EEDF",
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "grid": false,
         "orient": "bottom",
         "domain": false,
@@ -1792,21 +2014,9 @@
       },
       "tooltip": [
        {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "b",
-        "title": "Kept after costs ($b, today's dollars)",
-        "format": ".1f"
-       },
-       {
-        "field": "pattern",
-        "title": "Pacific pattern"
-       },
-       {
-        "field": "status",
-        "title": "Figure"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }

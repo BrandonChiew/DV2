@@ -2,13 +2,21 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Four maps of Australia's states. Top row: April to October rain in 2019 and 2022 as a percent of each state's normal. Bottom row: wheat yield as a percent of normal. 2019 is brown almost everywhere (NSW: 40% of normal rain, 41% of normal yield); 2022 is teal (NSW: 170% of normal rain, 146% of normal yield).",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
   },
   "title": {
-   "font": "IBM Plex Sans"
+   "font": "Bricolage Grotesque, system-ui, sans-serif"
+  },
+  "axis": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
+  },
+  "legend": {
+   "labelFontSize": 13,
+   "titleFontSize": 13.5
   }
  },
  "padding": {
@@ -96,6 +104,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -124,8 +136,8 @@
         "range": [
          "#8C510A",
          "#D8B365",
-         "#F3DFA2",
-         "#E3EFE9",
+         "#EBCF8A",
+         "#F4F7F2",
          "#A9DDD4",
          "#4FB3A6",
          "#01665E"
@@ -139,8 +151,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -150,22 +162,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "rain_cool_mm",
-        "title": "Rain (mm)",
-        "format": ".0f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -182,7 +181,7 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2019 && datum.state_code == 'NSW'"
+       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
       },
       {
        "calculate": "datum.rain_cool_pct_of_avg",
@@ -191,20 +190,97 @@
       {
        "calculate": "format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
       }
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
+      "fontWeight": 600,
+      "strokeWidth": 3.2,
+      "strokeJoin": "round",
+      "strokeOpacity": 0.9
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      },
+      "stroke": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
+      },
+      {
+       "calculate": "datum.rain_cool_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
      "encoding": {
       "longitude": {
-       "datum": 146.6
+       "field": "lon",
+       "type": "quantitative"
       },
       "latitude": {
-       "datum": -32.4
+       "field": "lat",
+       "type": "quantitative"
       },
       "text": {
        "field": "lab"
@@ -293,6 +369,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -321,8 +401,8 @@
         "range": [
          "#8C510A",
          "#D8B365",
-         "#F3DFA2",
-         "#E3EFE9",
+         "#EBCF8A",
+         "#F4F7F2",
          "#A9DDD4",
          "#4FB3A6",
          "#01665E"
@@ -336,8 +416,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -347,22 +427,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "rain_cool_mm",
-        "title": "Rain (mm)",
-        "format": ".0f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -379,7 +446,7 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2022 && datum.state_code == 'NSW'"
+       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
       },
       {
        "calculate": "datum.rain_cool_pct_of_avg",
@@ -388,20 +455,97 @@
       {
        "calculate": "format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
       }
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
+      "fontWeight": 600,
+      "strokeWidth": 3.2,
+      "strokeJoin": "round",
+      "strokeOpacity": 0.9
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      },
+      "stroke": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
+      },
+      {
+       "calculate": "datum.rain_cool_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
      "encoding": {
       "longitude": {
-       "datum": 146.6
+       "field": "lon",
+       "type": "quantitative"
       },
       "latitude": {
-       "datum": -32.4
+       "field": "lat",
+       "type": "quantitative"
       },
       "text": {
        "field": "lab"
@@ -490,6 +634,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' grew wheat at ' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal yield.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -518,8 +666,8 @@
         "range": [
          "#8C510A",
          "#D8B365",
-         "#F3DFA2",
-         "#E3EFE9",
+         "#EBCF8A",
+         "#F4F7F2",
          "#A9DDD4",
          "#4FB3A6",
          "#01665E"
@@ -533,8 +681,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -544,22 +692,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "wheat_yield_t_ha",
-        "title": "Wheat yield (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -576,7 +711,7 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2019 && datum.state_code == 'NSW'"
+       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
       },
       {
        "calculate": "datum.yield_pct_of_avg",
@@ -585,20 +720,97 @@
       {
        "calculate": "format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
       }
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
+      "fontWeight": 600,
+      "strokeWidth": 3.2,
+      "strokeJoin": "round",
+      "strokeOpacity": 0.9
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      },
+      "stroke": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
+      },
+      {
+       "calculate": "datum.yield_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
      "encoding": {
       "longitude": {
-       "datum": 146.6
+       "field": "lon",
+       "type": "quantitative"
       },
       "latitude": {
-       "datum": -32.4
+       "field": "lat",
+       "type": "quantitative"
       },
       "text": {
        "field": "lab"
@@ -687,6 +899,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' grew wheat at ' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal yield.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -715,8 +931,8 @@
         "range": [
          "#8C510A",
          "#D8B365",
-         "#F3DFA2",
-         "#E3EFE9",
+         "#EBCF8A",
+         "#F4F7F2",
          "#A9DDD4",
          "#4FB3A6",
          "#01665E"
@@ -730,8 +946,8 @@
         "symbolSize": 180,
         "labelExpr": "datum.label == '< 50' ? 'under 50' : datum.label == '≥ 150' ? '150+' : datum.label",
         "columns": 7,
-        "labelFontSize": 11.5,
-        "titleFontSize": 12.5,
+        "labelFontSize": 13,
+        "titleFontSize": 13.5,
         "titleFontWeight": 600,
         "labelColor": "#3B372F",
         "titleColor": "#16222C",
@@ -741,22 +957,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "wheat_yield_t_ha",
-        "title": "Wheat yield (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -773,7 +976,7 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2022 && datum.state_code == 'NSW'"
+       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
       },
       {
        "calculate": "datum.yield_pct_of_avg",
@@ -782,20 +985,97 @@
       {
        "calculate": "format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
       }
      ],
      "mark": {
       "type": "text",
-      "fontSize": 12.5,
+      "fontSize": 13,
+      "fontWeight": 600,
+      "strokeWidth": 3.2,
+      "strokeJoin": "round",
+      "strokeOpacity": 0.9
+     },
+     "encoding": {
+      "longitude": {
+       "field": "lon",
+       "type": "quantitative"
+      },
+      "latitude": {
+       "field": "lat",
+       "type": "quantitative"
+      },
+      "text": {
+       "field": "lab"
+      },
+      "color": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      },
+      "stroke": {
+       "condition": {
+        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "value": "#16222C"
+       },
+       "value": "#F3EEDF"
+      }
+     }
+    },
+    {
+     "data": {
+      "url": "data/processed/rain_vs_yield.csv",
+      "format": {
+       "type": "csv",
+       "parse": {
+        "year": "number"
+       }
+      }
+     },
+     "transform": [
+      {
+       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
+      },
+      {
+       "calculate": "datum.yield_pct_of_avg",
+       "as": "pct_v"
+      },
+      {
+       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "as": "lab"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "as": "lon"
+      },
+      {
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "as": "lat"
+      }
+     ],
+     "mark": {
+      "type": "text",
+      "fontSize": 13,
       "fontWeight": 600,
       "color": "#16222C"
      },
      "encoding": {
       "longitude": {
-       "datum": 146.6
+       "field": "lon",
+       "type": "quantitative"
       },
       "latitude": {
-       "datum": -32.4
+       "field": "lat",
+       "type": "quantitative"
       },
       "text": {
        "field": "lab"
