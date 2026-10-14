@@ -2,7 +2,7 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Map of Western Australia. Most of the state is desert, shaded plain red earth. Only the south-west corner, around Perth, gets 300 mm or more of rain a year; that is where the wheat grows. A small locator map shows WA's place in Australia.",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -10,8 +10,8 @@
   "legend": {
    "labelColor": "#F3EEDF",
    "titleColor": "#F3EEDF",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 14,
    "titleFontSize": 14.5,
    "titleFontWeight": 600
@@ -19,8 +19,8 @@
   "axis": {
    "labelColor": "#F1D9C7",
    "titleColor": "#F1D9C7",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 14,
    "titleFontSize": 14.5,
    "titleFontWeight": 400,
@@ -204,8 +204,7 @@
       "align": "center",
       "baseline": "middle",
       "fontWeight": 600,
-      "fontStyle": "italic",
-      "font": "IBM Plex Sans"
+      "font": "Bricolage Grotesque, system-ui, sans-serif"
      },
      "encoding": {
       "longitude": {
@@ -407,7 +406,7 @@
       "fontSize": 14,
       "fontWeight": 400,
       "color": "#F1D9C7",
-      "font": "IBM Plex Sans",
+      "font": "Bricolage Grotesque, system-ui, sans-serif",
       "offset": 4
      },
      "projection": {

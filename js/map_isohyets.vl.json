@@ -1,8 +1,8 @@
 {
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Map of Australia's average yearly rainfall in nine bands, from sand (under 200 mm) to deep teal (over 2400 mm). A gold line outlines the 300 to 600 mm wheat belt in the south. Gold circles show wheat grown per state each year, 2015 to 2024 average: WA 9.8, NSW 8.1, SA 4.3, VIC 3.9, QLD 1.4 million tonnes.",
- "width": 700,
- "height": 600,
+ "width": 660,
+ "height": 570,
  "padding": {
   "left": 0,
   "right": 0,
@@ -10,7 +10,7 @@
   "bottom": 4
  },
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -18,8 +18,8 @@
   "legend": {
    "labelColor": "#3B372F",
    "titleColor": "#16222C",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 14,
    "titleFontSize": 14.5,
    "titleFontWeight": 600,
@@ -362,8 +362,8 @@
      ],
      "mark": {
       "type": "text",
-      "font": "Big Shoulders Display",
-      "fontWeight": 800,
+      "font": "Bricolage Grotesque, system-ui, sans-serif",
+      "fontWeight": 700,
       "fontSize": 15,
       "baseline": "middle",
       "color": "#16222C",
@@ -393,8 +393,8 @@
      ],
      "mark": {
       "type": "text",
-      "font": "Big Shoulders Display",
-      "fontWeight": 800,
+      "font": "Bricolage Grotesque, system-ui, sans-serif",
+      "fontWeight": 700,
       "fontSize": 15,
       "baseline": "middle",
       "align": "left",
@@ -431,8 +431,8 @@
      ],
      "mark": {
       "type": "text",
-      "font": "Big Shoulders Display",
-      "fontWeight": 800,
+      "font": "Bricolage Grotesque, system-ui, sans-serif",
+      "fontWeight": 700,
       "fontSize": 15,
       "baseline": "middle",
       "align": "left",
@@ -588,7 +588,6 @@
      "mark": {
       "type": "text",
       "fontSize": 14,
-      "fontStyle": "italic",
       "color": "#F1E4C8",
       "baseline": "middle",
       "align": "left",
@@ -652,7 +651,6 @@
      "mark": {
       "type": "text",
       "fontSize": 14,
-      "fontStyle": "italic",
       "color": "#2B2620",
       "baseline": "middle",
       "align": "left",

@@ -2,17 +2,17 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Two linked charts for 2019 and 2022, Tasmania left out. Dumbbell: wheat yield per state; NSW rose from 0.8 to 3.0 tonnes a hectare, about 3.5 times more, the biggest jump. Slopegraph: states ranked by wheat grown; NSW climbs from fourth (1.8 Mt) to second (10.6 Mt).",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
   },
   "title": {
-   "font": "IBM Plex Sans",
-   "subtitleFont": "IBM Plex Sans"
+   "font": "Bricolage Grotesque, system-ui, sans-serif",
+   "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif"
   },
   "axis": {
-   "labelFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 13,
    "titleFontSize": 13.5
   },

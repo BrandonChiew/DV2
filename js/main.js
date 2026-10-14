@@ -263,8 +263,14 @@ function incomeNote() {
   });
 }
 
-// Wait for web fonts so Vega measures text with the right typeface.
-(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+// Wait for the web fonts so Vega measures text with the right typeface.
+// Ask for both typefaces explicitly (a chart is the first user of some weights), but never wait long.
+const fontsReady = document.fonts
+  ? Promise.race([
+      Promise.all(['400 18px "Bricolage Grotesque"', '600 13px "Bricolage Grotesque"', '400 24px "Young Serif"'].map(f => document.fonts.load(f))),
+      new Promise(r => setTimeout(r, 2500))])
+  : Promise.resolve();
+fontsReady.then(() => {
   embed('c-guess', 'guess.vl.json').then(v => v && setupGuess(v));
   embed('c-map', 'map_isohyets.vl.json');
   embed('c-pano', 'panorama.vl.json').then(v => v && setupPanorama(v));

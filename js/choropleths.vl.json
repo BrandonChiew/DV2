@@ -2,13 +2,13 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Four maps of Australia's states. Top row: April to October rain in 2019 and 2022 as a percent of each state's normal. Bottom row: wheat yield as a percent of normal. 2019 is brown almost everywhere (NSW: 40% of normal rain, 41% of normal yield); 2022 is teal (NSW: 170% of normal rain, 146% of normal yield).",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
   },
   "title": {
-   "font": "IBM Plex Sans"
+   "font": "Bricolage Grotesque, system-ui, sans-serif"
   },
   "axis": {
    "labelFontSize": 13,

@@ -12,7 +12,7 @@
   "bottom": 4
  },
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
@@ -20,8 +20,8 @@
   "axis": {
    "labelColor": "#C9BFAE",
    "titleColor": "#C9BFAE",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 13,
    "titleFontSize": 13.5,
    "titleFontWeight": 400,
@@ -32,8 +32,8 @@
   "legend": {
    "labelColor": "#F3EEDF",
    "titleColor": "#F3EEDF",
-   "labelFont": "IBM Plex Sans",
-   "titleFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
+   "titleFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 13,
    "titleFontSize": 13.5
   }
@@ -44,7 +44,7 @@
   "color": "#F3EEDF",
   "fontSize": 15,
   "fontWeight": 600,
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "offset": 14
  },
  "data": {
@@ -127,9 +127,9 @@
     "title": null,
     "domain": false,
     "ticks": false,
-    "labelFont": "Big Shoulders Display",
-    "labelFontSize": 22,
-    "labelFontWeight": 800,
+    "labelFont": "Young Serif, Georgia, serif",
+    "labelFontSize": 20,
+    "labelFontWeight": 400,
     "labelColor": "#F3EEDF",
     "labelPadding": 14
    },

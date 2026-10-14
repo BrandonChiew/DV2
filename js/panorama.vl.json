@@ -2,18 +2,18 @@
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
  "description": "Four rows sharing one year axis, 1989 to 2025: the Pacific pattern (sun for El Niño, cloud for La Niña), rain capsules for five states coloured by percent of normal April to October rain, the national wheat harvest as an area, and money farmers kept after costs as bars hanging down. A light column marks the selected year.",
  "config": {
-  "font": "IBM Plex Sans",
+  "font": "Bricolage Grotesque, system-ui, sans-serif",
   "background": null,
   "view": {
    "stroke": null
   },
   "axis": {
-   "labelFont": "IBM Plex Sans",
+   "labelFont": "Bricolage Grotesque, system-ui, sans-serif",
    "labelFontSize": 13,
    "titleFontSize": 13.5
   },
   "title": {
-   "font": "IBM Plex Sans"
+   "font": "Bricolage Grotesque, system-ui, sans-serif"
   },
   "legend": {
    "labelFontSize": 13,
@@ -64,7 +64,7 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans"
+    "font": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/climate_drivers.csv",
@@ -401,7 +401,7 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans"
+    "font": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/rain_vs_yield.csv",
@@ -672,7 +672,7 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans"
+    "font": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/crops_by_state.csv",
@@ -1236,11 +1236,11 @@
     "fontWeight": 600,
     "color": "#F3EEDF",
     "offset": 6,
-    "font": "IBM Plex Sans",
+    "font": "Bricolage Grotesque, system-ui, sans-serif",
     "subtitle": "Colour shows the Pacific pattern that year",
     "subtitleColor": "#B9C6CC",
     "subtitleFontSize": 13,
-    "subtitleFont": "IBM Plex Sans"
+    "subtitleFont": "Bricolage Grotesque, system-ui, sans-serif"
    },
    "data": {
     "url": "data/processed/farm_income.csv",
@@ -1644,7 +1644,6 @@
       "type": "text",
       "color": "#F3EEDF",
       "fontSize": 13,
-      "fontStyle": "italic",
       "lineHeight": 15,
       "baseline": "middle",
       "align": {
