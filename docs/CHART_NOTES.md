@@ -46,3 +46,14 @@ One short paragraph per chart: the idiom, the data fields it uses and why it sui
 
 ## Reader aids (not charts)
 A progress bar, a year chip that shows which year the whole page is following, a "click any year" hint with three example years, the guess slider and the rain slider (keyboard alternatives to the dragging and clicking), and sentence tooltips that also open on tap.
+
+## Colour and colour-blind safety
+Checked in Chrome with *Emulate vision deficiencies* (deuteranopia, protanopia, tritanopia, achromatopsia) and by computing colour differences (CAM02-UCS ΔE) for the simulated colours of every pair that has to be told apart.
+
+- **Rain scale (nine bands):** retuned so the lightness drops in even steps from dry to wet; it reads as a clean light-to-dark ramp in greyscale. The palest bands stay a little close for protanopia and greyscale, so every band is also named in the legend and in the tooltip.
+- **% of normal scale (seven bins, brown to teal):** still brown for dry and teal for wet, with the middle bin near white. A diverging scale is dark at both ends in greyscale, so the driest and wettest bins also carry a small triangle (down for dry, up for wet), and every state on the choropleths shows its number.
+- **2019 against 2022:** brown diamond against teal triangle in the five-state scatter and the yield dumbbell, so they differ in shape as well as colour.
+- **El Niño, La Niña, neutral:** sun and cloud symbols (strip, and on the money bars); the jitter chart separates them by position and label.
+- **State lines (bump chart):** the lines are direct-labelled at both ends, and Victoria and Queensland are dashed and dotted.
+- **Crops:** wheat, barley and canola differ in lightness as well as hue, and the streamgraph keeps a fixed stack order next to its legend.
+- **Western Australia map:** the rain bands have a thin pale outline so the teal bands do not melt into the red-brown background.

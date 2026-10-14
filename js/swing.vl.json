@@ -46,7 +46,7 @@
    "height": 250,
    "title": {
     "text": "Wheat yield, tonnes a hectare",
-    "subtitle": "2019 (brown) to 2022 (teal)",
+    "subtitle": "2019 (brown diamond) to 2022 (teal triangle)",
     "anchor": "start",
     "fontSize": 14,
     "fontWeight": 600,
@@ -193,8 +193,10 @@
     },
     {
      "mark": {
-      "type": "circle",
-      "size": 150,
+      "type": "point",
+      "filled": true,
+      "shape": "diamond",
+      "size": 190,
       "color": "#8C510A",
       "stroke": "#F1E4C8",
       "strokeWidth": 1.5
@@ -216,8 +218,10 @@
     },
     {
      "mark": {
-      "type": "circle",
-      "size": 150,
+      "type": "point",
+      "filled": true,
+      "shape": "triangle-up",
+      "size": 190,
       "color": "#01665E",
       "stroke": "#F1E4C8",
       "strokeWidth": 1.5

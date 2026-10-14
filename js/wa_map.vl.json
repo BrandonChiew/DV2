@@ -81,7 +81,10 @@
      },
      "mark": {
       "type": "geoshape",
-      "strokeWidth": 0.4
+      "strokeWidth": 0.8,
+      "stroke": "#FBF3DE",
+      "strokeOpacity": 0.9,
+      "strokeJoin": "round"
      },
      "encoding": {
       "fill": {
@@ -100,15 +103,15 @@
          "2400+ mm"
         ],
         "range": [
-         "#F6EBD0",
-         "#E3E4C0",
-         "#C9DDB8",
-         "#A6D2B4",
-         "#7CC1AE",
-         "#52A9A2",
-         "#2E8C8F",
-         "#146E78",
-         "#0B4F5E"
+         "#FEF3D8",
+         "#D6E1BC",
+         "#A1D0B3",
+         "#74BCAB",
+         "#4FA6A0",
+         "#339092",
+         "#1F7981",
+         "#11636F",
+         "#084E5D"
         ]
        },
        "legend": {
@@ -125,35 +128,6 @@
         "symbolSize": 170,
         "offset": 0
        }
-      },
-      "stroke": {
-       "field": "properties.band",
-       "type": "ordinal",
-       "scale": {
-        "domain": [
-         "0–200 mm",
-         "200–300 mm",
-         "300–400 mm",
-         "400–600 mm",
-         "600–800 mm",
-         "800–1200 mm",
-         "1200–1600 mm",
-         "1600–2400 mm",
-         "2400+ mm"
-        ],
-        "range": [
-         "#F6EBD0",
-         "#E3E4C0",
-         "#C9DDB8",
-         "#A6D2B4",
-         "#7CC1AE",
-         "#52A9A2",
-         "#2E8C8F",
-         "#146E78",
-         "#0B4F5E"
-        ]
-       },
-       "legend": null
       },
       "tooltip": [
        {

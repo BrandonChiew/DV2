@@ -177,6 +177,11 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 .lg-tick { width: 2px; height: 12px; background: #8A7562; }
 .lg-scale { gap: 5px; flex-wrap: wrap; }
 .sw { display: inline-block; width: 12px; height: 18px; border-radius: 6px; margin-left: 6px; }
+.sw { position: relative; vertical-align: middle; }
+.sw-dn::after, .sw-up::after { content: ""; position: absolute; left: 50%; top: 50%; margin: -3px 0 0 -3.5px; border: 3.5px solid transparent; }
+.sw-dn::after { border-top: 6px solid var(--paper, #F3EEDF); border-bottom: 0; }
+.sw-up::after { border-bottom: 6px solid var(--paper, #F3EEDF); border-top: 0; }
+.sw.dk::after { border-top-color: #16222C; border-bottom-color: #16222C; }
 .pano-notes { font-size: 16px; line-height: 1.55; color: #D6DEE2; padding-top: 28px; }
 .pano-notes p { margin-bottom: 1.1em; }
 .big-stat { font: 600 18px/1.4 var(--body); color: var(--cream); display: flex; gap: 10px; align-items: flex-start; }
