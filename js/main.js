@@ -248,7 +248,7 @@ function fiveNote() {
         Math.sqrt(xs.reduce((s, x) => s + (x - mx) ** 2, 0) * ys.reduce((s, y) => s + (y - my) ** 2, 0));
     };
     const f = code => r(code).toFixed(2);
-    el.textContent = `Is New South Wales special? Here is the same test in every mainland state. A wetter season goes with a bigger yield in New South Wales (r = ${f('NSW')}), ` +
+    el.textContent = `Is NSW special? Here is the same test in every mainland state. Rain and yield rise together in New South Wales (r = ${f('NSW')}), ` +
       `Victoria (${f('VIC')}), South Australia (${f('SA')}) and Queensland (${f('QLD')}). Western Australia is the odd one out (${f('WA')}).`;
   });
 }

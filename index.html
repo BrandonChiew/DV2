@@ -69,14 +69,15 @@
 <h2 id="h-guess">Guess the 2019 harvest</h2>
 <p>In 2016, a good year, Australia grew 31.8 million tonnes of wheat. 2019 was the driest year Australia has ever recorded. Drag the empty bar to your guess.</p>
 <p class="hint">Your guess stays on the page and comes back in the last section.</p>
-</div>
-<div class="figure">
-<div class="chart guess-chart" id="c-guess" role="img" aria-label="Bar chart. 2016 wheat harvest: 31.8 million tonnes. A dashed bar for 2019 shows your guess; drag it up or down, or use the slider below."></div>
 <div class="guess-controls">
 <label class="guess-range">Or set your guess: <input type="range" id="guess-input" min="0" max="40" step="0.5" value="25"> <output id="guess-out" for="guess-input">25.0 Mt</output></label>
 <button type="button" id="reveal">Show the real harvest</button>
 </div>
 <p class="guess-result" id="guess-result" aria-live="polite"></p>
+</div>
+<div class="figure">
+<div class="chart guess-chart" id="c-guess" role="img" aria-label="Bar chart. 2016 wheat harvest: 31.8 million tonnes. A dashed bar for 2019 shows your guess; drag it up or down, or use the slider below."></div>
+
 </div>
 </div>
 <div class="wrap"><p class="bridge">To see why a dry year hurts so much, start with where the rain falls.</p></div>
@@ -89,25 +90,27 @@
 
 <section class="sec s-sand" id="crescent" aria-labelledby="h-crescent">
 <div class="wrap wide">
-<h2 id="h-crescent">Only a thin wet crescent can grow grain</h2>
 <div class="split map-split">
 <div class="copy">
+<h2 id="h-crescent">Only a thin wet crescent can grow grain</h2>
 <p>Most of the continent is the colour of sand: too dry to farm. Wheat grows on the curve where the colour turns green-blue, around Perth, Adelaide, Melbourne and inland Sydney. Australia is about 23 times the size of Malaysia, and most of it is in that sand.</p>
+<p class="bridge">That crescent is a narrow margin. What happens in the years the rain doesn’t come?</p>
 </div>
 <div class="figure">
 <div class="chart map-shadow" id="c-map" role="img" aria-label="Map of Australia's average yearly rainfall. Most of the inland is under 300 mm, the colour of sand. A gold line marks the wheat belt, the 300 to 600 mm band in the south from Perth to inland Sydney. Gold circles show wheat grown each year, 2015 to 2024 average: Western Australia 9.8 million tonnes, New South Wales 8.1, South Australia 4.3, Victoria 3.9, Queensland 1.4."></div>
 </div>
 </div>
-<p class="bridge">That crescent is a narrow margin. What happens in the years the rain doesn’t come?</p>
 </div>
 <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,46 C200,86 420,8 700,42 C960,74 1180,14 1440,40 L1440,90 L0,90Z" fill="#1B2A35"/></svg>
 </section>
 
 <section class="sec s-dusk" id="seasons" aria-labelledby="h-seasons">
 <div class="wrap wide">
+<div class="sec-head">
 <h2 id="h-seasons">37 seasons, one landscape</h2>
 <div class="copy">
 <p>Each column is one growing season, 1989 to 2025. Read it from the top down: the Pacific pattern that year, the rain each state got from April to October, the wheat harvest, and the money farmers kept after paying their costs.</p>
+</div>
 </div>
 <div class="pano-legend" aria-label="Legend">
 <span class="lg"><svg viewBox="0 0 24 24" class="lg-sun" aria-hidden="true"><use href="#sun"/></svg>El Niño (usually dry)</span>
@@ -151,25 +154,29 @@
 
 <section class="sec s-sand" id="sown" aria-labelledby="h-sown">
 <div class="wrap">
-<h2 id="h-sown">Farmers still sow. The rain decides the yield.</h2>
 <div class="pair text-first">
 <div class="pair-text">
+<h2 id="h-sown">Farmers still sow. The rain decides the yield.</h2>
 <p>A dry year does not stop farmers planting wheat. What changes is how much each hectare gives back.</p>
+<p class="bridge">If the yield is what moves, follow it against the rain. Start with New South Wales.</p>
+</div>
+<div class="figure">
+<div class="chart" id="c-sown" role="img" aria-label="Lollipop chart for four years. For each year, one stick shows how much the area sown to wheat changed and one shows how much the yield changed, compared with the average of the five years before. In 2002 and 2006 the area barely changed, minus 3 and minus 4 percent, while the yield fell by 53 and 47 percent. In 2019 the area fell 14 percent and the yield 27 percent. In 2022 the area rose 15 percent and the yield 49 percent."></div>
 <p id="sown-note"></p>
 <p class="hint">Hover a stick for the area, the yield and the season.</p>
 </div>
-<div class="figure"><div class="chart" id="c-sown" role="img" aria-label="Lollipop chart for four years. For each year, one stick shows how much the area sown to wheat changed and one shows how much the yield changed, compared with the average of the five years before. In 2002 and 2006 the area barely changed, minus 3 and minus 4 percent, while the yield fell by 53 and 47 percent. In 2019 the area fell 14 percent and the yield 27 percent. In 2022 the area rose 15 percent and the yield 49 percent."></div></div>
 </div>
-<p class="bridge">If the yield is what moves, follow it against the rain. Start with New South Wales.</p>
 </div>
 <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,34 C240,70 500,12 760,40 C1020,66 1230,16 1440,40 L1440,90 L0,90Z" fill="#DCE8E4"/></svg>
 </section>
 
 <section class="sec s-sage" id="nsw" aria-labelledby="h-nsw">
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-nsw">In New South Wales the harvest follows the rain</h2>
 <div class="copy">
 <p>Each grain is one year, joined in time order. Dry seasons sit low and to the left; wet seasons high and to the right. In 2019 NSW got about 40% of its normal rain, and its wheat yield fell to about 41% of normal.</p>
+</div>
 </div>
 <div class="split even">
 <div class="figure">
@@ -183,11 +190,13 @@
 <div class="figure"><div class="chart" id="c-choro" role="img" aria-label="Four maps of Australia's states. Top: April to October rain in 2019 and 2022 as a percent of normal. Bottom: wheat yield as a percent of normal. In 2019 most states are brown, below normal; in 2022 most are teal, above normal. New South Wales: 40 percent of normal rain and 41 percent of normal yield in 2019; 170 and 146 percent in 2022."></div></div>
 </div>
 <p class="hint">Drag the rain slider: the grains that got that much rain turn brown. Hover any grain or state for its numbers.</p>
-<div class="copy extra">
-<p id="five-note">Is New South Wales special? Here is the same test in every mainland state.</p>
-</div>
+<div class="five-wrap">
 <div class="figure"><div class="chart" id="c-five" role="img" aria-label="Five small scatterplots, one per mainland state, of April to October rain against wheat yield, both as a percent of that state's normal, 1989 to 2025. The dots rise to the right in New South Wales (correlation 0.62), Victoria (0.61), South Australia (0.59) and Queensland (0.48), but hardly at all in Western Australia (0.24). 2019 is brown and 2022 is teal."></div></div>
-<p class="hint">Brown is 2019 and teal is 2022. The ringed dot is the year you chose in the panorama.</p>
+<div class="five-aside">
+<p id="five-note">Is New South Wales special? Here is the same test in every mainland state.</p>
+<p class="hint">Brown is 2019, teal is 2022. The ringed dot is the year you chose in the panorama.</p>
+</div>
+</div>
 <p class="bridge">It holds almost everywhere, except Western Australia, the biggest grower of all.</p>
 </div>
 <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C240,10 470,74 720,44 C980,14 1200,70 1440,36 L1440,90 L0,90Z" fill="#9A4A24"/></svg>
@@ -195,9 +204,11 @@
 
 <section class="sec s-red" id="wa" aria-labelledby="h-wa">
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-wa">WA’s rain average is mostly desert</h2>
 <div class="copy">
 <p>Western Australia’s yields barely move with its statewide rain, because the state average is mostly desert. The wheat is in the thin south-west corner, which this average hides.</p>
+</div>
 </div>
 <div class="split even">
 <div class="figure"><div class="chart map-shadow" id="c-wamap" role="img" aria-label="Map of Western Australia. Most of the state is desert, plain red earth. Only the south-west corner around Perth gets 300 mm of rain or more a year, and that is where the wheat grows. A small locator map shows WA as the western third of Australia."></div></div>
@@ -213,9 +224,11 @@
 
 <section class="sec s-sand" id="swing" aria-labelledby="h-swing">
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-swing">NSW swings hardest: from fourth to second</h2>
 <div class="copy">
 <p>Between 2019, the driest year on record, and 2022, the record harvest, every mainland state’s wheat yield rose. New South Wales rose the most: from 0.8 to 3.0 tonnes a hectare. It went from the fourth-biggest wheat grower to the second.</p>
+</div>
 </div>
 <div class="figure"><div class="chart" id="c-swing" role="img" aria-label="Two linked charts comparing 2019 and 2022, Tasmania left out. Left, a dumbbell chart of wheat yield: New South Wales rose from 0.8 to 3.0 tonnes a hectare, about 3.5 times more, the biggest jump; Queensland 0.9 to 2.7, South Australia 1.6 to 3.3, Western Australia 1.4 to 3.1, Victoria 2.6 to 3.6. Right, a slopegraph of rank by wheat grown: Western Australia stays first; New South Wales climbs from fourth, 1.8 million tonnes, to second, 10.6."></div></div>
 <p class="hint">Hover a state to light it up in both charts. Tasmania grows too little wheat to show.</p>
@@ -243,9 +256,11 @@
 </g>
 </svg>
 <div class="wrap">
+<div class="sec-head">
 <h2 id="h-paddock">The whole paddock rises and falls</h2>
 <div class="copy">
 <p>Barley and canola grow in the same season, on the same farms, under the same sky. Stacked together, the drought years cut into all of them.</p>
+</div>
 </div>
 <div class="figure"><div class="chart" id="c-stream" role="img" aria-label="Streamgraph of wheat, barley and canola harvests in Australia, 1989 to 2025, stacked around a centre line. The whole stream narrows in the drought years 2002, 2006 and 2019, and is widest in 2022."></div></div>
 <div class="pair extra">
