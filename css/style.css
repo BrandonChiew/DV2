@@ -139,6 +139,10 @@ button.chip-btn:active { transform: none; box-shadow: none; }
   font-size: 14px; opacity: .8; padding-top: 6px;
 }
 
+/* Phones only: the circle and wheat-belt legends are written out under the map */
+.map-caption { display: none; margin: 8px 0 0; font-size: 15px; color: var(--muted-light); }
+@media (max-width: 640px) { .map-caption { display: block; } }
+
 /* Malaysia comparison beside the map */
 .my-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; margin: 14px 0 0; padding: 14px 0 0; border-top: 3px solid var(--wet); }
 .my-stat { margin: 0; font-size: 17px; line-height: 1.45; }
@@ -269,6 +273,7 @@ button[disabled] { opacity: .55; cursor: default; }
   .bridge { font-size: 19px; }
   .chart { padding-bottom: 6px; }
   .guess-range { flex-wrap: wrap; }
+  .guess-range input { flex: 1 1 140px; width: auto; min-width: 120px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

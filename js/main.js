@@ -8,7 +8,11 @@ const REDUCED_MOTION = window.matchMedia && matchMedia('(prefers-reduced-motion:
 const tipEl = document.createElement('div');
 tipEl.className = 'tip'; tipEl.setAttribute('role', 'tooltip');
 document.body.appendChild(tipEl);
+let tapShownAt = 0, tapShownY = 0;
 function sentenceTooltip(handler, event, item, value) {
+  // On a touch screen a tap redraws the chart and nudges the layout, which makes the browser send a
+  // mouse-out and a tiny scroll straight away; those must not close the sentence the reader just asked for.
+  if ((value == null || value === '') && event && event.type === 'mouseout' && performance.now() - tapShownAt < 1500) return;
   if (value == null || value === '') { tipEl.classList.remove('on'); return; }
   const text = typeof value === 'object'
     ? ('tip' in value ? value.tip : Object.entries(value).map(([k, v]) => `${k}: ${v}`).join('. '))
@@ -21,15 +25,35 @@ function sentenceTooltip(handler, event, item, value) {
   if (y + h > innerHeight - 8) y = Math.max(8, event.clientY - h - pad);
   tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
 }
-document.addEventListener('scroll', () => tipEl.classList.remove('on'), { passive: true });
+document.addEventListener('scroll', () => {
+  if (Math.abs(scrollY - tapShownY) > 60 || !tapShownAt) tipEl.classList.remove('on');
+}, { passive: true });
 
 const OPTS = { actions: false, renderer: 'svg', tooltip: sentenceTooltip };
 // The two numbers the guess game needs come from the CSV (set once the data has loaded).
 let ACTUAL_2019 = 14.5, KNOWN_2016 = 31.8;
 
+// On a phone the chart is rebuilt from a narrower variant of its spec (see js/mobile.js).
+function specSource(spec) {
+  if (!PHONE.matches) return Promise.resolve('js/' + spec);
+  return fetch('js/' + spec).then(r => r.json()).then(s => { wrapTitles(s); if (PHONE_TWEAKS[spec]) PHONE_TWEAKS[spec](s); return s; });
+}
+// Crossing the phone breakpoint (rotating, resizing) rebuilds the page's charts once.
+PHONE.addEventListener('change', () => location.reload());
+
+// Touch screens have no hover: a tap on a mark shows its sentence, a tap anywhere else hides it.
+const TOUCH = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+function tapTooltips(view) {
+  view.addEventListener('click', (evt, item) => {
+    if (item && item.tooltip) { tapShownAt = performance.now(); tapShownY = scrollY; sentenceTooltip(null, evt, item, item.tooltip); }
+    else tipEl.classList.remove('on');
+  });
+}
+
 function embed(id, spec) {
-  return vegaEmbed('#' + id, 'js/' + spec, OPTS).then(res => {
+  return specSource(spec).then(src => vegaEmbed('#' + id, src, OPTS)).then(res => {
     views[id] = res.view;
+    if (TOUCH) tapTooltips(res.view);
     fit(id);
     return res.view;
   }).catch(err => console.error(spec, err));
@@ -50,7 +74,9 @@ function fit(id) {
   if (!svg) return;
   const natural = +svg.getAttribute('width');
   const avail = (box.parentElement || box).clientWidth; // Vega shrink-wraps the chart box itself
-  const w = Math.max(Math.min(natural * (MAX_UP[id] || 1), avail), Math.round(natural * MIN_SCALE));
+  // The 37-column panorama keeps its size on a phone and scrolls sideways, so its text stays readable.
+  const floor = PHONE.matches && id === 'c-pano' ? 1 : MIN_SCALE;
+  const w = Math.max(Math.min(natural * (MAX_UP[id] || 1), avail), Math.round(natural * floor));
   svg.style.width = w + 'px';
   svg.style.height = 'auto';
   box.classList.toggle('swipe', w > avail + 1);
