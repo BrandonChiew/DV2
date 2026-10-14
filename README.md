@@ -42,8 +42,11 @@ Bureau of Meteorology (state rainfall series and the average rainfall grid, ENSO
 To check that the page agrees with the data, run `python3 data/scripts/check_numbers.py` from the repository root. It prints each number against the value worked out from the CSVs.
 
 ## Use of AI
-I used Claude, through Claude Code, as a coding assistant.
 
-- **Claude did:** wrote the HTML, CSS and JavaScript and the Vega-Lite chart specs; drew the SVG illustrations (hero, night scene, farm strip); wrote the scripts that turned the raw downloads into the files in `data/processed/`; helped plan the structure of the page.
-- **I did:** chose the topic and the story; picked and checked the data sources; wrote or edited the final wording; chose the colour palette and the typefaces (Young Serif and Bricolage Grotesque).
-- **How the numbers were checked:** the key figures (harvests, averages, percentage changes, correlations and farm income) were recomputed from the CSVs in `data/processed/` with `data/scripts/check_numbers.py` and compared with the text on the page. Several sentences on the page work out their own numbers from the CSVs in the browser, so they cannot drift from the data.
+I used Claude through Claude Code as a coding assistant throughout the project. The main idea, concept, research direction, and overall story were my own. I was responsible for developing the project and making the key creative and analytical decisions.
+
+- **How I used Claude:** I mainly used Claude to help debug my code, check whether my HTML, CSS, JavaScript, and Vega-Lite chart specifications were working correctly, and troubleshoot errors. I also used it for assistance with writing some parts of the code and refining the page structure when needed.
+- **What I did:** I came up with the main idea and story, selected and verified the data sources, made decisions about how to present the data, and wrote or edited the final wording. I also chose the colour palette and typefaces (Young Serif and Bricolage Grotesque) and guided the overall visual design and direction of the project.
+- **How I checked the numbers:** I verified the key figures, including harvests, averages, percentage changes, correlations, and farm income, by recomputing them from the CSV files in `data/processed/` using `data/scripts/check_numbers.py` and comparing the results with the text on the page. Some figures are also calculated directly from the CSV files in the browser to ensure the displayed numbers remain consistent with the data.
+
+Claude served as a supporting tool for coding assistance and debugging, while the project's core concept, research, data decisions, narrative, and creative direction were my own.
