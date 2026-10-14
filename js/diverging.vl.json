@@ -199,28 +199,18 @@
     },
     "tooltip": [
      {
-      "field": "Crop"
-     },
-     {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "production_kt",
-      "title": "Harvest (thousand t)",
-      "format": ",.0f"
-     },
-     {
-      "field": "prev5",
-      "title": "Five years before, average (thousand t)",
-      "format": ",.0f"
-     },
-     {
-      "field": "lab",
-      "title": "Change"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "datum.Crop + ' in ' + datum.season + ': ' + format(datum.production_kt / 1000, '.1f') + ' million tonnes, ' + format(abs(datum.pct), '.0f') + '% ' + (datum.pct < 0 ? 'below' : 'above') + ' the average of the five years before (' + format(datum.prev5 / 1000, '.1f') + ').'",
+     "as": "tip"
+    }
+   ]
   },
   {
    "mark": {

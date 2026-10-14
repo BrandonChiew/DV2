@@ -157,11 +157,18 @@
       },
       "tooltip": [
        {
-        "field": "properties.band",
-        "title": "Average rain in a year"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "'An average year brings ' + datum.properties.band + ' of rain here.'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "data": {

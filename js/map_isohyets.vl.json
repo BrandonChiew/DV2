@@ -143,11 +143,18 @@
     },
     "tooltip": [
      {
-      "field": "properties.band",
-      "title": "Average rain in a year"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "'An average year brings ' + datum.properties.band + ' of rain here.'",
+     "as": "tip"
+    }
+   ]
   },
   {
    "data": {
@@ -343,16 +350,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "mt",
-        "title": "Wheat a year, 2015–24 average (Mt)",
-        "format": ".1f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ' grew about ' + format(datum.mt, '.1f') + ' million tonnes of wheat a year (2015–24 average).'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "transform": [
@@ -535,15 +544,18 @@
       },
       "tooltip": [
        {
-        "field": "city",
-        "title": "City"
-       },
-       {
-        "field": "note",
-        "title": "Average rain"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.city + ' gets ' + datum.note + '.'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "mark": {

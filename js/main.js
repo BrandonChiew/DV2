@@ -2,8 +2,30 @@
 const views = {};
 window.views = views; // handy for checking signal names in the console
 
-const OPTS = { actions: false, renderer: 'svg' };
-const ACTUAL_2019 = 14.5; // shown only after the reveal; the chart reads it from crops_by_state.csv
+const REDUCED_MOTION = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Tooltips: every chart hands over one plain sentence ("tip") ---------- */
+const tipEl = document.createElement('div');
+tipEl.className = 'tip'; tipEl.setAttribute('role', 'tooltip');
+document.body.appendChild(tipEl);
+function sentenceTooltip(handler, event, item, value) {
+  if (value == null || value === '') { tipEl.classList.remove('on'); return; }
+  const text = typeof value === 'object'
+    ? ('tip' in value ? value.tip : Object.entries(value).map(([k, v]) => `${k}: ${v}`).join('. '))
+    : String(value);
+  tipEl.textContent = text;
+  tipEl.classList.add('on');
+  const pad = 14, w = tipEl.offsetWidth, h = tipEl.offsetHeight;
+  let x = event.clientX + pad, y = event.clientY + pad;
+  if (x + w > innerWidth - 8) x = Math.max(8, event.clientX - w - pad);
+  if (y + h > innerHeight - 8) y = Math.max(8, event.clientY - h - pad);
+  tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
+}
+document.addEventListener('scroll', () => tipEl.classList.remove('on'), { passive: true });
+
+const OPTS = { actions: false, renderer: 'svg', tooltip: sentenceTooltip };
+// The two numbers the guess game needs come from the CSV (set once the data has loaded).
+let ACTUAL_2019 = 14.5, KNOWN_2016 = 31.8;
 
 function embed(id, spec) {
   return vegaEmbed('#' + id, 'js/' + spec, OPTS).then(res => {
@@ -87,15 +109,34 @@ function setupGuess(view) {
     show(g); setChart(g); saveGuess(g);
   });
 
-  button.addEventListener('click', () => {
-    view.signal('reveal', true).runAsync();
-    if (window.__guess == null) saveGuess(parseFloat(input.value));
-    const g = window.__guess, diff = g - ACTUAL_2019;
-    const how = Math.abs(diff) < 0.75 ? 'Spot on.'
-      : `You were ${Math.abs(diff).toFixed(1)} Mt ${diff > 0 ? 'too high' : 'too low'}.`;
-    result.innerHTML = `Less than half.<span>The real 2019 harvest was ${ACTUAL_2019} Mt, under half of 2016. You guessed ${g.toFixed(1)} Mt. ${how}</span>`;
+  // The real bar rises over 0.9 s (instantly if the reader asked for reduced motion).
+  const rise = () => new Promise(done => {
+    view.signal('reveal', true);
+    if (REDUCED_MOTION) { view.signal('revealT', 1).run(); return done(); }
+    const t0 = performance.now(), dur = 900;
+    const step = now => {
+      const k = Math.min(1, (now - t0) / dur);
+      view.signal('revealT', 1 - Math.pow(1 - k, 3)).run();
+      if (k < 1) requestAnimationFrame(step); else done();
+    };
+    requestAnimationFrame(step);
+  });
+
+  button.addEventListener('click', async () => {
     button.disabled = true;
+    if (window.__guess == null) saveGuess(parseFloat(input.value));
+    await dataReady;                                  // real values come from the CSV
+    view.signal('realMt', ACTUAL_2019);
+    await rise();
+    const g = window.__guess, diff = g - ACTUAL_2019;
+    const drop = Math.round(100 * (1 - ACTUAL_2019 / KNOWN_2016));
+    const how = Math.abs(diff) < 0.75
+      ? `You guessed ${g.toFixed(1)} Mt: spot on.`
+      : `You guessed ${g.toFixed(1)} Mt, so you were ${Math.abs(diff).toFixed(1)} Mt too ${diff > 0 ? 'high' : 'low'}.`;
+    const big = ACTUAL_2019 < KNOWN_2016 / 2 ? 'Less than half.' : `${drop}% less.`;
+    result.innerHTML = `${big}<span>${how} The real 2019 harvest was ${ACTUAL_2019} Mt, ${drop}% less than the ${KNOWN_2016} Mt of 2016.</span>`;
     button.textContent = 'Real harvest shown';
+    updateCallback();
   });
 }
 
@@ -106,6 +147,12 @@ function loadCSV(name) {
 }
 const dataReady = Promise.all(['crops_by_state.csv', 'rain_vs_yield.csv', 'farm_income.csv', 'climate_drivers.csv'].map(loadCSV))
   .then(([crops, rain, income, drivers]) => ({ crops, rain, income, drivers }));
+
+dataReady.then(d => {
+  const wheat = y => d.crops.find(r => r.state_code === 'AUS' && r.crop === 'wheat' && r.year === y).production_kt / 1000;
+  ACTUAL_2019 = +wheat(2019).toFixed(1); KNOWN_2016 = +wheat(2016).toFixed(1);
+  updateCallback();
+});
 
 const ENSO_NAME = { 'El Nino': 'El Niño', 'La Nina': 'La Niña', Neutral: 'no El Niño or La Niña' };
 
@@ -122,6 +169,27 @@ function yearCard(d, year) {
   return `<b>${wheat ? wheat.season : year}</b>${parts.join(' ')}`;
 }
 
+/* ---------- Reader aids: progress bar, year chip, try-a-year buttons ---------- */
+function setupReaderAids() {
+  const bar = document.getElementById('progress-bar');
+  const chip = document.getElementById('year-chip');
+  const first = document.getElementById('seasons'), last = document.getElementById('end');
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, 100 * scrollY / max) : 0) + '%';
+    // The chip appears once the panorama is reached and leaves when the closing section arrives.
+    const on = scrollY + innerHeight * 0.5 > first.offsetTop && scrollY + innerHeight * 0.6 < last.offsetTop;
+    chip.classList.toggle('on', on);
+  };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+  document.querySelectorAll('.chip-btn').forEach(b => b.addEventListener('click', () => selectYear(+b.dataset.year)));
+}
+setupReaderAids();
+
 /* ---------- Page-wide year link ---------- */
 // The panorama's point selection "yr" drives everything; other charts get the year
 // through their own "selYear" signal (added section by section).
@@ -131,6 +199,11 @@ const yearListeners = [];
 let selectYear = y => setYear(y);
 function setYear(year) {
   currentYear = year;
+  const chipYear = document.getElementById('yc-year');
+  if (chipYear) chipYear.textContent = year;
+  const chip = document.getElementById('year-chip');
+  if (chip) chip.setAttribute('aria-label', `The year chosen for the whole page: ${year}. Go to the panorama to change it.`);
+  document.querySelectorAll('.chip-btn').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.year === year)));
   dataReady.then(d => {
     const card = document.getElementById('year-card');
     if (card) card.innerHTML = yearCard(d, year);

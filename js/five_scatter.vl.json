@@ -283,30 +283,18 @@
      },
      "tooltip": [
       {
-       "field": "state",
-       "title": "State"
-      },
-      {
-       "field": "season",
-       "title": "Season"
-      },
-      {
-       "field": "rain_cool_pct_of_avg",
-       "title": "Rain, % of normal",
-       "format": ".0f"
-      },
-      {
-       "field": "yield_pct_of_avg",
-       "title": "Wheat yield, % of normal",
-       "format": ".0f"
-      },
-      {
-       "field": "wheat_yield_t_ha",
-       "title": "Yield (t/ha)",
-       "format": ".1f"
+       "field": "tip",
+       "type": "nominal",
+       "title": "tip"
       }
      ]
-    }
+    },
+    "transform": [
+     {
+      "calculate": "datum.state + ', ' + datum.season + ': ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal rain and ' + format(datum.yield_pct_of_avg, '.0f') + '% of normal yield (' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare).'",
+      "as": "tip"
+     }
+    ]
    },
    {
     "transform": [

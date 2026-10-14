@@ -373,6 +373,10 @@
     {
      "calculate": "datum.year + 0.5",
      "as": "x1"
+    },
+    {
+     "calculate": "datum.season + ': wheat ' + format(datum.wheat, '.1f') + ', barley ' + format(datum.barley, '.1f') + ' and canola ' + format(datum.canola, '.1f') + ' million tonnes, ' + format(datum.total, '.1f') + ' in all.' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+     "as": "tip"
     }
    ],
    "mark": {
@@ -423,32 +427,9 @@
     },
     "tooltip": [
      {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "wheat",
-      "title": "Wheat (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "barley",
-      "title": "Barley (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "canola",
-      "title": "Canola (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "total",
-      "title": "All three (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "status",
-      "title": "Figure"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
    }

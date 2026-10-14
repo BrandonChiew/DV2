@@ -396,28 +396,18 @@
     },
     "tooltip": [
      {
-      "field": "state",
-      "title": "State"
-     },
-     {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "rank",
-      "title": "Rank"
-     },
-     {
-      "field": "mt",
-      "title": "Wheat grown (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "status",
-      "title": "Figure"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "datum.state + ' grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat in ' + datum.season + ', ranking ' + ['first', 'second', 'third', 'fourth', 'fifth'][datum.rank - 1] + ' of the five mainland states.' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+     "as": "tip"
+    }
+   ]
   },
   {
    "transform": [

@@ -104,6 +104,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -158,22 +162,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "rain_cool_mm",
-        "title": "Rain (mm)",
-        "format": ".0f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -301,6 +292,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -355,22 +350,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "rain_cool_mm",
-        "title": "Rain (mm)",
-        "format": ".0f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -498,6 +480,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' grew wheat at ' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal yield.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -552,22 +538,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "wheat_yield_t_ha",
-        "title": "Wheat yield (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -695,6 +668,10 @@
         "key": "properties.name"
        },
        "as": "geo"
+      },
+      {
+       "calculate": "datum.state + ' grew wheat at ' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare in ' + datum.season + ', ' + format(datum.pct, '.0f') + '% of its normal yield.'",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -749,22 +726,9 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "wheat_yield_t_ha",
-        "title": "Wheat yield (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "pct",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }

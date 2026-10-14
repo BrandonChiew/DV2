@@ -131,6 +131,10 @@
     {
      "calculate": "datum.idx + 0.4",
      "as": "xb"
+    },
+    {
+     "calculate": "datum.phase + ' years averaged ' + format(datum.avg, '.1f') + ' million tonnes of wheat (' + datum.n + ' years).'",
+     "as": "tip"
     }
    ],
    "mark": {
@@ -161,17 +165,9 @@
     },
     "tooltip": [
      {
-      "field": "phase",
-      "title": "Pacific pattern"
-     },
-     {
-      "field": "avg",
-      "title": "Average harvest (Mt)",
-      "format": ".1f"
-     },
-     {
-      "field": "n",
-      "title": "Years"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
    }
@@ -309,21 +305,18 @@
     },
     "tooltip": [
      {
-      "field": "year",
-      "title": "Year",
-      "format": "d"
-     },
-     {
-      "field": "phase",
-      "title": "Pacific pattern"
-     },
-     {
-      "field": "mt",
-      "title": "Wheat harvest (Mt)",
-      "format": ".1f"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "datum.year + ' was ' + (datum.phase == 'El Niño' ? 'an El Niño' : datum.phase == 'La Niña' ? 'a La Niña' : 'a neutral') + ' year. Australia grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat.'",
+     "as": "tip"
+    }
+   ]
   },
   {
    "transform": [

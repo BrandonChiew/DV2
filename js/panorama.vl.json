@@ -340,6 +340,10 @@
       {
        "calculate": "datum.year + 0.5",
        "as": "x1"
+      },
+      {
+       "calculate": "datum.year + ' was ' + (datum.pattern == 'El Niño' ? 'an El Niño' : datum.pattern == 'La Niña' ? 'a La Niña' : 'a neutral') + ' year.' + (datum.note ? ' ' + replace(replace(datum.note, 'La Nina', 'La Niña'), 'El Nino', 'El Niño') + '.' : '')",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -374,16 +378,9 @@
       },
       "tooltip": [
        {
-        "field": "year",
-        "title": "Year"
-       },
-       {
-        "field": "pattern",
-        "title": "Pacific pattern"
-       },
-       {
-        "field": "note",
-        "title": "Note"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -639,25 +636,18 @@
       },
       "tooltip": [
        {
-        "field": "year",
-        "title": "Year"
-       },
-       {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "rain_cool_mm",
-        "title": "Rain, Apr–Oct (mm)",
-        "format": ".0f"
-       },
-       {
-        "field": "rain_cool_pct_of_avg",
-        "title": "% of normal",
-        "format": ".0f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ' got ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October in ' + datum.year + ', ' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal.'",
+       "as": "tip"
+      }
+     ]
     }
    ]
   },
@@ -1174,6 +1164,10 @@
       {
        "calculate": "datum.year + 0.5",
        "as": "x1"
+      },
+      {
+       "calculate": "'Australia grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat in ' + datum.season + '.' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -1208,17 +1202,9 @@
       },
       "tooltip": [
        {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "mt",
-        "title": "Wheat harvest (Mt)",
-        "format": ".1f"
-       },
-       {
-        "field": "status",
-        "title": "Figure"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }
@@ -1742,6 +1728,10 @@
       {
        "calculate": "datum.year + 0.5",
        "as": "x1"
+      },
+      {
+       "calculate": "'In ' + datum.season + ' farmers kept $' + format(datum.b, '.1f') + ' billion after costs, in today’s dollars. The Pacific pattern was ' + (datum.pattern == 'Neutral' ? 'neutral' : datum.pattern) + '.' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+       "as": "tip"
       }
      ],
      "mark": {
@@ -1796,21 +1786,9 @@
       },
       "tooltip": [
        {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "b",
-        "title": "Kept after costs ($b, today's dollars)",
-        "format": ".1f"
-       },
-       {
-        "field": "pattern",
-        "title": "Pacific pattern"
-       },
-       {
-        "field": "status",
-        "title": "Figure"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
      }

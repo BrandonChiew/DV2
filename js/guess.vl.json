@@ -102,6 +102,14 @@
   {
    "name": "reveal",
    "value": false
+  },
+  {
+   "name": "revealT",
+   "value": 0
+  },
+  {
+   "name": "realMt",
+   "value": 14.5
   }
  ],
  "layer": [
@@ -109,6 +117,10 @@
    "transform": [
     {
      "filter": "datum.kind == 'known'"
+    },
+    {
+     "calculate": "'In ' + datum.season + ' Australia grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat.'",
+     "as": "tip"
     }
    ],
    "mark": {
@@ -124,13 +136,9 @@
     },
     "tooltip": [
      {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "mt",
-      "title": "Wheat harvest (Mt)",
-      "format": ".1f"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
    }
@@ -163,6 +171,14 @@
    "transform": [
     {
      "filter": "datum.kind == 'actual' && reveal"
+    },
+    {
+     "calculate": "'In ' + datum.season + ' Australia grew ' + format(datum.mt, '.1f') + ' million tonnes of wheat.'",
+     "as": "tip"
+    },
+    {
+     "calculate": "datum.mt * revealT",
+     "as": "mt_anim"
     }
    ],
    "mark": {
@@ -174,17 +190,14 @@
    },
    "encoding": {
     "y": {
-     "field": "mt"
+     "field": "mt_anim",
+     "type": "quantitative"
     },
     "tooltip": [
      {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "mt",
-      "title": "Wheat harvest (Mt)",
-      "format": ".1f"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
    }
@@ -193,6 +206,10 @@
    "transform": [
     {
      "filter": "datum.kind == 'actual' && reveal"
+    },
+    {
+     "calculate": "datum.mt * revealT",
+     "as": "mt_anim"
     }
    ],
    "mark": {
@@ -205,7 +222,8 @@
    },
    "encoding": {
     "y": {
-     "field": "mt"
+     "field": "mt_anim",
+     "type": "quantitative"
     },
     "text": {
      "field": "mt",
@@ -216,7 +234,7 @@
   {
    "transform": [
     {
-     "filter": "datum.kind == 'known' && reveal"
+     "filter": "datum.kind == 'known' && reveal && revealT >= 0.98"
     },
     {
      "calculate": "datum.mt / 2",
@@ -248,7 +266,7 @@
   {
    "transform": [
     {
-     "filter": "datum.kind == 'known' && reveal"
+     "filter": "datum.kind == 'known' && reveal && revealT >= 0.98"
     },
     {
      "calculate": "datum.mt / 2",
@@ -376,11 +394,15 @@
     {
      "calculate": "'2019'",
      "as": "label"
+    },
+    {
+     "calculate": "reveal ? format(abs(datum.mt_pick - realMt), '.1f') + ' Mt too ' + (datum.mt_pick > realMt ? 'high' : 'low') : 'your guess'",
+     "as": "glab"
     }
    ],
    "mark": {
     "type": "text",
-    "dy": -40,
+    "dy": -44,
     "fontSize": 13,
     "color": "#E7A04B"
    },
@@ -389,7 +411,8 @@
      "field": "mt_pick"
     },
     "text": {
-     "value": "your guess"
+     "field": "glab",
+     "type": "nominal"
     }
    }
   },

@@ -382,35 +382,18 @@
     },
     "tooltip": [
      {
-      "field": "season",
-      "title": "Season"
-     },
-     {
-      "field": "rain_cool_mm",
-      "title": "Rain, Apr–Oct (mm)",
-      "format": ".0f"
-     },
-     {
-      "field": "rain_cool_pct_of_avg",
-      "title": "Rain, % of normal",
-      "format": ".0f"
-     },
-     {
-      "field": "wheat_yield_t_ha",
-      "title": "Wheat yield (t/ha)",
-      "format": ".2f"
-     },
-     {
-      "field": "yield_pct_of_avg",
-      "title": "Yield, % of normal",
-      "format": ".0f"
-     },
-     {
-      "field": "status",
-      "title": "Figure"
+      "field": "tip",
+      "type": "nominal",
+      "title": "tip"
      }
     ]
-   }
+   },
+   "transform": [
+    {
+     "calculate": "'NSW, ' + datum.season + ': ' + format(datum.rain_cool_mm, '.0f') + ' mm of rain from April to October (' + format(datum.rain_cool_pct_of_avg, '.0f') + '% of normal) and wheat at ' + format(datum.wheat_yield_t_ha, '.1f') + ' tonnes a hectare (' + format(datum.yield_pct_of_avg, '.0f') + '% of normal).' + (datum.status == 'actual' ? '' : ' This is an ABARES ' + datum.status + '.')",
+     "as": "tip"
+    }
+   ]
   },
   {
    "transform": [

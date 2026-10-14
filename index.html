@@ -15,6 +15,10 @@
 </head>
 <body>
 <a class="skip" href="#guess">Skip to the story</a>
+<div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+<a class="year-chip" id="year-chip" href="#seasons" aria-label="The year chosen for the whole page: 2019. Go to the panorama to change it.">
+<span class="yc-label">Year chosen</span> <strong id="yc-year">2019</strong>
+</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
@@ -125,6 +129,21 @@
 <span class="sw" style="background:#4FB3A6"></span>130–150
 <span class="sw" style="background:#01665E"></span>150+</span>
 </div>
+<div class="pano-try" role="group" aria-label="Choose a year">
+<svg class="try-icon" viewBox="0 0 84 56" aria-hidden="true">
+<g><rect x="8" y="9" width="14" height="9" rx="4.5" fill="#D8B365"/><rect x="8" y="22" width="14" height="9" rx="4.5" fill="#A9DDD4"/><rect x="8" y="35" width="14" height="9" rx="4.5" fill="#F3DFA2"/>
+<rect x="34" y="9" width="14" height="9" rx="4.5" fill="#8C510A"/><rect x="34" y="22" width="14" height="9" rx="4.5" fill="#8C510A"/><rect x="34" y="35" width="14" height="9" rx="4.5" fill="#D8B365"/>
+<rect x="60" y="9" width="14" height="9" rx="4.5" fill="#4FB3A6"/><rect x="60" y="22" width="14" height="9" rx="4.5" fill="#01665E"/><rect x="60" y="35" width="14" height="9" rx="4.5" fill="#4FB3A6"/></g>
+<rect x="29" y="3" width="24" height="46" rx="9" fill="#FFFFFF" fill-opacity=".14" stroke="#F3EEDF" stroke-opacity=".75"/>
+<path d="M45 36 L45 53 L49.5 48.5 L53 55 L56 53.5 L52.5 47.5 L58.5 47Z" fill="#F3EEDF" stroke="#0F1A22" stroke-width="1.4" stroke-linejoin="round"/>
+</svg>
+<p class="try-text"><strong>Click any year in the chart.</strong> The light column moves, and every chart further down the page follows that year. Try one:</p>
+<div class="try-buttons">
+<button type="button" class="chip-btn" data-year="2002" aria-pressed="false">2002 <span>El Niño, dry</span></button>
+<button type="button" class="chip-btn" data-year="2019" aria-pressed="true">2019 <span>driest on record</span></button>
+<button type="button" class="chip-btn" data-year="2022" aria-pressed="false">2022 <span>record harvest</span></button>
+</div>
+</div>
 <div class="pano">
 <div class="figure">
 <div class="chart" id="c-pano" role="img" aria-label="Four linked rows from 1989 to 2025. Top: El Niño years shown as suns, La Niña years as clouds. Second: April to October rain for NSW, Victoria, South Australia, Western Australia and Queensland as capsules from brown (under half of normal) to teal (over one and a half times normal). Third: Australia's wheat harvest, with dips to 10.1 million tonnes in 2002 and 10.8 in 2006, and a record 40.5 in 2022. Bottom: money farmers kept after costs, hanging down like roots, from almost nothing in 1994–95 to a record 25.2 billion dollars in 2021–22."></div>
@@ -139,7 +158,6 @@
 <p id="income-note"></p>
 </aside>
 </div>
-<p class="hint">Click or tap any year: the light column moves, and the charts further down the page that run through time follow that year.</p>
 <div class="pair extra">
 <div class="figure"><div class="chart" id="c-enso" role="img" aria-label="Jitter plot of Australia's wheat harvest in each year from 1989 to 2025, grouped by Pacific pattern. El Niño years average 16.2 million tonnes, neutral years 22.0 and La Niña years 27.0. 2002 and 2006, both El Niño years, are among the lowest dots. 2019 is a neutral year but also low, at 14.5. 2022, a La Niña year, is the highest at 40.5."></div></div>
 <aside class="pano-notes">

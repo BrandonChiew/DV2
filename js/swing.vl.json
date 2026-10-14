@@ -131,26 +131,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "2019",
-        "title": "Yield 2019 (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "2022",
-        "title": "Yield 2022 (t/ha)",
-        "format": ".2f"
-       },
-       {
-        "field": "ratio",
-        "title": "Times more",
-        "format": ".1f"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ': wheat yield rose from ' + format(datum['2019'], '.1f') + ' tonnes a hectare in 2019 to ' + format(datum['2022'], '.1f') + ' in 2022, ' + format(datum.ratio, '.1f') + ' times more.'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "mark": {
@@ -442,11 +434,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ': rank by wheat grown, 2019 to 2022'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "mark": {
@@ -471,28 +470,18 @@
       },
       "tooltip": [
        {
-        "field": "state",
-        "title": "State"
-       },
-       {
-        "field": "season",
-        "title": "Season"
-       },
-       {
-        "field": "mt",
-        "title": "Wheat grown (Mt)",
-        "format": ".1f"
-       },
-       {
-        "field": "rank",
-        "title": "Rank"
-       },
-       {
-        "field": "status",
-        "title": "Figure"
+        "field": "tip",
+        "type": "nominal",
+        "title": "tip"
        }
       ]
-     }
+     },
+     "transform": [
+      {
+       "calculate": "datum.state + ' grew ' + format(datum.mt, '.1f') + ' million tonnes in ' + datum.season + ', ranking ' + ['first', 'second', 'third', 'fourth', 'fifth'][datum.rank - 1] + ' of the five mainland states.'",
+       "as": "tip"
+      }
+     ]
     },
     {
      "transform": [

@@ -53,6 +53,35 @@ p { margin: 0 0 1em; }
 .note { font-size: 16px; }
 .diverge { margin-top: 0; }
 
+/* ---------- Reader aids: progress bar, year chip, try-a-year hint ---------- */
+.progress { position: fixed; left: 0; top: 0; width: 100%; height: 4px; z-index: 60; pointer-events: none; }
+.progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--sun), var(--gold)); box-shadow: 0 1px 0 rgba(15, 26, 34, .55); }
+.year-chip {
+  position: fixed; right: 16px; bottom: 16px; z-index: 40; display: inline-flex; align-items: baseline; gap: 8px;
+  background: var(--ink); color: var(--cream); border: 2px solid var(--gold); padding: 8px 14px 8px 12px;
+  font: 600 14px/1.2 var(--body); text-decoration: none; box-shadow: 4px 4px 0 rgba(0, 0, 0, .35);
+  opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.year-chip.on { opacity: 1; transform: none; pointer-events: auto; }
+.year-chip strong { font: 400 22px/1 var(--display); color: var(--gold); }
+.pano-try {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin: 6px 0 10px; padding: 10px 16px;
+  border: 1px solid rgba(243, 238, 223, .3); background: rgba(255, 255, 255, .05);
+}
+.try-icon { width: 76px; height: auto; flex: none; }
+.try-text { margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.45; color: #E6ECEF; }
+.try-text strong { color: var(--cream); }
+.try-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+button.chip-btn {
+  font: 600 15px/1.2 var(--body); color: var(--cream); background: transparent; border: 2px solid var(--gold);
+  padding: 7px 12px; box-shadow: none; display: inline-flex; gap: 8px; align-items: baseline;
+}
+button.chip-btn span { font-weight: 400; font-size: 13.5px; color: var(--muted-dark); }
+button.chip-btn:hover { background: rgba(240, 199, 102, .18); }
+button.chip-btn[aria-pressed="true"] { background: var(--gold); color: var(--ink); }
+button.chip-btn[aria-pressed="true"] span { color: #3B372F; }
+button.chip-btn:active { transform: none; box-shadow: none; }
+
 /* ---------- Hero ---------- */
 .hero { position: relative; height: 100vh; min-height: 560px; max-height: 780px; overflow: hidden; background: var(--dusk); }
 .hero .fill, .night .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
@@ -191,11 +220,25 @@ button[disabled] { opacity: .55; cursor: default; }
 .soil li { margin-bottom: 8px; }
 .soil h3 { font-family: var(--display); font-weight: 400; font-size: 24px; letter-spacing: 0; }
 
-/* Vega tooltip */
-#vg-tooltip-element.vg-tooltip {
-  font-family: var(--body); font-size: 13px; background: #FFFDF6; color: var(--ink);
-  border: 1px solid #3A2A1E; box-shadow: 3px 3px 0 rgba(58, 42, 30, .35); border-radius: 0;
+/* Clear hover state on every interactive mark (Vega only lets marks with a tooltip or a selection take the pointer) */
+:root { --hover-ink: #16222C; }
+.s-guess, .s-dusk, .s-paddock, .s-red, .night { --hover-ink: #F3EEDF; }
+.chart svg g.mark-symbol path:hover, .chart svg g.mark-rect path:hover, .chart svg g.mark-shape path:hover,
+.chart svg g.mark-area path:hover, .chart svg g.mark-arc path:hover {
+  stroke: var(--hover-ink); stroke-width: 3px; stroke-opacity: 1; paint-order: stroke; cursor: pointer;
 }
+.chart svg g.mark-line path:hover { stroke-width: 6px; cursor: pointer; }
+.chart svg g.mark-rule line:hover { stroke-width: 6px; cursor: pointer; }
+.s-sand :focus-visible, .s-sage :focus-visible { outline-color: var(--ink); }
+.s-red :focus-visible, .night :focus-visible { outline-color: var(--cream); }
+
+/* Vega tooltip */
+.tip {
+  position: fixed; z-index: 1000; max-width: min(300px, 88vw); pointer-events: none; display: none;
+  font: 400 15px/1.45 var(--body); background: #FFFDF6; color: var(--ink);
+  border: 1px solid #3A2A1E; box-shadow: 4px 4px 0 rgba(58, 42, 30, .35); padding: 9px 12px;
+}
+.tip.on { display: block; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
@@ -208,6 +251,8 @@ button[disabled] { opacity: .55; cursor: default; }
   .sec { padding: 44px 0 64px; }
   .sec-head { grid-template-columns: minmax(0, 1fr); }
   .five-aside { position: static; width: auto; margin-top: 12px; }
+  .year-chip { right: 10px; bottom: 10px; padding: 6px 10px; }
+  .pano-try { padding: 10px 12px; }
 }
 @media (max-width: 600px) {
   body { font-size: 17px; }
