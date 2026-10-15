@@ -37,7 +37,7 @@ Notes: the season "2019–20" is the crop sown in autumn 2019 and harvested in l
 | Area of Australia | 7,688,287 km² | Geoscience Australia, Area of Australia, States and Territories: https://ga.gov.au/scientific-topics/national-location-information/dimensions/area-of-australia-states-and-territories |
 | Area of Malaysia | 329,847 km² (total area) | CIA World Factbook, Malaysia: https://www.cia.gov/the-world-factbook/countries/malaysia/ |
 | Ratio | 23.3, written as "about 23 times" | calculated from the two areas above |
-| Malaysia's mean annual rainfall | 3,085 mm | World Bank Climate Knowledge Portal, Malaysia current climate: https://climateknowledgeportal.worldbank.org/node/2456 |
+| Malaysia's mean annual rainfall | 3,085.5 mm (shown as about 3,100 mm) | World Bank Climate Knowledge Portal, Malaysia current climate: https://climateknowledgeportal.worldbank.org/node/2456 |
 
 The 300 to 600 mm wheat belt it is compared with comes from the BoM rainfall bands above.
 
