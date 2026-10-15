@@ -88,7 +88,7 @@ const PHONE_TWEAKS = {
   },
   'bump.vl.json': s => {
     s.width = 250; s.height = 200;
-    s.layer[1].mark.strokeWidth = 2; s.layer[3].mark.size = 12; s.layer[3].mark.strokeWidth = 0;       // 37 seasons in 250px: finer lines and dots
+    s.layer[1].mark.strokeWidth = 2;
   },
   'streamgraph.vl.json': s => {
     s.width = 310; s.height = 240;

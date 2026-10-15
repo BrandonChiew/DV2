@@ -161,8 +161,7 @@
    "mark": {
     "type": "line",
     "strokeWidth": 3,
-    "interpolate": "monotone",
-    "strokeCap": "round"
+    "interpolate": "monotone"
    },
    "encoding": {
     "x": {
@@ -223,9 +222,9 @@
       "range": [
        "#9A4A24",
        "#1F3F73",
-       "#3A9A94",
-       "#5A5144",
-       "#C2A56F"
+       "#2C8A85",
+       "#A58FCB",
+       "#E3BA4A"
       ]
      }
     },
@@ -239,42 +238,6 @@
       "value": 1
      },
      "value": 0.15
-    },
-    "strokeDash": {
-     "field": "state_code",
-     "type": "nominal",
-     "legend": null,
-     "scale": {
-      "domain": [
-       "WA",
-       "NSW",
-       "SA",
-       "VIC",
-       "QLD"
-      ],
-      "range": [
-       [
-        1,
-        0
-       ],
-       [
-        1,
-        0
-       ],
-       [
-        1,
-        0
-       ],
-       [
-        8,
-        4
-       ],
-       [
-        2,
-        4
-       ]
-      ]
-     }
     }
    }
   },
@@ -352,10 +315,9 @@
   {
    "mark": {
     "type": "circle",
-    "size": 46,
-    "opacity": 1,
-    "stroke": "#F1E4C8",
-    "strokeWidth": 1,
+    "size": 120,
+    "opacity": 0.001,
+    "strokeWidth": 0,
     "cursor": "pointer"
    },
    "encoding": {
@@ -401,35 +363,6 @@
       "nice": false
      },
      "axis": null
-    },
-    "color": {
-     "field": "state_code",
-     "type": "nominal",
-     "legend": null,
-     "scale": {
-      "domain": [
-       "WA",
-       "NSW",
-       "SA",
-       "VIC",
-       "QLD"
-      ],
-      "range": [
-       "#9A4A24",
-       "#1F3F73",
-       "#3A9A94",
-       "#5A5144",
-       "#C2A56F"
-      ]
-     }
-    },
-    "opacity": {
-     "condition": {
-      "param": "st",
-      "empty": true,
-      "value": 1
-     },
-     "value": 0.15
     },
     "tooltip": [
      {
@@ -609,7 +542,7 @@
      "filter": "datum.year == 2025"
     },
     {
-     "calculate": "{'WA': '#9A4A24', 'NSW': '#1F3F73', 'SA': '#17696A', 'VIC': '#5A5144', 'QLD': '#6E5434'}[datum.state_code]",
+     "calculate": "{'WA': '#9A4A24', 'NSW': '#1F3F73', 'SA': '#17696A', 'VIC': '#5E4A85', 'QLD': '#7A5A00'}[datum.state_code]",
      "as": "tc"
     }
    ],
@@ -690,7 +623,7 @@
      "filter": "datum.year == 1989"
     },
     {
-     "calculate": "{'WA': '#9A4A24', 'NSW': '#1F3F73', 'SA': '#17696A', 'VIC': '#5A5144', 'QLD': '#6E5434'}[datum.state_code]",
+     "calculate": "{'WA': '#9A4A24', 'NSW': '#1F3F73', 'SA': '#17696A', 'VIC': '#5E4A85', 'QLD': '#7A5A00'}[datum.state_code]",
      "as": "tc"
     }
    ],

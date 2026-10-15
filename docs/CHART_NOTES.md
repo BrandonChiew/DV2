@@ -54,6 +54,6 @@ Checked in Chrome with *Emulate vision deficiencies* (deuteranopia, protanopia, 
 - **% of normal scale (seven bins, brown to teal):** still brown for dry and teal for wet, with the middle bin near white. A diverging scale is dark at both ends in greyscale, so the driest and wettest bins also carry a small triangle (down for dry, up for wet), and every state on the choropleths shows its number.
 - **2019 against 2022:** brown diamond against teal triangle in the five-state scatter and the yield dumbbell, so they differ in shape as well as colour.
 - **El Niño, La Niña, neutral:** sun and cloud symbols (strip, and on the money bars); the jitter chart separates them by position and label.
-- **State lines (bump chart):** the lines are direct-labelled at both ends, and Victoria and Queensland are dashed and dotted.
+- **State lines (bump chart):** one solid line per state, each directly labelled at both ends. The five colours differ in lightness as well as hue (navy, rust, teal, lilac, gold), so they stay apart in all four simulations (smallest difference ΔE 11).
 - **Crops:** wheat, barley and canola differ in lightness as well as hue, and the streamgraph keeps a fixed stack order next to its legend.
 - **Western Australia map:** the rain bands have a thin pale outline so the teal bands do not melt into the red-brown background.
