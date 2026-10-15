@@ -65,12 +65,6 @@ const PHONE_TWEAKS = {
     s.columns = 2; s.spec.width = 118; s.spec.height = 150;
     s.spec.layer[3].encoding.color.legend.columns = 1;
   },
-  'enso_jitter.vl.json': s => {
-    s.width = 290; s.height = 300;
-    walkSpec(s, n => { if (n.axis && typeof n.axis.labelExpr === 'string') n.axis.labelExpr = "['El Niño', 'Neutral', 'La Niña'][datum.value]"; });
-    replaceText(s, "'2019: no El Niño, still the driest year'", "'2019: no El Niño'");
-    replaceText(s, "'average ' + format(datum.avg, '.1f') + ' Mt'", "format(datum.avg, '.1f') + ' Mt'");   // three long labels would overlap
-  },
   'sown_vs_yield.vl.json': s => {
     s.spec.width = 140;
     replaceText(s, "datum.year == 2019 ? '2019, driest' : datum.year == 2022 ? '2022, record' : toString(datum.year)", 'toString(datum.year)');

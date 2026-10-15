@@ -66,7 +66,7 @@ function embed(id, spec) {
 const MIN_SCALE = 0.72;
 // Charts that sit in a column of known width may also grow to fill it (up to this factor),
 // so a narrow chart is not left floating in an empty section.
-const MAX_UP = { 'c-guess': 1.3, 'c-enso': 1.4, 'c-sown': 1.4, 'c-diverge': 1.35, 'c-five': 1.25,
+const MAX_UP = { 'c-guess': 1.3, 'c-sown': 1.4, 'c-diverge': 1.35, 'c-five': 1.25,
   'c-map': 1.12, 'c-bump': 1.2, 'c-swing': 1.15, 'c-stream': 1.2, 'c-nsw': 1.2, 'c-choro': 1.2, 'c-wamap': 1.25, 'c-wa': 1.25 };
 function fit(id) {
   const box = document.getElementById(id);
@@ -180,18 +180,12 @@ dataReady.then(d => {
   updateCallback();
 });
 
-const ENSO_NAME = { 'El Nino': 'El Niño', 'La Nina': 'La Niña', Neutral: 'no El Niño or La Niña' };
-
 function yearCard(d, year) {
   const wheat = d.crops.find(r => r.state_code === 'AUS' && r.crop === 'wheat' && r.year === year);
   const inc = d.income.find(r => r.year === year);
-  const enso = d.drivers.find(r => r.year === year);
-  const nsw = d.rain.find(r => r.state_code === 'NSW' && r.year === year);
   const parts = [];
   if (wheat) parts.push(`Wheat: ${(wheat.production_kt / 1000).toFixed(1)} Mt${wheat.status !== 'actual' ? ' (ABARES ' + wheat.status + ')' : ''}.`);
-  if (nsw) parts.push(`NSW rain: ${Math.round(nsw.rain_cool_pct_of_avg)}% of normal.`);
   if (inc) parts.push(`Farmers kept $${(inc.real_net_value_m / 1000).toFixed(1)}b.`);
-  if (enso) parts.push(`Pacific: ${ENSO_NAME[enso.enso]}.`);
   return `<b>${wheat ? wheat.season : year}</b>${parts.join(' ')}`;
 }
 
@@ -212,7 +206,6 @@ function setupReaderAids() {
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
   addEventListener('resize', update);
   update();
-  document.querySelectorAll('.chip-btn').forEach(b => b.addEventListener('click', () => selectYear(+b.dataset.year)));
 }
 setupReaderAids();
 
@@ -229,7 +222,6 @@ function setYear(year) {
   if (chipYear) chipYear.textContent = year;
   const chip = document.getElementById('year-chip');
   if (chip) chip.setAttribute('aria-label', `The year chosen for the whole page: ${year}. Go to the panorama to change it.`);
-  document.querySelectorAll('.chip-btn').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.year === year)));
   dataReady.then(d => {
     const card = document.getElementById('year-card');
     if (card) card.innerHTML = yearCard(d, year);
@@ -334,16 +326,6 @@ function fiveNote() {
   });
 }
 
-// Panorama side note: 2019 is the exception for money.
-function incomeNote() {
-  const el = document.getElementById('income-note');
-  dataReady.then(d => {
-    const kept = y => (d.income.find(r => r.year === y).real_net_value_m / 1000).toFixed(1);
-    el.textContent = `Money did not follow in 2019: farmers kept $${kept(2019)}b after costs, against $${kept(2018)}b the year before. ` +
-      'That figure covers every farm product, not wheat alone.';
-  });
-}
-
 // Wait for the web fonts so Vega measures text with the right typeface.
 // Ask for both typefaces explicitly (a chart is the first user of some weights), but never wait long.
 const fontsReady = document.fonts
@@ -362,11 +344,9 @@ fontsReady.then(() => {
   embed('c-swing', 'swing.vl.json');
   embed('c-stream', 'streamgraph.vl.json').then(v => v && followYear(v));
   embed('c-diverge', 'diverging.vl.json');
-  embed('c-enso', 'enso_jitter.vl.json').then(v => { if (v) { followYear(v); clickYear(v); } });
   embed('c-sown', 'sown_vs_yield.vl.json');
   embed('c-five', 'five_scatter.vl.json').then(v => v && followYear(v));
   embed('c-bump', 'bump.vl.json').then(v => { if (v) { followYear(v); clickYear(v); } });
   barleyNote();
   fiveNote();
-  incomeNote();
 });
