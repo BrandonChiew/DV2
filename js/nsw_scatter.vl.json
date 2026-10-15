@@ -1,6 +1,6 @@
 {
  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
- "description": "Connected scatterplot for New South Wales, 1989 to 2025: April to October rain against wheat yield, one grain per year joined in time order. Dry years sit low and left (2019: 118 mm and 0.8 t/ha), wet years high and right (2022: 495 mm and 3.0 t/ha).",
+ "description": "Connected scatterplot for New South Wales, 1989 to 2025: April to October rain against wheat yield, one dot per year joined in time order. Dry years sit low and left (2019: 118 mm and 0.8 t/ha), wet years high and right (2022: 495 mm and 3.0 t/ha).",
  "width": 440,
  "height": 380,
  "padding": {
@@ -351,11 +351,10 @@
   {
    "mark": {
     "type": "point",
-    "shape": "M0,-1 C0.62,-0.62 0.62,0.62 0,1 C-0.62,0.62 -0.62,-0.62 0,-1Z",
+    "shape": "circle",
     "filled": true,
     "stroke": "#16222C",
     "strokeWidth": 0.8,
-    "angle": 30,
     "cursor": "default"
    },
    "encoding": {

@@ -17,7 +17,7 @@
 <a class="skip" href="#guess">Skip to the story</a>
 <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
 <a class="year-chip" id="year-chip" href="#seasons" aria-label="The year chosen for the whole page: 2019. Go to the panorama to change it.">
-<span class="yc-label">Year chosen</span> <strong id="yc-year">2019</strong>
+<span class="yc-label">Year chosen</span> <strong id="yc-year">2019</strong> <span class="yc-hint">· change it in the panorama</span>
 </a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -121,6 +121,7 @@
 </svg>
 <p class="hero-lede">For Australia’s grain farmers, one season of rain decides whether the paddocks give a little or a lot. This is 37 harvests, told through the rain that made them.</p>
 </div>
+<svg class="wave hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,44 C240,12 480,72 720,42 C960,14 1200,66 1440,36 L1440,90 L0,90Z" fill="#0F1A22"/></svg>
 </header>
 
 <main>
@@ -143,11 +144,6 @@
 </div>
 </div>
 <div class="wrap"><p class="bridge">To see why a dry year hurts so much, start with where the rain falls.</p></div>
-<svg class="wave dune" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-<path d="M0,58 C180,20 340,30 520,60 C700,90 880,40 1060,36 C1220,32 1340,58 1440,48 L1440,120 L0,120Z" fill="#8C510A"/>
-<path d="M0,78 C200,50 380,62 560,82 C760,104 920,64 1100,62 C1260,60 1360,80 1440,72 L1440,120 L0,120Z" fill="#E7A04B"/>
-<path d="M0,98 C220,80 420,90 620,102 C820,114 1000,88 1180,88 C1320,88 1400,98 1440,96 L1440,120 L0,120Z" fill="#F1E4C8"/>
-</svg>
 </section>
 
 <section class="sec s-sand" id="crescent" aria-labelledby="h-crescent">
@@ -159,7 +155,7 @@
 <p class="bridge">That crescent is a narrow margin. What happens in the years the rain doesn’t come?</p>
 </div>
 <div class="figure">
-<div class="chart map-shadow" id="c-map" role="img" aria-label="Map of Australia's average yearly rainfall. Most of the inland is under 300 mm, the colour of sand. A gold line marks the wheat belt, the 300 to 600 mm band in the south from Perth to inland Sydney. Gold circles show wheat grown each year, 2015 to 2024 average: Western Australia 9.8 million tonnes, New South Wales 8.1, South Australia 4.3, Victoria 3.9, Queensland 1.4."></div>
+<div class="chart" id="c-map" role="img" aria-label="Map of Australia's average yearly rainfall. Most of the inland is under 300 mm, the colour of sand. A gold line marks the wheat belt, the 300 to 600 mm band in the south from Perth to inland Sydney. Gold circles show wheat grown each year, 2015 to 2024 average: Western Australia 9.8 million tonnes, New South Wales 8.1, South Australia 4.3, Victoria 3.9, Queensland 1.4."></div>
 <p class="map-caption">Gold circles show the wheat each state grows in a year, 2015–24 average, in million tonnes. The gold line marks the 300 to 600 mm wheat belt.</p>
 <aside class="my-compare" aria-label="Australia compared with Malaysia">
 <p class="my-stat"><strong>23×</strong><span>Malaysia would fit inside Australia about 23 times (7.69 million km² against 0.33 million).</span></p>
@@ -169,7 +165,6 @@
 </div>
 </div>
 </div>
-<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,46 C200,86 420,8 700,42 C960,74 1180,14 1440,40 L1440,90 L0,90Z" fill="#1B2A35"/></svg>
 </section>
 
 <section class="sec s-dusk" id="seasons" aria-labelledby="h-seasons">
@@ -231,7 +226,6 @@
 </div>
 <p class="bridge">The dry columns keep landing on the dips. Is the rain really what decides it?</p>
 </div>
-<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C260,70 520,10 780,36 C1040,62 1240,18 1440,38 L1440,90 L0,90Z" fill="#F1E4C8"/></svg>
 </section>
 
 <section class="sec s-sand" id="sown" aria-labelledby="h-sown">
@@ -244,12 +238,10 @@
 </div>
 <div class="figure">
 <div class="chart" id="c-sown" role="img" aria-label="Lollipop chart for four years. For each year, one stick shows how much the area sown to wheat changed and one shows how much the yield changed, compared with the average of the five years before. In 2002 and 2006 the area barely changed, minus 3 and minus 4 percent, while the yield fell by 53 and 47 percent. In 2019 the area fell 14 percent and the yield 27 percent. In 2022 the area rose 15 percent and the yield 49 percent."></div>
-<p id="sown-note"></p>
 <p class="hint">Hover a stick for the area, the yield and the season.</p>
 </div>
 </div>
 </div>
-<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,34 C240,70 500,12 760,40 C1020,66 1230,16 1440,40 L1440,90 L0,90Z" fill="#DCE8E4"/></svg>
 </section>
 
 <section class="sec s-sage" id="nsw" aria-labelledby="h-nsw">
@@ -257,12 +249,12 @@
 <div class="sec-head">
 <h2 id="h-nsw">In New South Wales the harvest follows the rain</h2>
 <div class="copy">
-<p>Each grain is one year, joined in time order. Dry seasons sit low and to the left; wet seasons high and to the right. In 2019 NSW got about 40% of its normal rain, and its wheat yield fell to about 41% of normal.</p>
+<p>Each dot is one year, joined in time order. Dry seasons sit low and to the left; wet seasons high and to the right. In 2019 NSW got about 40% of its normal rain, and its wheat yield fell to about 41% of normal.</p>
 </div>
 </div>
 <div class="split even">
 <div class="figure">
-<div class="chart" id="c-nsw" role="img" aria-label="Connected scatterplot for New South Wales, 1989 to 2025. Each year is a grain placed by April to October rain and wheat yield, joined in time order. Dry years such as 1994, 2002, 2018 and 2019 sit low and to the left, under 0.9 tonnes a hectare; 2022 sits high and to the right at 3.0 tonnes a hectare."></div>
+<div class="chart" id="c-nsw" role="img" aria-label="Connected scatterplot for New South Wales, 1989 to 2025. Each year is a dot placed by April to October rain and wheat yield, joined in time order. Dry years such as 1994, 2002, 2018 and 2019 sit low and to the left, under 0.9 tonnes a hectare; 2022 sits high and to the right at 3.0 tonnes a hectare."></div>
 <div class="farmer">
 <label for="rain-input"><strong>Be the farmer.</strong> Pick how much rain falls from April to October:</label>
 <div class="farmer-row"><input type="range" id="rain-input" min="130" max="470" step="10" value="130"> <output id="rain-out" for="rain-input">100–160 mm</output></div>
@@ -271,7 +263,7 @@
 </div>
 <div class="figure"><div class="chart" id="c-choro" role="img" aria-label="Four maps of Australia's states. Top: April to October rain in 2019 and 2022 as a percent of normal. Bottom: wheat yield as a percent of normal. In 2019 most states are brown, below normal; in 2022 most are teal, above normal. New South Wales: 40 percent of normal rain and 41 percent of normal yield in 2019; 170 and 146 percent in 2022."></div></div>
 </div>
-<p class="hint">Drag the rain slider: the grains that got that much rain turn brown. Hover any grain or state for its numbers.</p>
+<p class="hint">Drag the rain slider: the dots for years that got that much rain turn brown. Hover any dot or state for its numbers.</p>
 <div class="five-wrap">
 <div class="figure"><div class="chart" id="c-five" role="img" aria-label="Five small scatterplots, one per mainland state, of April to October rain against wheat yield, both as a percent of that state's normal, 1989 to 2025. The dots rise to the right in New South Wales (correlation 0.62), Victoria (0.61), South Australia (0.59) and Queensland (0.48), but hardly at all in Western Australia (0.24). 2019 is brown and 2022 is teal."></div></div>
 <div class="five-aside">
@@ -281,7 +273,6 @@
 </div>
 <p class="bridge">It holds almost everywhere, except Western Australia, the biggest grower of all.</p>
 </div>
-<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C240,10 470,74 720,44 C980,14 1200,70 1440,36 L1440,90 L0,90Z" fill="#9A4A24"/></svg>
 </section>
 
 <section class="sec s-red" id="wa" aria-labelledby="h-wa">
@@ -293,7 +284,7 @@
 </div>
 </div>
 <div class="split even">
-<div class="figure"><div class="chart map-shadow" id="c-wamap" role="img" aria-label="Map of Western Australia. Most of the state is desert, plain red earth. Only the south-west corner around Perth gets 300 mm of rain or more a year, and that is where the wheat grows. A small locator map shows WA as the western third of Australia."></div></div>
+<div class="figure"><div class="chart" id="c-wamap" role="img" aria-label="Map of Western Australia. Most of the state is desert, plain red earth. Only the south-west corner around Perth gets 300 mm of rain or more a year, and that is where the wheat grows. A small locator map shows WA as the western third of Australia."></div></div>
 <div class="figure">
 <div class="chart" id="c-wa" role="img" aria-label="Scatterplot of Western Australia's statewide April to October rain against wheat yield, 1989 to 2025. The points barely line up. In 2010 WA got 122 percent of its normal rain but 60 percent of its normal yield; in 2018, 67 percent of normal rain and 126 percent of normal yield."></div>
 <p class="note">Over the 37 seasons, a wetter season goes with a bigger harvest far more reliably in NSW than in WA: a correlation of 0.62 in NSW, but only 0.24 in WA.</p>
@@ -301,7 +292,6 @@
 </div>
 <p class="bridge">Back in the east, one state swings harder than any other between a dry year and a wet one.</p>
 </div>
-<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,44 C220,74 460,14 720,40 C980,66 1220,20 1440,44 L1440,90 L0,90Z" fill="#F1E4C8"/></svg>
 </section>
 
 <section class="sec s-sand" id="swing" aria-labelledby="h-swing">
@@ -321,7 +311,6 @@
 <p class="hint">Hover a line to follow one state. Click a dot to choose that year for the whole page.</p>
 <p class="bridge">Wheat isn’t the only crop in the paddock. Does everything else rise and fall with it?</p>
 </div>
-<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,36 C240,66 480,16 720,42 C960,68 1200,12 1440,40 L1440,90 L0,90Z" fill="#1B2A35"/></svg>
 </section>
 
 <section class="sec s-paddock" id="paddock" aria-labelledby="h-paddock">
@@ -386,7 +375,7 @@
 <ul>
 <li><a href="https://ga.gov.au/scientific-topics/national-location-information/dimensions/area-of-australia-states-and-territories">Geoscience Australia</a>: area of Australia, 7,688,287 km².</li>
 <li><a href="https://www.cia.gov/the-world-factbook/countries/malaysia/">CIA World Factbook</a>: area of Malaysia, 329,847 km². The ratio is 23.3.</li>
-<li><a href="https://climateknowledgeportal.worldbank.org/node/2456">World Bank Climate Knowledge Portal</a>: Malaysia’s mean annual rainfall, 3,085 mm.</li>
+<li><a href="https://climateknowledgeportal.worldbank.org/node/2456">World Bank Climate Knowledge Portal</a>: Malaysia’s mean annual rainfall, 3,085.5 mm (shown rounded to 3,100 mm).</li>
 </ul>
 </div>
 <div>

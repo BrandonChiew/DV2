@@ -181,23 +181,27 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2019"
       },
       {
        "calculate": "datum.rain_cool_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
@@ -206,7 +210,10 @@
       "fontWeight": 600,
       "strokeWidth": 3.2,
       "strokeJoin": "round",
-      "strokeOpacity": 0.9
+      "strokeOpacity": 0.9,
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -222,14 +229,14 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
       },
       "stroke": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
@@ -248,30 +255,37 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2019"
       },
       {
        "calculate": "datum.rain_cool_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
       "type": "text",
       "fontSize": 13,
       "fontWeight": 600,
-      "color": "#16222C"
+      "color": "#16222C",
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -287,7 +301,7 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#F3EEDF"
        },
        "value": "#16222C"
@@ -446,23 +460,27 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2022"
       },
       {
        "calculate": "datum.rain_cool_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
@@ -471,7 +489,10 @@
       "fontWeight": 600,
       "strokeWidth": 3.2,
       "strokeJoin": "round",
-      "strokeOpacity": 0.9
+      "strokeOpacity": 0.9,
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -487,14 +508,14 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
       },
       "stroke": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
@@ -513,30 +534,37 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2022"
       },
       {
        "calculate": "datum.rain_cool_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
       "type": "text",
       "fontSize": 13,
       "fontWeight": 600,
-      "color": "#16222C"
+      "color": "#16222C",
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -552,7 +580,7 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#F3EEDF"
        },
        "value": "#16222C"
@@ -711,23 +739,27 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2019"
       },
       {
        "calculate": "datum.yield_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
@@ -736,7 +768,10 @@
       "fontWeight": 600,
       "strokeWidth": 3.2,
       "strokeJoin": "round",
-      "strokeOpacity": 0.9
+      "strokeOpacity": 0.9,
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -752,14 +787,14 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
       },
       "stroke": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
@@ -778,30 +813,37 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2019 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2019"
       },
       {
        "calculate": "datum.yield_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
       "type": "text",
       "fontSize": 13,
       "fontWeight": 600,
-      "color": "#16222C"
+      "color": "#16222C",
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -817,7 +859,7 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#F3EEDF"
        },
        "value": "#16222C"
@@ -976,23 +1018,27 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2022"
       },
       {
        "calculate": "datum.yield_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
@@ -1001,7 +1047,10 @@
       "fontWeight": 600,
       "strokeWidth": 3.2,
       "strokeJoin": "round",
-      "strokeOpacity": 0.9
+      "strokeOpacity": 0.9,
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -1017,14 +1066,14 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
       },
       "stroke": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#16222C"
        },
        "value": "#F3EEDF"
@@ -1043,30 +1092,37 @@
      },
      "transform": [
       {
-       "filter": "datum.year == 2022 && datum.state_code != 'TAS'"
+       "filter": "datum.year == 2022"
       },
       {
        "calculate": "datum.yield_pct_of_avg",
        "as": "pct_v"
       },
       {
-       "calculate": "format(datum.pct_v, '.0f') + '%'",
+       "calculate": "(datum.state_code == 'VIC' ? 'Vic ' : datum.state_code == 'TAS' ? 'Tas ' : '') + format(datum.pct_v, '.0f') + '%'",
        "as": "lab"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][0]",
        "as": "lon"
       },
       {
-       "calculate": "{'NSW':[146.6,-32.4],'VIC':[144.5,-36.9],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
+       "calculate": "{'NSW':[146.6,-32.4],'VIC':[143.3,-40.7],'TAS':[146.6,-44.3],'SA':[135.4,-30.2],'WA':[122.3,-26.0],'QLD':[144.0,-22.6]}[datum.state_code][1]",
        "as": "lat"
+      },
+      {
+       "calculate": "datum.state_code == 'VIC' ? 'right' : 'center'",
+       "as": "al"
       }
      ],
      "mark": {
       "type": "text",
       "fontSize": 13,
       "fontWeight": 600,
-      "color": "#16222C"
+      "color": "#16222C",
+      "align": {
+       "expr": "datum.al"
+      }
      },
      "encoding": {
       "longitude": {
@@ -1082,7 +1138,7 @@
       },
       "color": {
        "condition": {
-        "test": "datum.pct_v < 50 || datum.pct_v >= 130",
+        "test": "(datum.pct_v < 50 || datum.pct_v >= 130) && datum.state_code != 'VIC' && datum.state_code != 'TAS'",
         "value": "#F3EEDF"
        },
        "value": "#16222C"

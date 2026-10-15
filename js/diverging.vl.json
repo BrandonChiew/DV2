@@ -155,19 +155,7 @@
     ],
     "nice": false
    },
-   "axis": {
-    "title": "Change in harvest (%)",
-    "values": [
-     -60,
-     -40,
-     -20,
-     0,
-     20
-    ],
-    "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : datum.value == 0 ? '0' : '−' + abs(datum.value) + '%'",
-    "grid": true,
-    "domain": false
-   }
+   "axis": null
   }
  },
  "layer": [

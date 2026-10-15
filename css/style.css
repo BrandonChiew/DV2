@@ -10,7 +10,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-padding-top: 48px; scroll-behavior: smooth; }
 body {
   margin: 0; background: var(--deep); color: var(--cream);
   font: 400 18px/1.6 var(--body); font-optical-sizing: auto;
@@ -57,11 +57,14 @@ p { margin: 0 0 1em; }
 .progress { position: fixed; left: 0; top: 0; width: 100%; height: 4px; z-index: 60; pointer-events: none; }
 .progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--sun), var(--gold)); box-shadow: 0 1px 0 rgba(15, 26, 34, .55); }
 .year-chip {
-  position: fixed; right: 16px; bottom: 16px; z-index: 40; display: inline-flex; align-items: baseline; gap: 8px;
-  background: var(--ink); color: var(--cream); border: 2px solid var(--gold); padding: 8px 14px 8px 12px;
-  font: 600 14px/1.2 var(--body); text-decoration: none; box-shadow: 4px 4px 0 rgba(0, 0, 0, .35);
-  opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s, transform .2s;
+  /* A slim solid bar under the progress line: readable over every section, and the page scrolls beneath it instead of being hidden behind a floating box. */
+  position: fixed; left: 0; right: 0; top: 4px; z-index: 40; display: flex; justify-content: center; align-items: baseline; gap: 8px;
+  background: var(--deep); color: var(--cream); border-bottom: 2px solid var(--gold); padding: 6px 16px;
+  font: 600 14px/1.2 var(--body); text-decoration: none;
+  opacity: 0; transform: translateY(-100%); pointer-events: none; transition: opacity .2s, transform .2s;
 }
+.year-chip .yc-hint { font-weight: 400; color: #C9BFAE; }
+.year-chip:hover .yc-hint, .year-chip:focus-visible .yc-hint { color: var(--cream); text-decoration: underline; }
 .year-chip.on { opacity: 1; transform: none; pointer-events: auto; }
 .year-chip strong { font: 400 22px/1 var(--display); color: var(--gold); }
 .pano-try {
@@ -108,7 +111,7 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 }
 /* The lede sits on its own dark card, above the foreground stalks, in the clear band between the silos' stalks and the right-hand stalks. */
 .hero-lede {
-  position: absolute; z-index: 3; left: 33%; bottom: 3.2cqw;
+  position: absolute; z-index: 3; left: 33%; bottom: calc(3.2cqw + 24px);
   width: min(540px, 56cqw); margin: 0; padding: 1.5cqw 2cqw;
   background: rgba(15, 26, 34, .93); color: var(--cream);
   border-left: 4px solid var(--gold); box-shadow: 8px 8px 0 rgba(0, 0, 0, .35);
@@ -118,9 +121,9 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 @media (max-width: 700px) {
   .hero { --H: clamp(640px, 100svh, 900px); display: block; height: var(--H); }
   .stage { position: absolute; inset: 0; width: auto; margin: 0; aspect-ratio: auto; }
-  .hero .fill { inset: auto; left: -42cqw; bottom: 176px; width: 178cqw; height: auto; aspect-ratio: 1100 / 860; }
+  .hero .fill { inset: auto; left: -42cqw; bottom: 200px; width: 178cqw; height: auto; aspect-ratio: 1100 / 860; }
   .hero-title { left: 5.5cqw; top: 28px; font-size: 15.5cqw; }
-  .hero-lede { left: 16px; right: 16px; bottom: 18px; width: auto; padding: 16px 18px; font-size: 17px; }
+  .hero-lede { left: 16px; right: 16px; bottom: 46px; width: auto; padding: 16px 18px; font-size: 17px; }
 }
 
 /* ---------- Sections ---------- */
@@ -128,7 +131,7 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .wrap.wide { max-width: 1320px; }
 .wave { position: absolute; left: 0; bottom: -1px; width: 100%; height: 52px; display: block; }
-.wave.dune { height: 72px; }
+.hero .hero-wave { z-index: 4; height: 40px; }
 
 .s-guess { background: var(--deep); }
 .s-sand { background: var(--sand); color: var(--ink); }
@@ -166,17 +169,11 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 .sec-head h2 { margin: 0; max-width: 17ch; }
 .sec-head .copy p:last-child { margin-bottom: 0; }
 .pair-text h2 { max-width: 14ch; }
-#sown-note { max-width: 62ch; margin-top: 14px; }
 
 /* The five-state chart has an empty sixth cell: its caption lives there */
 .five-wrap { position: relative; margin-top: 28px; }
 .five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; font-size: 16px; line-height: 1.5; }
 .five-aside p { margin: 0 0 .6em; }
-
-/* Hard offset shadow under maps */
-/* (Vega gives each mark group the class "<name>_marks"; maps name their land layer "land") */
-.map-shadow .land_marks { filter: drop-shadow(9px 11px 0 rgba(58, 42, 30, .30)); }
-.s-red .map-shadow .land_marks { filter: drop-shadow(9px 11px 0 rgba(40, 18, 8, .45)); }
 
 /* Panorama */
 .pano { display: grid; grid-template-columns: auto minmax(220px, 300px); gap: 36px; align-items: start; margin: 10px 0 12px; }
@@ -279,7 +276,7 @@ button[disabled] { opacity: .55; cursor: default; }
   .sec-head { grid-template-columns: minmax(0, 1fr); }
   .five-aside { position: static; width: auto; margin-top: 12px; }
   .my-compare { grid-template-columns: minmax(0, 1fr); }
-  .year-chip { right: 10px; bottom: 10px; padding: 6px 10px; }
+  .year-chip .yc-hint { display: none; }
   .pano-try { padding: 10px 12px; }
 }
 @media (max-width: 600px) {
