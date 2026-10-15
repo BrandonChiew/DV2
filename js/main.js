@@ -317,24 +317,6 @@ function barleyNote() {
 const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
 const absPct = v => Math.abs(Math.round(v)) + '%';
 
-// "Farmers still sow": change in area sown and in yield against the five years before.
-function sownNote() {
-  const el = document.getElementById('sown-note');
-  dataReady.then(d => {
-    const w = d.crops.filter(r => r.state_code === 'AUS' && r.crop === 'wheat');
-    const change = (field, year) => {
-      const prev = w.filter(r => r.year >= year - 5 && r.year < year).map(r => r[field]);
-      return 100 * (w.find(r => r.year === year)[field] / mean(prev) - 1);
-    };
-    const one = (year, label) => {
-      const a = change('area_kha', year), y = change('yield_t_ha', year);
-      return `${label}, farmers sowed ${absPct(a)} ${a < 0 ? 'less' : 'more'} wheat and the yield ${y < 0 ? 'fell' : 'rose'} ${absPct(y)}.`;
-    };
-    el.textContent = [one(2002, 'In 2002'), one(2006, 'In 2006'), one(2019, 'In 2019, the driest year'),
-      one(2022, 'In 2022, the record harvest')].join(' ') + ' All changes are against the average of the five years before.';
-  });
-}
-
 // Five-state chart: how closely rain and yield move together in each state (correlation r).
 function fiveNote() {
   const el = document.getElementById('five-note');
@@ -385,7 +367,6 @@ fontsReady.then(() => {
   embed('c-five', 'five_scatter.vl.json').then(v => v && followYear(v));
   embed('c-bump', 'bump.vl.json').then(v => { if (v) { followYear(v); clickYear(v); } });
   barleyNote();
-  sownNote();
   fiveNote();
   incomeNote();
 });

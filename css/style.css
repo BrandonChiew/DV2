@@ -166,7 +166,6 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 .sec-head h2 { margin: 0; max-width: 17ch; }
 .sec-head .copy p:last-child { margin-bottom: 0; }
 .pair-text h2 { max-width: 14ch; }
-#sown-note { max-width: 62ch; margin-top: 14px; }
 
 /* The five-state chart has an empty sixth cell: its caption lives there */
 .five-wrap { position: relative; margin-top: 28px; }
