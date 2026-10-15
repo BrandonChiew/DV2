@@ -478,7 +478,9 @@
       "lat": -31.95,
       "align": "right",
       "dx": -6,
-      "dy": 0
+      "dy": 0,
+      "ndx": 7,
+      "nalign": "left"
      },
      {
       "city": "Adelaide",
@@ -486,7 +488,9 @@
       "lat": -34.93,
       "align": "right",
       "dx": -6,
-      "dy": 4
+      "dy": 4,
+      "ndx": 7,
+      "nalign": "left"
      },
      {
       "city": "Melbourne",
@@ -494,7 +498,9 @@
       "lat": -37.81,
       "align": "center",
       "dx": 0,
-      "dy": 13
+      "dy": 13,
+      "ndx": 7,
+      "nalign": "left"
      },
      {
       "city": "Sydney",
@@ -502,16 +508,20 @@
       "lat": -33.87,
       "align": "left",
       "dx": 6,
-      "dy": 0
+      "dy": 0,
+      "ndx": 7,
+      "nalign": "left"
      },
      {
       "city": "Darwin",
       "lon": 130.84,
       "lat": -12.46,
-      "align": "left",
-      "dx": 7,
+      "align": "right",
+      "dx": -7,
       "dy": -2,
-      "note": "1,600–2,400 mm a year"
+      "note": "1,600–2,400 mm a year",
+      "ndx": -7,
+      "nalign": "right"
      },
      {
       "city": "Alice Springs",
@@ -520,7 +530,9 @@
       "align": "left",
       "dx": 7,
       "dy": 0,
-      "note": "200–300 mm a year"
+      "note": "200–300 mm a year",
+      "ndx": 7,
+      "nalign": "left"
      }
     ]
    },
@@ -602,8 +614,12 @@
       "fontSize": 14,
       "color": "#F1E4C8",
       "baseline": "middle",
-      "align": "left",
-      "dx": 7,
+      "align": {
+       "expr": "datum.nalign"
+      },
+      "dx": {
+       "expr": "datum.ndx"
+      },
       "dy": 13,
       "stroke": "#F1E4C8",
       "strokeWidth": 4,
@@ -665,8 +681,12 @@
       "fontSize": 14,
       "color": "#2B2620",
       "baseline": "middle",
-      "align": "left",
-      "dx": 7,
+      "align": {
+       "expr": "datum.nalign"
+      },
+      "dx": {
+       "expr": "datum.ndx"
+      },
       "dy": 13
      },
      "encoding": {

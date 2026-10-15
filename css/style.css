@@ -108,7 +108,7 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 }
 /* The lede sits on its own dark card, above the foreground stalks, in the clear band between the silos' stalks and the right-hand stalks. */
 .hero-lede {
-  position: absolute; z-index: 3; left: 33%; bottom: 3.2cqw;
+  position: absolute; z-index: 3; left: 33%; bottom: calc(3.2cqw + 24px);
   width: min(540px, 56cqw); margin: 0; padding: 1.5cqw 2cqw;
   background: rgba(15, 26, 34, .93); color: var(--cream);
   border-left: 4px solid var(--gold); box-shadow: 8px 8px 0 rgba(0, 0, 0, .35);
@@ -118,9 +118,9 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 @media (max-width: 700px) {
   .hero { --H: clamp(640px, 100svh, 900px); display: block; height: var(--H); }
   .stage { position: absolute; inset: 0; width: auto; margin: 0; aspect-ratio: auto; }
-  .hero .fill { inset: auto; left: -42cqw; bottom: 176px; width: 178cqw; height: auto; aspect-ratio: 1100 / 860; }
+  .hero .fill { inset: auto; left: -42cqw; bottom: 200px; width: 178cqw; height: auto; aspect-ratio: 1100 / 860; }
   .hero-title { left: 5.5cqw; top: 28px; font-size: 15.5cqw; }
-  .hero-lede { left: 16px; right: 16px; bottom: 18px; width: auto; padding: 16px 18px; font-size: 17px; }
+  .hero-lede { left: 16px; right: 16px; bottom: 46px; width: auto; padding: 16px 18px; font-size: 17px; }
 }
 
 /* ---------- Sections ---------- */
@@ -128,7 +128,7 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .wrap.wide { max-width: 1320px; }
 .wave { position: absolute; left: 0; bottom: -1px; width: 100%; height: 52px; display: block; }
-.wave.dune { height: 72px; }
+.hero .hero-wave { z-index: 4; height: 40px; }
 
 .s-guess { background: var(--deep); }
 .s-sand { background: var(--sand); color: var(--ink); }
