@@ -173,11 +173,6 @@ button.chip-btn:active { transform: none; box-shadow: none; }
 .five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; font-size: 16px; line-height: 1.5; }
 .five-aside p { margin: 0 0 .6em; }
 
-/* Hard offset shadow under maps */
-/* (Vega gives each mark group the class "<name>_marks"; maps name their land layer "land") */
-.map-shadow .land_marks { filter: drop-shadow(9px 11px 0 rgba(58, 42, 30, .30)); }
-.s-red .map-shadow .land_marks { filter: drop-shadow(9px 11px 0 rgba(40, 18, 8, .45)); }
-
 /* Panorama */
 .pano { display: grid; grid-template-columns: auto minmax(220px, 300px); gap: 36px; align-items: start; margin: 10px 0 12px; }
 
