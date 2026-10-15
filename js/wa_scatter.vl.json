@@ -127,10 +127,9 @@
   {
    "mark": {
     "type": "point",
-    "shape": "M0,-1 C0.62,-0.62 0.62,0.62 0,1 C-0.62,0.62 -0.62,-0.62 0,-1Z",
+    "shape": "circle",
     "filled": true,
     "size": 130,
-    "angle": 30,
     "fill": "#F0C766",
     "stroke": "#16222C",
     "strokeWidth": 0.8
