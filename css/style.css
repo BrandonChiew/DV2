@@ -82,34 +82,45 @@ button.chip-btn[aria-pressed="true"] { background: var(--gold); color: var(--ink
 button.chip-btn[aria-pressed="true"] span { color: #3B372F; }
 button.chip-btn:active { transform: none; box-shadow: none; }
 
-/* ---------- Hero ---------- */
-.hero { position: relative; height: 100vh; min-height: 560px; max-height: 780px; overflow: hidden; background: var(--dusk); }
-.hero .fill, .night .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* ---------- Hero ----------
+   The artwork keeps its 1100:860 proportions inside a centred stage (max 1280px). The drawing's sky and
+   ground are painted far past its edges (SVG overflow is visible), so wider screens show no seams.
+   The title and lede sit inside the stage and are sized in stage units (cqw), so they stay with the art. */
+.hero {
+  --vh: clamp(560px, 100vh, 1000px);
+  position: relative; overflow: hidden; background: #1B2A35;
+  display: flex; justify-content: center; align-items: flex-end; container-type: inline-size;
+}
+@supports (height: 100svh) { .hero { --vh: clamp(560px, 100svh, 1000px); } }
+.stage {
+  position: relative; flex: none; container-type: inline-size; aspect-ratio: 1100 / 860;
+  width: min(1280px, 100cqw, calc(var(--vh) * 1.2791));
+  /* a little extra sky above the art on tall, narrow screens, so the hero is about one screen high */
+  margin-top: clamp(0px, calc(var(--vh) - min(1280px, 100cqw, calc(var(--vh) * 1.2791)) * .7818), calc(min(1280px, 100cqw, calc(var(--vh) * 1.2791)) * .25));
+}
+.hero .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+.night .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero .front { z-index: 2; pointer-events: none; }
-.hero-text {
-  position: absolute; z-index: 1; left: 5vw; right: 5vw; top: 14vh;
+.hero-title {
+  position: absolute; z-index: 1; left: 5.4%; top: 7%; margin: 0;
+  font-size: 11.2cqw; line-height: 1; color: var(--cream); letter-spacing: -.02em;
+  text-shadow: .035em .035em 0 rgba(15, 26, 34, .6);
 }
-.hero h1 {
-  font-size: clamp(64px, 12vw, 150px); line-height: 1; color: var(--cream); letter-spacing: -.02em;
-  text-shadow: 5px 5px 0 rgba(15, 26, 34, .6);
-}
-/* The lede sits on its own dark card, above the foreground stalks, in the clear band between them. */
+/* The lede sits on its own dark card, above the foreground stalks, in the clear band between the silos' stalks and the right-hand stalks. */
 .hero-lede {
-  position: absolute; z-index: 3; left: 33%; bottom: clamp(24px, 6vh, 64px);
-  width: min(540px, 52%); margin: 0; padding: 18px 24px;
+  position: absolute; z-index: 3; left: 33%; bottom: 3.2cqw;
+  width: min(540px, 56cqw); margin: 0; padding: 1.5cqw 2cqw;
   background: rgba(15, 26, 34, .93); color: var(--cream);
   border-left: 4px solid var(--gold); box-shadow: 8px 8px 0 rgba(0, 0, 0, .35);
-  font-size: clamp(18px, 1.5vw, 21px); line-height: 1.55;
+  font-size: clamp(16px, 1.65cqw, 21px); line-height: 1.55;
 }
-/* When the screen is wider than the drawing (1100:860), the drawing scales
-   with the width, so pin the text to the drawing's units (1 unit = 100vw/1100):
-   title just above the field, lede between the silos' stalks and the farmer. */
-@media (min-aspect-ratio: 1100/860) and (min-width: 701px) {
-  .hero-text {
-    --h1: min(140px, 11vw, 17vh);
-    top: clamp(36px, 8vh, 96px); left: 5.45vw; right: auto;
-  }
-  .hero h1 { font-size: var(--h1); }
+/* Phones: the art is drawn larger than the screen and anchored above the lede; the title sits in the sky above it. */
+@media (max-width: 700px) {
+  .hero { --H: clamp(640px, 100svh, 900px); display: block; height: var(--H); }
+  .stage { position: absolute; inset: 0; width: auto; margin: 0; aspect-ratio: auto; }
+  .hero .fill { inset: auto; left: -42cqw; bottom: 176px; width: 178cqw; height: auto; aspect-ratio: 1100 / 860; }
+  .hero-title { left: 5.5cqw; top: 28px; font-size: 15.5cqw; }
+  .hero-lede { left: 16px; right: 16px; bottom: 18px; width: auto; padding: 16px 18px; font-size: 17px; }
 }
 
 /* ---------- Sections ---------- */
@@ -273,8 +284,6 @@ button[disabled] { opacity: .55; cursor: default; }
 }
 @media (max-width: 600px) {
   body { font-size: 17px; }
-  .hero-lede { left: 16px; right: 16px; width: auto; bottom: 24px; padding: 16px 18px; font-size: 17px; }
-  .hero-text { top: 7vh; }
   .bridge { font-size: 19px; }
   .chart { padding-bottom: 6px; }
   .guess-range { flex-wrap: wrap; }
