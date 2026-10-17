@@ -30,16 +30,20 @@ h1, h2 {
 h2 { font-size: clamp(32px, 3.6vw, 46px); margin-bottom: 18px; max-width: 20ch; }
 h3 { font: 400 22px/1.2 var(--display); margin: 0 0 12px; }
 p { margin: 0 0 1em; }
-.copy p, .note, .hint, .bridge { max-width: 66ch; }
+/* Story copy: short lines (about 38 characters wide), 18px, line-height 1.55. Charts keep their own width. */
+.copy p, .pair-text p, .pano-notes p, .five-aside p, .note, .hint, .farmer label, .farmer p, .guess-split .copy p, .guess-result span, .night .lead, .night .small, .my-stat span, .map-caption {
+  max-width: 38ch; font-size: 18px; line-height: 1.55;
+}
+.bridge { max-width: 34ch; }
 .bridge {
   font: 400 22px/1.4 var(--display); margin: 26px 0 0; max-width: 34ch; color: inherit;
   padding-left: 18px; border-left: 3px solid var(--gold);
 }
-.hint { font-size: 16px; opacity: .85; padding-left: 26px; position: relative; }
+.hint { opacity: .85; padding-left: 26px; position: relative; }
 .copy.extra { margin-top: 28px; }
 .guess-split { grid-template-columns: minmax(260px, 1fr) minmax(0, 1.15fr); }
-.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 40px; align-items: start; }
-.pair.text-first { grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 400px); gap: 40px; align-items: start; }
+.pair.text-first { grid-template-columns: minmax(240px, 420px) minmax(0, 1fr); }
 .pair.extra { margin-top: 28px; }
 .pair-text p { margin: 0 0 1.1em; }
 .pair .figure, .pair .figure.diverge { margin: 0; }
@@ -49,7 +53,6 @@ p { margin: 0 0 1em; }
 .hint::before { /* small pointer glyph, not colour alone */
   content: "\2197"; position: absolute; left: 0; top: 0; font-weight: 600;
 }
-.note { font-size: 16px; }
 .diverge { margin-top: 0; }
 
 /* ---------- Reader aids: progress bar, year chip ---------- */
@@ -125,7 +128,7 @@ p { margin: 0 0 1em; }
 
 .split { display: grid; grid-template-columns: minmax(260px, 1fr) auto; gap: 48px; align-items: start; }
 .split.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); justify-content: space-between; gap: 32px; margin-top: 4px; }
-.map-split { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 40px; align-items: start; }
+.map-split { grid-template-columns: minmax(260px, 420px) minmax(0, 1fr); gap: 40px; align-items: start; }
 .map-split .copy h2 { max-width: 12ch; }
 .figure { min-width: 0; margin: 0; }
 .chart { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
@@ -136,12 +139,12 @@ p { margin: 0 0 1em; }
 }
 
 /* Phones only: the circle and wheat-belt legends are written out under the map */
-.map-caption { display: none; margin: 8px 0 0; font-size: 15px; color: var(--muted-light); }
+.map-caption { display: none; margin: 8px 0 0; color: var(--muted-light); }
 @media (max-width: 640px) { .map-caption { display: block; } }
 
 /* Malaysia comparison beside the map */
 .my-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; margin: 14px 0 0; padding: 14px 0 0; border-top: 3px solid var(--wet); }
-.my-stat { margin: 0; font-size: 17px; line-height: 1.45; }
+.my-stat { margin: 0; }
 .my-stat strong { display: block; font: 400 30px/1.1 var(--display); color: var(--wet); white-space: nowrap; }
 .my-source { grid-column: 1 / -1; margin: 4px 0 0; font-size: 14px; color: var(--muted-light); }
 .soil h3.sub { margin-top: 22px; }
@@ -154,11 +157,11 @@ p { margin: 0 0 1em; }
 
 /* The five-state chart has an empty sixth cell: its caption lives there */
 .five-wrap { position: relative; margin-top: 28px; }
-.five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; font-size: 16px; line-height: 1.5; }
+.five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; }
 .five-aside p { margin: 0 0 .6em; }
 
 /* Panorama */
-.pano { display: grid; grid-template-columns: auto minmax(220px, 300px); gap: 36px; align-items: start; margin: 10px 0 12px; }
+.pano { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 400px); gap: 36px; align-items: start; margin: 10px 0 12px; }
 
 .pano-legend { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; font-size: 15px; color: var(--muted-dark); margin-top: 8px; }
 .lg { display: inline-flex; align-items: center; gap: 8px; }
@@ -168,7 +171,7 @@ p { margin: 0 0 1em; }
 .lg-scale { gap: 5px; flex-wrap: wrap; }
 .sw { display: inline-block; width: 12px; height: 18px; border-radius: 6px; margin-left: 6px; }
 .sw { position: relative; vertical-align: middle; }
-.pano-notes { font-size: 16px; line-height: 1.55; color: #D6DEE2; padding-top: 28px; }
+.pano-notes { color: #D6DEE2; padding-top: 28px; }
 .pano-notes p { margin-bottom: 1.1em; }
 .year-card { border-left: 3px solid var(--gold); padding-left: 14px; color: var(--cream); min-height: 4.6em; }
 .year-pick { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted-dark); margin: -6px 0 26px 17px; }
@@ -198,7 +201,7 @@ button[disabled] { opacity: .55; cursor: default; }
 .guess-result span { display: block; font: 400 18px/1.5 var(--body); color: var(--muted-dark); margin-top: 8px; }
 
 /* Be the farmer */
-.farmer { margin-top: 14px; max-width: 470px; font-size: 16px; }
+.farmer { margin-top: 14px; max-width: 470px; }
 .farmer label { display: block; margin-bottom: 6px; }
 .farmer-row { display: flex; align-items: center; gap: 14px; }
 .farmer input { flex: 1; accent-color: var(--dry); }
@@ -209,8 +212,7 @@ button[disabled] { opacity: .55; cursor: default; }
 .night { position: relative; min-height: 520px; overflow: hidden; background: var(--night); display: flex; align-items: center; }
 .night-text { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 72px 24px 96px; width: 100%; }
 .night-text h2 { max-width: 14ch; font-size: clamp(36px, 4.6vw, 58px); }
-.night .lead { font-size: 20px; max-width: 46ch; }
-.night .small { font: 400 22px/1.4 var(--display); color: var(--gold); max-width: 40ch; margin-top: 26px; }
+.night .small { font-family: var(--display); color: var(--gold); margin-top: 26px; }
 
 /* ---------- Footer ---------- */
 .soil { background: var(--soil); color: #E9DFC9; padding: 48px 0 56px; font-size: 16px; }
