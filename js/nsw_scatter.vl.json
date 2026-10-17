@@ -40,6 +40,14 @@
   {
    "name": "selYear",
    "value": 2019
+  },
+  {
+   "name": "p0",
+   "value": 2010
+  },
+  {
+   "name": "p1",
+   "value": 2019
   }
  ],
  "data": {
@@ -319,8 +327,8 @@
    "mark": {
     "type": "line",
     "color": "#16222C",
-    "opacity": 0.32,
-    "strokeWidth": 1.2,
+    "opacity": 0.6,
+    "strokeWidth": 1.6,
     "interpolate": "linear"
    },
    "encoding": {
@@ -328,7 +336,12 @@
      "field": "year",
      "type": "quantitative"
     }
-   }
+   },
+   "transform": [
+    {
+     "filter": "datum.year >= p0 && datum.year <= p1"
+    }
+   ]
   },
   {
    "transform": [
@@ -373,11 +386,17 @@
      "value": 120
     },
     "opacity": {
-     "condition": {
-      "test": "abs(datum.rain_cool_mm - rain) <= 30",
-      "value": 1
-     },
-     "value": 0.8
+     "condition": [
+      {
+       "test": "datum.year >= p0 && datum.year <= p1 && abs(datum.rain_cool_mm - rain) <= 30",
+       "value": 1
+      },
+      {
+       "test": "datum.year >= p0 && datum.year <= p1",
+       "value": 0.85
+      }
+     ],
+     "value": 0.15
     },
     "tooltip": [
      {
@@ -442,7 +461,7 @@
      }
     },
     {
-     "filter": "datum.align || datum.year == selYear"
+     "filter": "(datum.align || datum.year == selYear) && datum.year >= p0 && datum.year <= p1"
     },
     {
      "calculate": "datum.align || 'left'",
@@ -489,6 +508,28 @@
       }
      ],
      "value": "#16222C"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "(datum.year == p0 || datum.year == p1) && indexof([1994, 2002, 2018, 2019, 2022], datum.year) < 0 && datum.year != selYear"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "color": "#16222C",
+    "dx": 11,
+    "dy": -10,
+    "baseline": "middle",
+    "align": "left"
+   },
+   "encoding": {
+    "text": {
+     "field": "year"
     }
    }
   }

@@ -26,8 +26,8 @@ then visit http://localhost:8000.
 ## What is where
 | Path | Contents |
 |---|---|
-| `index.html` | the page: hero, ten sections, footer |
-| `css/style.css` | design tokens, type scale, layout, illustrations, phone layout |
+| `index.html` | the page: a plain hero, ten sections, footer |
+| `css/style.css` | design tokens, type scale, layout, phone layout |
 | `js/main.js`, `js/mobile.js` | page logic and phone chart variants |
 | `js/*.vl.json` | one Vega-Lite spec per chart |
 | `data/processed/` | the cleaned files the page loads |

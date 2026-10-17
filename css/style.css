@@ -30,16 +30,20 @@ h1, h2 {
 h2 { font-size: clamp(32px, 3.6vw, 46px); margin-bottom: 18px; max-width: 20ch; }
 h3 { font: 400 22px/1.2 var(--display); margin: 0 0 12px; }
 p { margin: 0 0 1em; }
-.copy p, .note, .hint, .bridge { max-width: 66ch; }
+/* Story copy: short lines (about 38 characters wide), 18px, line-height 1.55. Charts keep their own width. */
+.copy p, .pair-text p, .pano-notes p, .five-aside p, .note, .hint, .farmer label, .farmer p, .guess-split .copy p, .guess-result span, .night .lead, .night .small, .my-stat span, .map-caption {
+  max-width: 38ch; font-size: 18px; line-height: 1.55;
+}
+.bridge { max-width: 34ch; }
 .bridge {
   font: 400 22px/1.4 var(--display); margin: 26px 0 0; max-width: 34ch; color: inherit;
   padding-left: 18px; border-left: 3px solid var(--gold);
 }
-.hint { font-size: 16px; opacity: .85; padding-left: 26px; position: relative; }
+.hint { opacity: .85; padding-left: 26px; position: relative; }
 .copy.extra { margin-top: 28px; }
 .guess-split { grid-template-columns: minmax(260px, 1fr) minmax(0, 1.15fr); }
-.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 40px; align-items: start; }
-.pair.text-first { grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 400px); gap: 40px; align-items: start; }
+.pair.text-first { grid-template-columns: minmax(240px, 420px) minmax(0, 1fr); }
 .pair.extra { margin-top: 28px; }
 .pair-text p { margin: 0 0 1.1em; }
 .pair .figure, .pair .figure.diverge { margin: 0; }
@@ -49,7 +53,6 @@ p { margin: 0 0 1em; }
 .hint::before { /* small pointer glyph, not colour alone */
   content: "\2197"; position: absolute; left: 0; top: 0; font-weight: 600;
 }
-.note { font-size: 16px; }
 .diverge { margin-top: 0; }
 
 /* ---------- Reader aids: progress bar, year chip ---------- */
@@ -68,45 +71,23 @@ p { margin: 0 0 1em; }
 .year-chip strong { font: 400 22px/1 var(--display); color: var(--gold); }
 
 /* ---------- Hero ----------
-   The artwork keeps its 1100:860 proportions inside a centred stage (max 1280px). The drawing's sky and
-   ground are painted far past its edges (SVG overflow is visible), so wider screens show no seams.
-   The title and lede sit inside the stage and are sized in stage units (cqw), so they stay with the art. */
+   Plain on purpose: one flat cream field, the title, one line, and a scroll cue. It fills the screen. */
 .hero {
-  --vh: clamp(560px, 100vh, 1000px);
-  position: relative; overflow: hidden; background: #1B2A35;
-  display: flex; justify-content: center; align-items: flex-end; container-type: inline-size;
+  position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden;
+  background: var(--cream); color: var(--ink);
 }
-@supports (height: 100svh) { .hero { --vh: clamp(560px, 100svh, 1000px); } }
-.stage {
-  position: relative; flex: none; container-type: inline-size; aspect-ratio: 1100 / 860;
-  width: min(1280px, 100cqw, calc(var(--vh) * 1.2791));
-  /* a little extra sky above the art on tall, narrow screens, so the hero is about one screen high */
-  margin-top: clamp(0px, calc(var(--vh) - min(1280px, 100cqw, calc(var(--vh) * 1.2791)) * .7818), calc(min(1280px, 100cqw, calc(var(--vh) * 1.2791)) * .25));
+.hero-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 72px 24px 120px; }
+.hero-title { font-size: clamp(56px, 11vw, 160px); line-height: 1.02; letter-spacing: -.02em; color: var(--ink); max-width: none; }
+.hero-sub { margin: 28px 0 0; font-size: clamp(20px, 2vw, 26px); line-height: 1.4; color: var(--muted-light); max-width: 60ch; }
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 64px; transform: translateX(-50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-light); text-decoration: none;
 }
-.hero .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+.scroll-cue svg { width: 14px; height: 20px; }
+.scroll-cue:hover, .scroll-cue:focus-visible { color: var(--ink); }
+.hero .hero-wave { z-index: 1; height: 40px; }
 .night .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.hero .front { z-index: 2; pointer-events: none; }
-.hero-title {
-  position: absolute; z-index: 1; left: 5.4%; top: 7%; margin: 0;
-  font-size: 11.2cqw; line-height: 1; color: var(--cream); letter-spacing: -.02em;
-  text-shadow: .035em .035em 0 rgba(15, 26, 34, .6);
-}
-/* The lede sits on its own dark card, above the foreground stalks, in the clear band between the silos' stalks and the right-hand stalks. */
-.hero-lede {
-  position: absolute; z-index: 3; left: 33%; bottom: calc(3.2cqw + 24px);
-  width: min(540px, 56cqw); margin: 0; padding: 1.5cqw 2cqw;
-  background: rgba(15, 26, 34, .93); color: var(--cream);
-  border-left: 4px solid var(--gold); box-shadow: 8px 8px 0 rgba(0, 0, 0, .35);
-  font-size: clamp(16px, 1.65cqw, 21px); line-height: 1.55;
-}
-/* Phones: the art is drawn larger than the screen and anchored above the lede; the title sits in the sky above it. */
-@media (max-width: 700px) {
-  .hero { --H: clamp(640px, 100svh, 900px); display: block; height: var(--H); }
-  .stage { position: absolute; inset: 0; width: auto; margin: 0; aspect-ratio: auto; }
-  .hero .fill { inset: auto; left: -42cqw; bottom: 200px; width: 178cqw; height: auto; aspect-ratio: 1100 / 860; }
-  .hero-title { left: 5.5cqw; top: 28px; font-size: 15.5cqw; }
-  .hero-lede { left: 16px; right: 16px; bottom: 46px; width: auto; padding: 16px 18px; font-size: 17px; }
-}
 
 /* ---------- Sections ---------- */
 .sec { position: relative; padding: 52px 0 68px; }
@@ -125,7 +106,7 @@ p { margin: 0 0 1em; }
 
 .split { display: grid; grid-template-columns: minmax(260px, 1fr) auto; gap: 48px; align-items: start; }
 .split.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); justify-content: space-between; gap: 32px; margin-top: 4px; }
-.map-split { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 40px; align-items: start; }
+.map-split { grid-template-columns: minmax(260px, 420px) minmax(0, 1fr); gap: 40px; align-items: start; }
 .map-split .copy h2 { max-width: 12ch; }
 .figure { min-width: 0; margin: 0; }
 .chart { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
@@ -136,12 +117,12 @@ p { margin: 0 0 1em; }
 }
 
 /* Phones only: the circle and wheat-belt legends are written out under the map */
-.map-caption { display: none; margin: 8px 0 0; font-size: 15px; color: var(--muted-light); }
+.map-caption { display: none; margin: 8px 0 0; color: var(--muted-light); }
 @media (max-width: 640px) { .map-caption { display: block; } }
 
 /* Malaysia comparison beside the map */
 .my-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; margin: 14px 0 0; padding: 14px 0 0; border-top: 3px solid var(--wet); }
-.my-stat { margin: 0; font-size: 17px; line-height: 1.45; }
+.my-stat { margin: 0; }
 .my-stat strong { display: block; font: 400 30px/1.1 var(--display); color: var(--wet); white-space: nowrap; }
 .my-source { grid-column: 1 / -1; margin: 4px 0 0; font-size: 14px; color: var(--muted-light); }
 .soil h3.sub { margin-top: 22px; }
@@ -154,21 +135,31 @@ p { margin: 0 0 1em; }
 
 /* The five-state chart has an empty sixth cell: its caption lives there */
 .five-wrap { position: relative; margin-top: 28px; }
-.five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; font-size: 16px; line-height: 1.5; }
+.five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; }
 .five-aside p { margin: 0 0 .6em; }
 
 /* Panorama */
-.pano { display: grid; grid-template-columns: auto minmax(220px, 300px); gap: 36px; align-items: start; margin: 10px 0 12px; }
+.pano { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 340px); gap: 36px; align-items: start; margin: 10px 0 12px; }
 
 .pano-legend { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; font-size: 15px; color: var(--muted-dark); margin-top: 8px; }
 .lg { display: inline-flex; align-items: center; gap: 8px; }
 .tint { width: 16px; height: 18px; border-radius: 3px; }
 .tint-sun { background: rgba(231, 160, 75, .5); }
 .tint-cloud { background: rgba(156, 195, 214, .5); }
-.lg-scale { gap: 5px; flex-wrap: wrap; }
+.lg-scale { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.scale-title { font-size: 15px; }
+.scale-row { display: flex; align-items: flex-start; }
+.scale-row { width: min(434px, calc(100vw - 48px)); }
+.bin { position: relative; display: flex; flex: 1 1 0; min-width: 0; flex-direction: column; align-items: center; }
+.bin .sw { display: block; width: 100%; height: 14px; margin: 0; border-radius: 0; border-right: 1px solid rgba(15, 26, 34, .6); }
+.bin:first-child .sw { border-radius: 7px 0 0 7px; } .bin:last-child .sw { border-radius: 0 7px 7px 0; border-right: 0; }
+.bin-n { font-size: 14px; white-space: nowrap; line-height: 1.5; color: var(--muted-dark); }
+.bin-normal .sw { box-shadow: inset 0 0 0 1px rgba(15, 26, 34, .6); }
+.bin-tag { position: absolute; top: calc(100% - 1px); left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.3; color: var(--cream); white-space: nowrap; padding-top: 2px; }
+.lg-scale { margin-bottom: 18px; }
 .sw { display: inline-block; width: 12px; height: 18px; border-radius: 6px; margin-left: 6px; }
 .sw { position: relative; vertical-align: middle; }
-.pano-notes { font-size: 16px; line-height: 1.55; color: #D6DEE2; padding-top: 28px; }
+.pano-notes { color: #D6DEE2; padding-top: 28px; }
 .pano-notes p { margin-bottom: 1.1em; }
 .year-card { border-left: 3px solid var(--gold); padding-left: 14px; color: var(--cream); min-height: 4.6em; }
 .year-pick { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted-dark); margin: -6px 0 26px 17px; }
@@ -197,8 +188,16 @@ button[disabled] { opacity: .55; cursor: default; }
 .guess-result { font: 400 clamp(28px, 3.4vw, 38px)/1.1 var(--display); color: var(--cream); margin-top: 22px; min-height: 1em; max-width: 24ch; }
 .guess-result span { display: block; font: 400 18px/1.5 var(--body); color: var(--muted-dark); margin-top: 8px; }
 
+/* Period selector above the NSW chart */
+.period { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 10px; }
+.period-label { font-size: 16px; color: var(--muted-light); margin-right: 2px; }
+button.period-btn { font: 600 15px/1 var(--body); padding: 8px 12px; min-height: 36px; color: var(--ink); background: transparent; border: 2px solid var(--ink); border-radius: 999px; box-shadow: none; cursor: pointer; }
+button.period-btn:hover { background: rgba(22, 34, 44, .1); }
+button.period-btn[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+button.period-btn:active { transform: none; box-shadow: none; }
+
 /* Be the farmer */
-.farmer { margin-top: 14px; max-width: 470px; font-size: 16px; }
+.farmer { margin-top: 14px; max-width: 470px; }
 .farmer label { display: block; margin-bottom: 6px; }
 .farmer-row { display: flex; align-items: center; gap: 14px; }
 .farmer input { flex: 1; accent-color: var(--dry); }
@@ -209,8 +208,7 @@ button[disabled] { opacity: .55; cursor: default; }
 .night { position: relative; min-height: 520px; overflow: hidden; background: var(--night); display: flex; align-items: center; }
 .night-text { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 72px 24px 96px; width: 100%; }
 .night-text h2 { max-width: 14ch; font-size: clamp(36px, 4.6vw, 58px); }
-.night .lead { font-size: 20px; max-width: 46ch; }
-.night .small { font: 400 22px/1.4 var(--display); color: var(--gold); max-width: 40ch; margin-top: 26px; }
+.night .small { font-family: var(--display); color: var(--gold); margin-top: 26px; }
 
 /* ---------- Footer ---------- */
 .soil { background: var(--soil); color: #E9DFC9; padding: 48px 0 56px; font-size: 16px; }
@@ -254,6 +252,7 @@ button[disabled] { opacity: .55; cursor: default; }
   .year-chip .yc-hint { display: none; }
 }
 @media (max-width: 600px) {
+  .bin-n { font-size: 12.5px; letter-spacing: -.02em; }
   body { font-size: 17px; }
   .bridge { font-size: 19px; }
   .chart { padding-bottom: 6px; }
