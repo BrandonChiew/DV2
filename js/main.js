@@ -285,6 +285,15 @@ function setupNSW(view) {
   };
   input.addEventListener('input', update);
   update();
+  // Period buttons: the chosen years keep colour and a joining line; the rest fade to dots.
+  const buttons = [...document.querySelectorAll('.period-btn')];
+  const setPeriod = b => {
+    buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    view.signal('p0', +b.dataset.from).signal('p1', +b.dataset.to).runAsync();
+  };
+  buttons.forEach(b => b.addEventListener('click', () => setPeriod(b)));
+  const current = buttons.find(b => b.getAttribute('aria-pressed') === 'true');
+  if (current) setPeriod(current);
   followYear(view);
 }
 

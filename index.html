@@ -174,9 +174,7 @@
 </div>
 </div>
 <div class="pano-legend" aria-label="Legend">
-<span class="lg lg-scale">Rain, % of normal: dry
-<span class="sw" style="background:#8C510A" title="under 50"></span><span class="sw" style="background:#D8B365" title="50 to 70"></span><span class="sw" style="background:#EBCF8A" title="70 to 90"></span><span class="sw" style="background:#F4F7F2" title="90 to 110"></span><span class="sw" style="background:#A9DDD4" title="110 to 130"></span><span class="sw" style="background:#4FB3A6" title="130 to 150"></span><span class="sw" style="background:#01665E" title="over 150"></span>
-wet</span>
+<span class="lg lg-scale"><span class="scale-title">Rain, % of normal (drier left, wetter right)</span><span class="scale-row"><span class="bin"><span class="sw" style="background:#8C510A"></span><span class="bin-n">&lt;50</span></span><span class="bin"><span class="sw" style="background:#D8B365"></span><span class="bin-n">50–70</span></span><span class="bin"><span class="sw" style="background:#EBCF8A"></span><span class="bin-n">70–90</span></span><span class="bin bin-normal"><span class="sw" style="background:#F4F7F2"></span><span class="bin-n">90–110</span><span class="bin-tag">100% = normal</span></span><span class="bin"><span class="sw" style="background:#A9DDD4"></span><span class="bin-n">110–130</span></span><span class="bin"><span class="sw" style="background:#4FB3A6"></span><span class="bin-n">130–150</span></span><span class="bin"><span class="sw" style="background:#01665E"></span><span class="bin-n">150+</span></span></span></span>
 <span class="lg"><span class="tint tint-sun" aria-hidden="true"></span>El Niño year</span>
 <span class="lg"><span class="tint tint-cloud" aria-hidden="true"></span>La Niña year</span>
 </div>
@@ -222,6 +220,14 @@ wet</span>
 </div>
 <div class="split even">
 <div class="figure">
+<div class="period" role="group" aria-label="Choose a period to highlight">
+<span class="period-label">Show years:</span>
+<button type="button" class="period-btn" data-from="1989" data-to="1999" aria-pressed="false">1989–99</button>
+<button type="button" class="period-btn" data-from="2000" data-to="2009" aria-pressed="false">2000–09</button>
+<button type="button" class="period-btn" data-from="2010" data-to="2019" aria-pressed="true">2010–19</button>
+<button type="button" class="period-btn" data-from="2020" data-to="2025" aria-pressed="false">2020–25</button>
+<button type="button" class="period-btn" data-from="1989" data-to="2025" aria-pressed="false">All</button>
+</div>
 <div class="chart" id="c-nsw" role="img" aria-label="Connected scatterplot for New South Wales, 1989 to 2025. Each year is a dot placed by April to October rain and wheat yield, joined in time order. Dry years such as 1994, 2002, 2018 and 2019 sit low and to the left, under 0.9 tonnes a hectare; 2022 sits high and to the right at 3.0 tonnes a hectare."></div>
 <div class="farmer">
 <label for="rain-input"><strong>Be the farmer.</strong> Pick how much rain falls from April to October:</label>

@@ -168,7 +168,17 @@ p { margin: 0 0 1em; }
 .tint { width: 16px; height: 18px; border-radius: 3px; }
 .tint-sun { background: rgba(231, 160, 75, .5); }
 .tint-cloud { background: rgba(156, 195, 214, .5); }
-.lg-scale { gap: 5px; flex-wrap: wrap; }
+.lg-scale { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.scale-title { font-size: 15px; }
+.scale-row { display: flex; align-items: flex-start; }
+.scale-row { width: min(434px, calc(100vw - 48px)); }
+.bin { position: relative; display: flex; flex: 1 1 0; min-width: 0; flex-direction: column; align-items: center; }
+.bin .sw { display: block; width: 100%; height: 14px; margin: 0; border-radius: 0; border-right: 1px solid rgba(15, 26, 34, .6); }
+.bin:first-child .sw { border-radius: 7px 0 0 7px; } .bin:last-child .sw { border-radius: 0 7px 7px 0; border-right: 0; }
+.bin-n { font-size: 14px; white-space: nowrap; line-height: 1.5; color: var(--muted-dark); }
+.bin-normal .sw { box-shadow: inset 0 0 0 1px rgba(15, 26, 34, .6); }
+.bin-tag { position: absolute; top: calc(100% - 1px); left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.3; color: var(--cream); white-space: nowrap; padding-top: 2px; }
+.lg-scale { margin-bottom: 18px; }
 .sw { display: inline-block; width: 12px; height: 18px; border-radius: 6px; margin-left: 6px; }
 .sw { position: relative; vertical-align: middle; }
 .pano-notes { color: #D6DEE2; padding-top: 28px; }
@@ -199,6 +209,14 @@ button[disabled] { opacity: .55; cursor: default; }
 .guess-range output { font: 400 21px/1 var(--display); color: var(--sun); min-width: 64px; }
 .guess-result { font: 400 clamp(28px, 3.4vw, 38px)/1.1 var(--display); color: var(--cream); margin-top: 22px; min-height: 1em; max-width: 24ch; }
 .guess-result span { display: block; font: 400 18px/1.5 var(--body); color: var(--muted-dark); margin-top: 8px; }
+
+/* Period selector above the NSW chart */
+.period { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 10px; }
+.period-label { font-size: 16px; color: var(--muted-light); margin-right: 2px; }
+button.period-btn { font: 600 15px/1 var(--body); padding: 8px 12px; min-height: 36px; color: var(--ink); background: transparent; border: 2px solid var(--ink); border-radius: 999px; box-shadow: none; cursor: pointer; }
+button.period-btn:hover { background: rgba(22, 34, 44, .1); }
+button.period-btn[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+button.period-btn:active { transform: none; box-shadow: none; }
 
 /* Be the farmer */
 .farmer { margin-top: 14px; max-width: 470px; }
@@ -256,6 +274,7 @@ button[disabled] { opacity: .55; cursor: default; }
   .year-chip .yc-hint { display: none; }
 }
 @media (max-width: 600px) {
+  .bin-n { font-size: 12.5px; letter-spacing: -.02em; }
   body { font-size: 17px; }
   .bridge { font-size: 19px; }
   .chart { padding-bottom: 6px; }
