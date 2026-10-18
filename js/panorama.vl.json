@@ -1478,9 +1478,9 @@
     {
      "mark": {
       "type": "rect",
-      "cornerRadiusBottomLeft": 6,
-      "cornerRadiusBottomRight": 6,
-      "color": "#D9CDB4"
+      "color": "#D9CDB4",
+      "cornerRadiusTopLeft": 6,
+      "cornerRadiusTopRight": 6
      },
      "encoding": {
       "x": {
@@ -1528,7 +1528,6 @@
          0,
          27
         ],
-        "reverse": true,
         "nice": false
        },
        "axis": {
@@ -1548,6 +1547,18 @@
        }
       },
       "y2": {
+       "datum": 0
+      }
+     }
+    },
+    {
+     "mark": {
+      "type": "rule",
+      "color": "#8FA0A8",
+      "strokeWidth": 1
+     },
+     "encoding": {
+      "y": {
        "datum": 0
       }
      }
@@ -1623,7 +1634,7 @@
        "as": "label"
       },
       {
-       "calculate": "datum.year == 1994 ? 12.8 : datum.b == datum.max_b ? 22.5 : 18.5",
+       "calculate": "datum.year == 1994 ? 15 : datum.b == datum.max_b ? 23.2 : 21",
        "as": "ly"
       },
       {
