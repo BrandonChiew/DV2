@@ -134,8 +134,9 @@ p { margin: 0 0 1em; }
 
 /* The five-state chart has an empty sixth cell: its caption lives there */
 .five-wrap { position: relative; margin-top: 28px; }
-.five-aside { position: absolute; right: 0; bottom: 34px; width: 30%; }
+.five-aside { position: absolute; right: 0; bottom: 13px; width: 30%; }
 .five-aside p { margin: 0 0 .6em; }
+.five-aside p:last-child { margin-bottom: 0; }
 
 /* Panorama */
 .pano { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 340px); gap: 36px; align-items: start; margin: 10px 0 12px; }

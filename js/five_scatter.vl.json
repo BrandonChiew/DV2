@@ -133,8 +133,13 @@
   }
  },
  "columns": 3,
+ "resolve": {
+  "axis": {
+   "x": "independent"
+  }
+ },
  "spacing": {
-  "row": 26,
+  "row": 46,
   "column": 22
  },
  "spec": {
