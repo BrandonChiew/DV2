@@ -30,7 +30,7 @@
  },
  "title": {
   "text": "Rain against wheat yield, state by state, 1989 to 2025",
-  "subtitle": "One dot per season. Across: April to October rain. Up: wheat yield. Both as a % of the state's normal; r is how closely the dots follow a straight line.",
+  "subtitle": "One dot per season. Across: April to October rain. Up: wheat yield. Both as a % of the state's normal; r, the correlation, is how closely the dots follow a straight line: 1 is a perfect line, 0 is none.",
   "anchor": "start",
   "color": "#16222C",
   "subtitleColor": "#5A5144",

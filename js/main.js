@@ -185,7 +185,7 @@ function yearCard(d, year) {
   const inc = d.income.find(r => r.year === year);
   const parts = [];
   if (wheat) parts.push(`Wheat: ${(wheat.production_kt / 1000).toFixed(1)} Mt${wheat.status !== 'actual' ? ' (ABARES ' + wheat.status + ')' : ''}.`);
-  if (inc) parts.push(`Farmers kept $${(inc.real_net_value_m / 1000).toFixed(1)}b.`);
+  if (inc) parts.push(`Farmers kept $${(inc.real_net_value_m / 1000).toFixed(1)} billion.`);
   return `<b>${wheat ? wheat.season : year}</b>${parts.join(' ')}`;
 }
 
