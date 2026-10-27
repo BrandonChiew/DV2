@@ -43,10 +43,7 @@ To check that the page agrees with the data, run `python3 data/scripts/check_num
 
 ## Use of AI
 
-I used Claude through Claude Code as a coding assistant throughout the project. The main idea, concept, research direction, and overall story were my own. I was responsible for developing the project and making the key creative and analytical decisions.
+I used Claude, through Claude Code, as an AI coding partner throughout the development of this project. Claude played a major role in translating my ideas into a working interactive data story, helping plan the page structure, develop the HTML, CSS and JavaScript, build the Vega-Lite chart specifications, and write the scripts that processed the raw downloads into cleaned datasets for the visualisations. I worked with Claude iteratively to develop and refine the page's structure, functionality and visual presentation.
 
-- **How I used Claude:** I mainly used Claude to help debug my code, check whether my HTML, CSS, JavaScript, and Vega-Lite chart specifications were working correctly, and troubleshoot errors. I also used it for assistance with writing some parts of the code and refining the page structure when needed.
-- **What I did:** I came up with the main idea and story, selected and verified the data sources, made decisions about how to present the data, and wrote or edited the final wording. I also chose the colour palette and typefaces (Young Serif and Bricolage Grotesque) and guided the overall visual design and direction of the project.
-- **How I checked the numbers:** I verified the key figures, including harvests, averages, percentage changes, correlations, and farm income, by recomputing them from the CSV files in `data/processed/` using `data/scripts/check_numbers.py` and comparing the results with the text on the page. Some figures are also calculated directly from the CSV files in the browser to ensure the displayed numbers remain consistent with the data.
-
-Claude served as a supporting tool for coding assistance and debugging, while the project's core concept, research, data decisions, narrative, and creative direction were my own.
+- **What I did:** I chose the topic and the story, picked and checked the data sources, wrote or edited the final wording, and chose the colour palette and the typefaces (Young Serif and Bricolage Grotesque).
+- **How I checked the numbers:** The key figures (harvests, averages, percentage changes, correlations and farm income) were recomputed from the CSVs with a script and compared with the text on the page. Several sentences work out their own numbers from the CSVs in the browser.
