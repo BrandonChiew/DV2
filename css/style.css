@@ -71,10 +71,10 @@ p { margin: 0 0 1em; }
 .year-chip strong { font: 400 22px/1 var(--display); color: var(--gold); }
 
 /* ---------- Hero ----------
-   Plain on purpose: one flat cream field, the title, one line, and a scroll cue. It fills the screen. */
+   Plain on purpose: one flat parched-tan field, the title, one line, and a scroll cue. It fills the screen. */
 .hero {
   position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden;
-  background: var(--cream); color: var(--ink);
+  background: #E6CB96; color: var(--ink);
 }
 .hero-inner { width: 100%; max-width: 1320px; margin: 0 auto; padding: 72px 24px 120px; }
 .hero-title { font-size: clamp(56px, 11vw, 160px); line-height: 1.02; letter-spacing: -.02em; color: var(--ink); max-width: none; }
@@ -85,6 +85,8 @@ p { margin: 0 0 1em; }
   font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-light); text-decoration: none;
 }
 .scroll-cue svg { width: 14px; height: 20px; }
+.hero .hero-sub { color: #3E3A30; }
+.hero .scroll-cue { color: #3E3A30; }
 .scroll-cue:hover, .scroll-cue:focus-visible { color: var(--ink); }
 .hero .hero-wave { z-index: 1; height: 40px; }
 .night .fill { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
