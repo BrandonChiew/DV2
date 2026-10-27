@@ -11,7 +11,7 @@ A presentation (not an exploration tool) about Australian farmers and climate. T
 ## How it was built
 - **Charts:** one Vega-Lite 5 spec per chart in `js/*.vl.json`, embedded with Vega-Embed from a CDN. There is no build step and no framework.
 - **Page logic:** `js/main.js` embeds the charts, links them through one page-wide year (a point selection in the panorama and a `selYear` signal in the others), runs the guess game and the sliders, and works out the numbers in several sentences from the CSVs in the browser. `js/mobile.js` holds the narrower chart variants used on phones.
-- **Design:** Young Serif for headlines and big numbers, Bricolage Grotesque for everything else (both from Google Fonts), the same two families inside the charts. The colour palette runs from sand to deep teal for rain and brown to teal for "% of normal". The illustrations are inline SVG.
+- **Design:** Young Serif for headlines and big numbers, Bricolage Grotesque for everything else (both from Google Fonts), the same two families inside the charts. The colour palette runs from sand to deep teal for rain and brown to teal for "% of normal". The wavy section dividers and the night sky in the closing section are inline SVG.
 - **Reading aids:** progress bar, a year chip, tooltips written as plain sentences (also on tap), an animated reveal on the guess chart that is switched off for readers who prefer reduced motion.
 - **Accessibility:** every chart has a text description, controls work from the keyboard, colour is backed by labels, shapes or numbers on the charts that depend on it, and the page is laid out and tested for phones 390px wide.
 
